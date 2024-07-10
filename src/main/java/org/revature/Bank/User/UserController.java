@@ -1,6 +1,6 @@
 package org.revature.Bank.User;
 
-import org.revature.Bank.util.InputValidator;
+import org.revature.Bank.util.exceptions.InvalidInputException;
 
 
 import java.util.Scanner;
@@ -14,21 +14,37 @@ public class UserController {
     }
 
     InputValidator validEmail = (email, errorMessage) -> {
-        String emailRegexPattern = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+        // regex ensures local part and domain part are separated by a '@' and contain valid email characters
+        // and entire string is between 7 and 64 characters
+        String emailRegexPattern = "^(?=.{7,64}$)[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
         if(!email.matches(emailRegexPattern)){
-            System.out.println(errorMessage);
-            scanner.nextLine();
-            return false;
+            throw new InvalidInputException(errorMessage);
         }
-        return true;
     };
 
-    public void register(){
+    InputValidator validPassword = (password, errorMessage) ->{
+        if(!(password.length() >= 8 && password.length()<=64)){
+            throw new InvalidInputException(errorMessage);
+        }
+    };
+
+    public void register() throws InvalidInputException {
         System.out.println("Please enter your email: ");
         String email = scanner.next();
         System.out.println();
+        // TODO: verify no duplicate emails already in Users table
 
-        if(!validEmail.isValid(email, "Please enter a valid email address.")) return;
+
+        System.out.println("Please enter your password: ");
+        String password = scanner.next();
+        System.out.println();
+
+        User userToAdd = new User(email, password);
+
+        userService.registerUser(userToAdd);
+
+        System.out.println("Registration complete!");
+
 
 
     }

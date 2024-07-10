@@ -1,9 +1,12 @@
 package org.revature.Bank.User;
 
 public class User {
+    private int id;
     private String email;
     private String password;
     private double balance;
+
+
 
     public String getEmail() {
         return email;
@@ -36,6 +39,7 @@ public class User {
     public User(String email, String password){
         this.email=email;
         this.password=password;
+        this.balance = 0.00;
     }
 }
 

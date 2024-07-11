@@ -41,5 +41,10 @@ public class User {
         this.password=password;
         this.balance = 0.00;
     }
+
+    @Override
+    public String toString(){
+        return "User: "+ getEmail()+" " + getBalance()+"\n";
+    }
 }
 

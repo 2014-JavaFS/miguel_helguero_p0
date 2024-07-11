@@ -9,11 +9,28 @@ import java.util.List;
 public class UserService {
 
     private List<User> userList = new ArrayList<>();
-
+    private UserRepository userRepository;
     public List<User> getUserList() {
         return userList;
     }
 
+    public UserService(UserRepository userRepository){
+        this.userRepository = userRepository;
+    }
+
+    public List<User> findAll(){
+        try {
+            List<User> users = userRepository.findAll();
+            if (users.isEmpty()) {
+                throw new UserNotFoundException("No users are registered.");
+            }
+            return users;
+        } catch(UserNotFoundException e){
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
     ScannerValidator anyNonZeroDouble = (scanner, errorMessage) ->{
         if(!scanner.hasNextDouble()){
             System.out.println(errorMessage);
@@ -22,6 +39,7 @@ public class UserService {
         }
         return true;
     };
+
 
     /**
      * Takes in a User object and passes it to validateUser(), if no exceptions caught then
@@ -32,6 +50,8 @@ public class UserService {
      */
     public void registerUser(User user) throws InvalidInputException {
         validateUser(user);
+        userRepository.create(user);
+
         userList.add(user);
     }
 
@@ -57,6 +77,7 @@ public class UserService {
 
     }
 
+    //TODO: connect to database so that user is able to login to any account already initialized
     /**
      * Takes in an email and password and searches List of User objects for a matching User,
      * which is returned if found and if not, null is returns.
@@ -104,4 +125,6 @@ public class UserService {
         double currentBalance = userLoggedIn.getBalance();
         userLoggedIn.setBalance(currentBalance - withdrawalAmount);
     }
+
+
 }

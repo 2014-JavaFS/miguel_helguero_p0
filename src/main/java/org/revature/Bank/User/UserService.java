@@ -8,11 +8,8 @@ import java.util.List;
 
 public class UserService {
 
-    private List<User> userList = new ArrayList<>();
     private UserRepository userRepository;
-    public List<User> getUserList() {
-        return userList;
-    }
+
 
     public UserService(UserRepository userRepository){
         this.userRepository = userRepository;
@@ -31,14 +28,6 @@ public class UserService {
             return null;
         }
     }
-    ScannerValidator anyNonZeroDouble = (scanner, errorMessage) ->{
-        if(!scanner.hasNextDouble()){
-            System.out.println(errorMessage);
-            scanner.nextLine();
-            return false;
-        }
-        return true;
-    };
 
 
     /**
@@ -52,50 +41,13 @@ public class UserService {
         validateUser(user);
         userRepository.create(user);
 
-        userList.add(user);
     }
 
-
-    /**
-     * Takes in a User object and validates the email and password based on constraints in the database.
-     *
-     * @param user - Initialized User object with id, email, and password.
-     * @throws InvalidInputException - Thrown if email or password do not meet requirements.
-     */
-    public void validateUser(User user) throws InvalidInputException{
-        if(!(user.getEmail().length() >= 2 && user.getEmail().length()<=254))
-            throw new InvalidInputException("Email address must be between 2 and 254 characters");
-
-        String emailRegexPattern = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
-        if(!user.getEmail().matches(emailRegexPattern))
-            throw new InvalidInputException("Please enter a valid email address");
-
-        // TODO: check for spaces in password input
-        if(!(user.getPassword().length() >= 8 && user.getPassword().length()<=64))
-            throw new InvalidInputException("Password must be between 8 and 64 characters");
-
-
-    }
-
-    //TODO: connect to database so that user is able to login to any account already initialized
-    /**
-     * Takes in an email and password and searches List of User objects for a matching User,
-     * which is returned if found and if not, null is returns.
-     * @param email - Entered email String.
-     * @param password - Entered password String.
-     * @return - User object found in List of Users, or null if none found.
-     */
-    public User login(String email, String password){
-
-        for(User u : userList)
-            if(u.getEmail().equals(email) && u.getPassword().equals(password)) return u;
-
-        return null;
-    }
-
-    public User logout(User userLoggedIn) throws LogoutException {
-        if(userLoggedIn == null) throw new LogoutException("No user is logged in.");
-        return null;
+    //TODO: separate updateUser into deposit and withdraw methods
+    public void updateUser(User user, double deposit) throws UpdateException{
+        if(!userRepository.deposit(user, deposit)){
+            throw new UpdateException("Deposit failed.");
+        }
     }
 
     /**
@@ -121,10 +73,50 @@ public class UserService {
      */
     public void withdraw(User userLoggedIn, double withdrawalAmount) throws OverdraftException{
         if(withdrawalAmount > userLoggedIn.getBalance()) throw new OverdraftException("Withdrawal amount cannot be greater than current balance.");
-
+        // TODO: connect and carry out in database
         double currentBalance = userLoggedIn.getBalance();
         userLoggedIn.setBalance(currentBalance - withdrawalAmount);
     }
+
+
+
+    /**
+     * Takes in a User object and validates the email and password based on constraints in the database.
+     *
+     * @param user - Initialized User object with id, email, and password.
+     * @throws InvalidInputException - Thrown if email or password do not meet requirements.
+     */
+    public void validateUser(User user) throws InvalidInputException{
+        if(!(user.getEmail().length() >= 2 && user.getEmail().length()<=254))
+            throw new InvalidInputException("Email address must be between 2 and 254 characters");
+
+        String emailRegexPattern = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+        if(!user.getEmail().matches(emailRegexPattern))
+            throw new InvalidInputException("Please enter a valid email address");
+
+        // TODO: check for spaces in password input
+        if(!(user.getPassword().length() >= 8 && user.getPassword().length()<=64))
+            throw new InvalidInputException("Password must be between 8 and 64 characters");
+
+
+    }
+
+    /**
+     * Takes in an email and password and searches List of User objects for a matching User,
+     * which is returned if found and if not, null is returns.
+     * @param email - Entered email String.
+     * @param password - Entered password String.
+     * @return - User object found in List of Users, or null if none found.
+     */
+    public User login(String email, String password){
+        return userRepository.findByEmailAndPassword(email, password);
+    }
+
+    public void logout(User userLoggedIn) throws LogoutException {
+        if(userLoggedIn == null) throw new LogoutException("No user is logged in.");
+    }
+
+
 
 
 }

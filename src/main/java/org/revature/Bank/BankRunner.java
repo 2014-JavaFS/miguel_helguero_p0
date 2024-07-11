@@ -40,8 +40,9 @@ public class BankRunner {
                 case 1:
                     System.out.println("Logging in....");
                     try {
+
                         userLoggedIn = userController.login(userLoggedIn);
-                        System.out.println(userLoggedIn.getEmail()+" login successful!");
+                        System.out.println(userLoggedIn.getEmail() + " login successful!");
                         userLoggedIn = userController.loggedIn(userLoggedIn, scanner, userController, userService);
 
                     } catch(LoginException e){

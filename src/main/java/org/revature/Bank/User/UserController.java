@@ -2,6 +2,8 @@ package org.revature.Bank.User;
 
 import org.revature.Bank.util.exceptions.*;
 import org.revature.Bank.util.interfaces.ScannerValidator;
+
+import java.util.List;
 import java.util.Scanner;
 import java.text.NumberFormat;
 
@@ -36,7 +38,14 @@ public class UserController {
         return true;
     };
 
-
+    public void getUserInfo(){
+        List<User> users = userService.findAll();
+        if(users != null){
+            for(int i=0;i<users.size();i++){
+                System.out.println(users.get(i).toString());
+            }
+        }
+    }
     /**
      * register method retrieves user input for email and password, then passes User object
      * into userService.registerUser()
@@ -48,8 +57,6 @@ public class UserController {
         System.out.println("Please enter your email: ");
         String email = scanner.next();
         System.out.println();
-        // TODO: verify no duplicate emails already in Users table
-
 
         System.out.println("Please enter your password(8 - 64 characters): ");
         String password = scanner.next();

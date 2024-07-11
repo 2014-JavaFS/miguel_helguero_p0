@@ -78,8 +78,6 @@ public class UserController {
     public User login(User userLoggedIn) throws LoginException {
         if(userLoggedIn != null) {
             throw new LoginException("A user is already logged in.");
-        } else if(userService.getUserList().isEmpty()){
-            throw new LoginException("There are no registered users.");
         }
         System.out.println("Enter email: ");
         String email = scanner.next();
@@ -95,6 +93,7 @@ public class UserController {
         }
         throw new LoginException("No user with those credentials found.") ;
     }
+
 
     /**
      * Contains options to view the user's balance, withdraw, deposit, or log out.
@@ -135,8 +134,10 @@ public class UserController {
 
                     try {
                         userService.deposit(userLoggedIn, depositAmount);
+                        //TODO: separate updateUser into deposit and withdraw methods, then delete service.deposit method above
+                        userService.updateUser(userLoggedIn, depositAmount);
                         System.out.println("Deposit successful!");
-                    } catch(NegativeDepositException e){
+                    } catch(NegativeDepositException | UpdateException e){
                         e.printStackTrace();
                         System.out.println(e.getMessage());
                     }
@@ -159,8 +160,9 @@ public class UserController {
                     break;
                 case 4:
                     try {
-                        userLoggedIn = userService.logout(userLoggedIn);
+                        userService.logout(userLoggedIn);
                         System.out.println("Logged out.");
+                        return null;
                     } catch (LogoutException e) {
                         e.printStackTrace();
                         System.out.println(e.getMessage());
@@ -171,6 +173,5 @@ public class UserController {
             }
         } while(choice!= 4);
         return null;
-
     }
 }

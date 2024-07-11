@@ -5,7 +5,6 @@ import org.revature.Bank.User.UserController;
 import org.revature.Bank.User.UserService;
 import org.revature.Bank.util.exceptions.InvalidInputException;
 import org.revature.Bank.util.exceptions.LoginException;
-import org.revature.Bank.util.exceptions.LogoutException;
 
 import java.util.Scanner;
 
@@ -32,11 +31,10 @@ public class BankRunner {
                 continue;
             }
 
-
             choice = scanner.nextInt();
 
             switch (choice) {
-                case 1: // If choice == 1
+                case 1:
                     System.out.println("Logging in....");
                     try {
                         userLoggedIn = userController.login(userLoggedIn);
@@ -62,7 +60,6 @@ public class BankRunner {
                     break;
                 default:
                     System.out.println("Invalid Input, Please enter a number 1-4.");
-
             }
         } while(choice !=3);
     }

@@ -1,11 +1,9 @@
 package org.revature.Bank.User;
 
-import org.revature.Bank.util.exceptions.InvalidInputException;
-import org.revature.Bank.util.exceptions.LoginException;
-import org.revature.Bank.util.exceptions.LogoutException;
-
-
+import org.revature.Bank.util.exceptions.*;
+import org.revature.Bank.util.interfaces.ScannerValidator;
 import java.util.Scanner;
+import java.text.NumberFormat;
 
 public class UserController {
     public Scanner scanner;
@@ -14,6 +12,30 @@ public class UserController {
         this.scanner=scanner;
         this.userService=userService;
     }
+    /**
+     * returns whether the user input was an int.
+     */
+    ScannerValidator anyInt = (scanner, errorMessage) ->{
+        if(!scanner.hasNextInt()){
+            System.out.println(errorMessage);
+            scanner.nextLine();
+            return false;
+        }
+        return true;
+    };
+
+    /**
+     * returns whether the user input was a double.
+     */
+    ScannerValidator anyDouble = (scanner, errorMessage) ->{
+        if(!scanner.hasNextDouble()){
+            System.out.println(errorMessage);
+            scanner.nextLine();
+            return false;
+        }
+        return true;
+    };
+
 
     /**
      * register method retrieves user input for email and password, then passes User object
@@ -76,7 +98,7 @@ public class UserController {
      */
     public User loggedIn(User userLoggedIn, Scanner scanner, UserController userController, UserService userService){
         int choice = 0;
-
+        NumberFormat numbeFormatter = NumberFormat.getCurrencyInstance();
 
         do {
             System.out.println("Welcome "+userLoggedIn.getEmail()+"!");
@@ -87,16 +109,47 @@ public class UserController {
             System.out.println();
             System.out.println("Enter your numeric choice from above: ");
 
-            if (!scanner.hasNextInt()) {
-                System.out.println("Invalid input, please enter a number 1-4.");
-                scanner.nextLine();
-                continue;
-            }
+            if(!anyInt.isValid(scanner, "Invalid Input, please enter a number 1-4.")) continue;
 
 
             choice = scanner.nextInt();
 
             switch (choice) {
+                case 1:
+                    // view balance
+                    System.out.println("Your balance is: " + numbeFormatter.format(userLoggedIn.getBalance()));
+                    break;
+                case 2:
+                    // deposit
+                    System.out.println("Enter the amount you want to deposit: ");
+                    if(!anyDouble.isValid(scanner, "Invalid Input, please enter a number.")) continue;
+                    double depositAmount = scanner.nextDouble();
+                    scanner.nextLine();
+
+                    try {
+                        userService.deposit(userLoggedIn, depositAmount);
+                        System.out.println("Deposit successful!");
+                    } catch(NegativeDepositException e){
+                        e.printStackTrace();
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                case 3:
+                    // withdraw, make sure withdrawal amount is not more than balance
+                    System.out.println("Enter the amount you want to withdraw: ");
+                    if(!anyDouble.isValid(scanner, "Invalid Input, please enter a number.")) continue;
+                    double withdrawAmount = scanner.nextDouble();
+                    scanner.nextLine();
+
+                    try{
+                        userService.withdraw(userLoggedIn, withdrawAmount);
+                        System.out.println("Withdrawal successful!");
+                    } catch(OverdraftException e){
+                        e.printStackTrace();
+                        System.out.println(e.getMessage());
+                    }
+
+                    break;
                 case 4:
                     try {
                         userLoggedIn = userService.logout(userLoggedIn);
@@ -107,12 +160,10 @@ public class UserController {
                     }
                     break;
                 default:
-                    System.out.println("Invalid Input, Please enter a number 1-4.");
+                    System.out.println("Invalid Input, please enter a number 1-4.");
             }
         } while(choice!= 4);
         return null;
 
     }
-
-
 }

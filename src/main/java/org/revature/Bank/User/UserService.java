@@ -1,6 +1,7 @@
 package org.revature.Bank.User;
 
 import org.revature.Bank.util.exceptions.*;
+import org.revature.Bank.util.interfaces.ScannerValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,15 @@ public class UserService {
     public List<User> getUserList() {
         return userList;
     }
+
+    ScannerValidator anyNonZeroDouble = (scanner, errorMessage) ->{
+        if(!scanner.hasNextDouble()){
+            System.out.println(errorMessage);
+            scanner.nextLine();
+            return false;
+        }
+        return true;
+    };
 
     /**
      * Takes in a User object and passes it to validateUser(), if no exceptions caught then
@@ -65,5 +75,33 @@ public class UserService {
     public User logout(User userLoggedIn) throws LogoutException {
         if(userLoggedIn == null) throw new LogoutException("No user is logged in.");
         return null;
+    }
+
+    /**
+     * Takes in a User object and a double depositAmount and adds the deposit to the User's balance.
+     * Throws a NegativeDepositException if the double was negative.
+     * @param userLoggedIn - User object that references the user that is currently logged in.
+     * @param depositAmount - Double amount to be deposited.
+     * @throws NegativeDepositException - Thrown if deposit amount is negative.
+     */
+    public void deposit(User userLoggedIn, double depositAmount) throws NegativeDepositException{
+        if(depositAmount < 0) throw new NegativeDepositException("Deposit amount cannot be negative.");
+
+        double currentBalance = userLoggedIn.getBalance();
+        userLoggedIn.setBalance(currentBalance + depositAmount);
+    }
+
+    /**
+     * Takes in a User object and a double withdrawalAmount and subtracts the withdrawal amount from the user's balance.
+     * Throws an OverdraftException is the withdrawal amount is greater than the current balance.
+     * @param userLoggedIn - User object that references the user that is currently logged in.
+     * @param withdrawalAmount - Double amount to be withdrawn.
+     * @throws OverdraftException - Thrown if withdrawal amount is greater than current balance.
+     */
+    public void withdraw(User userLoggedIn, double withdrawalAmount) throws OverdraftException{
+        if(withdrawalAmount > userLoggedIn.getBalance()) throw new OverdraftException("Withdrawal amount cannot be greater than current balance.");
+
+        double currentBalance = userLoggedIn.getBalance();
+        userLoggedIn.setBalance(currentBalance - withdrawalAmount);
     }
 }

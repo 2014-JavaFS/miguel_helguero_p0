@@ -10,15 +10,59 @@ import java.util.List;
 import static org.revature.Bank.BankFrontController.logger;
 
 public class UserRepository implements Crudable<User>{
+
+    /**
+     * Executes a SELECT query to retrieve all rows in Users table convert it into a List of User objects which is then
+     * returned.
+     * @return users - Returns the List of User objects retrieved from the Users table.
+     */
+    @Override
+    public List<User> findAll() {
+        try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
+            List<User> users = new ArrayList<>();
+
+            String sql = "select * from users";
+            ResultSet rs = conn.createStatement().executeQuery(sql);
+
+
+            while(rs.next()){
+                users.add(generateUserFromResultSet(rs));
+            }
+            if(users.isEmpty()){
+                logger.warn("No users found");
+                throw new UserNotFoundException("No users found");
+            }
+            return users;
+        } catch(SQLException e){
+            e.printStackTrace();
+            return null;
+        } catch(UserNotFoundException e){
+            logger.warn("No users were found.");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public User generateUserFromResultSet(ResultSet rs) throws SQLException {
+        User user = new User();
+        user.setId(rs.getInt("id"));
+        user.setEmail(rs.getString("email"));
+        user.setPassword(rs.getString("password"));
+        user.setBalance(rs.getDouble("balance"));
+        return user;
+    }
+
+    /**
+     * Inserts validated User object called used into database, throws RuntimeException if INSERT query not executed.
+     * @param user - Validated User object with email and password
+     * @return user - returns the Validated User object after it has been inserted into the Users table.
+     */
     @Override
     public User create(User user){
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
-
-
-
             String sql = "insert into users(email, password) values(?, ?)";
 
-            // sanitze sql insert statements before executing
+            // sanitize sql insert statements before executing
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, user.getEmail());
             preparedStatement.setString(2, user.getPassword());
@@ -115,39 +159,5 @@ public class UserRepository implements Crudable<User>{
         return false;
     }
 
-    @Override
-    public List<User> findAll() {
-        try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
-            List<User> users = new ArrayList<>();
 
-            String sql = "select * from users";
-            ResultSet rs = conn.createStatement().executeQuery(sql);
-
-
-            while(rs.next()){
-                users.add(generateUserFromResultSet(rs));
-            }
-            if(users.isEmpty()){
-                logger.warn("No users found");
-                throw new UserNotFoundException("No users found");
-            }
-            return users;
-        } catch(SQLException e){
-            e.printStackTrace();
-            return null;
-        } catch(UserNotFoundException e){
-            logger.warn("No users were found.");
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public User generateUserFromResultSet(ResultSet rs) throws SQLException {
-        User user = new User();
-        user.setId(rs.getInt("id"));
-        user.setEmail(rs.getString("email"));
-        user.setPassword(rs.getString("password"));
-        user.setBalance(rs.getDouble("balance"));
-        return user;
-    }
 }

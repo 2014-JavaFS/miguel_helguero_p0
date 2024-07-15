@@ -1,10 +1,7 @@
 package org.revature.Bank.User;
 
 import org.revature.Bank.util.exceptions.*;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import static org.revature.Bank.BankFrontController.logger;
 
 public class UserService {
@@ -33,9 +30,9 @@ public class UserService {
 
     /**
      * Takes in a User object and passes it to validateUser(), if no exceptions caught then
-     * adds it to List of Users.
+     * inserts it into Users table.
      *
-     * @param user - Initialized User object with id, email, and password.
+     * @param user - Initialized User object with email, and password retrieved from Postman POST body.
      * @throws InvalidInputException - Thrown if email or password do not meet requirements.
      */
     public User registerUser(User user){
@@ -47,6 +44,26 @@ public class UserService {
             System.out.println(e.getMessage());
         }
         return user;
+
+    }
+
+    /**
+     * Takes in a User object and validates the email and password based on constraints in the database.
+     *
+     * @param user - Initialized User object with id, email, and password.
+     * @throws InvalidInputException - Thrown if email or password do not meet requirements.
+     */
+    public void validateUser(User user) throws InvalidInputException{
+        if(!(user.getEmail().length() >= 2 && user.getEmail().length()<=254))
+            throw new InvalidInputException("Email address must be between 2 and 254 characters");
+
+        String emailRegexPattern = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+        if(!user.getEmail().matches(emailRegexPattern))
+            throw new InvalidInputException("Please enter a valid email address");
+
+        if(!(user.getPassword().length() >= 8 && user.getPassword().length()<=64))
+            throw new InvalidInputException("Password must be between 8 and 64 characters");
+
 
     }
 
@@ -93,27 +110,6 @@ public class UserService {
         userLoggedIn.setBalance(currentBalance - withdrawalAmount);
     }
 
-
-
-    /**
-     * Takes in a User object and validates the email and password based on constraints in the database.
-     *
-     * @param user - Initialized User object with id, email, and password.
-     * @throws InvalidInputException - Thrown if email or password do not meet requirements.
-     */
-    public void validateUser(User user) throws InvalidInputException{
-        if(!(user.getEmail().length() >= 2 && user.getEmail().length()<=254))
-            throw new InvalidInputException("Email address must be between 2 and 254 characters");
-
-        String emailRegexPattern = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
-        if(!user.getEmail().matches(emailRegexPattern))
-            throw new InvalidInputException("Please enter a valid email address");
-
-        if(!(user.getPassword().length() >= 8 && user.getPassword().length()<=64))
-            throw new InvalidInputException("Password must be between 8 and 64 characters");
-
-
-    }
 
     /**
      * Takes in an email and password and searches List of User objects for a matching User,

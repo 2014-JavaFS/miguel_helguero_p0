@@ -17,8 +17,6 @@ public class BankFrontController {
         logger.info("Beryl Bank is up and running");
         Javalin app = Javalin.create();
 
-
-        User userLoggedIn = null;
         UserRepository userRepository = new UserRepository();
         UserService userService = new UserService(userRepository);
         UserController userController = new UserController(userService);

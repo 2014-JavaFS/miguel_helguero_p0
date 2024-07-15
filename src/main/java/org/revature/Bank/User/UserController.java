@@ -5,11 +5,8 @@ import io.javalin.http.Context;
 import io.javalin.http.HttpStatus;
 import org.revature.Bank.util.exceptions.*;
 import org.revature.Bank.util.interfaces.Controller;
-import org.revature.Bank.util.interfaces.ScannerValidator;
-
 import java.util.List;
-import java.util.Scanner;
-import java.text.NumberFormat;
+
 
 import static org.revature.Bank.BankFrontController.logger;
 
@@ -17,6 +14,39 @@ public class UserController implements Controller {
     private final UserService userService;
     public UserController( UserService userService) {
         this.userService=userService;
+    }
+
+
+    @Override
+    public void registerPaths(Javalin app) {
+        app.get("/users", this::getAllUsers);
+        app.post("/users", this::postNewUser);
+    }
+
+    /**
+     * Retrieves a List of User objects from the Users table and sends it back as the json response.
+     * @param ctx - Current context.
+     */
+    public void getAllUsers(Context ctx){
+        logger.info("Accessing getAllUsers");
+        List<User> users = userService.findAll();
+        logger.info("All users found, converting to json...");
+        ctx.json(users);
+        logger.info("Users {}", users);
+        logger.info("Sending back to user...");
+    }
+
+    /**
+     * Receives the json body with the email and password fields and executes an INSERT query to insert a new User row
+     * into the Users table.
+     * @param ctx - Current Context.
+     */
+    public void postNewUser(Context ctx){
+        // checks body for info to map into a User obj
+        User user = ctx.bodyAsClass(User.class);
+
+        ctx.json(userService.registerUser(user)); // response is the created object
+        ctx.status(HttpStatus.CREATED);
     }
 
     public void getUserInfo(){
@@ -62,27 +92,5 @@ public class UserController implements Controller {
     }
 
 
-    @Override
-    public void registerPaths(Javalin app) {
-        app.get("/users", this::getAllUsers);
-        app.post("/users", this::postNewUser);
-        // TODO: 1:49:09
-    }
 
-    public void getAllUsers(Context ctx){
-        logger.info("Accessing getAllUsers");
-        List<User> users = userService.findAll();
-        logger.info("All users found, converting to json...");
-        ctx.json(users);
-        logger.info("Users {}", users);
-        logger.info("Sending back to user...");
-    }
-
-    public void postNewUser(Context ctx){
-        // checks body for info to map into a User obj
-        User user = ctx.bodyAsClass(User.class);
-
-        ctx.json(userService.registerUser(user)); // response is the created object
-        ctx.status(HttpStatus.CREATED);
-    }
 }

@@ -123,6 +123,7 @@ public class UserController {
             switch (choice) {
                 case 1:
                     // view balance
+                    // TODO: get balance from db
                     System.out.println("Your balance is: " + numbeFormatter.format(userLoggedIn.getBalance()));
                     break;
                 case 2:
@@ -133,9 +134,7 @@ public class UserController {
                     scanner.nextLine();
 
                     try {
-                        userService.deposit(userLoggedIn, depositAmount);
-                        //TODO: separate updateUser into deposit and withdraw methods, then delete service.deposit method above
-                        userService.updateUser(userLoggedIn, depositAmount);
+                        userLoggedIn = userService.deposit(userLoggedIn, depositAmount);
                         System.out.println("Deposit successful!");
                     } catch(NegativeDepositException | UpdateException e){
                         e.printStackTrace();
@@ -152,7 +151,7 @@ public class UserController {
                     try{
                         userService.withdraw(userLoggedIn, withdrawAmount);
                         System.out.println("Withdrawal successful!");
-                    } catch(OverdraftException e){
+                    } catch(OverdraftException | NegativeWithdrawalException |UpdateException e){
                         e.printStackTrace();
                         System.out.println(e.getMessage());
                     }

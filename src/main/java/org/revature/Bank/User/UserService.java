@@ -43,13 +43,6 @@ public class UserService {
 
     }
 
-    //TODO: separate updateUser into deposit and withdraw methods
-    public void updateUser(User user, double deposit) throws UpdateException{
-        if(!userRepository.deposit(user, deposit)){
-            throw new UpdateException("Deposit failed.");
-        }
-    }
-
     /**
      * Takes in a User object and a double depositAmount and adds the deposit to the User's balance.
      * Throws a NegativeDepositException if the double was negative.
@@ -57,12 +50,18 @@ public class UserService {
      * @param depositAmount - Double amount to be deposited.
      * @throws NegativeDepositException - Thrown if deposit amount is negative.
      */
-    public void deposit(User userLoggedIn, double depositAmount) throws NegativeDepositException{
-        if(depositAmount < 0) throw new NegativeDepositException("Deposit amount cannot be negative.");
-
+    public User deposit(User userLoggedIn, double depositAmount) throws UpdateException, NegativeDepositException {
         double currentBalance = userLoggedIn.getBalance();
+
+        if(depositAmount<0) throw new NegativeDepositException("Deposit cannot be negative.");
+        if(!userRepository.deposit(userLoggedIn.getEmail(), depositAmount)){
+            throw new UpdateException("Deposit failed.");
+        }
+
         userLoggedIn.setBalance(currentBalance + depositAmount);
+        return userLoggedIn;
     }
+
 
     /**
      * Takes in a User object and a double withdrawalAmount and subtracts the withdrawal amount from the user's balance.
@@ -71,10 +70,14 @@ public class UserService {
      * @param withdrawalAmount - Double amount to be withdrawn.
      * @throws OverdraftException - Thrown if withdrawal amount is greater than current balance.
      */
-    public void withdraw(User userLoggedIn, double withdrawalAmount) throws OverdraftException{
-        if(withdrawalAmount > userLoggedIn.getBalance()) throw new OverdraftException("Withdrawal amount cannot be greater than current balance.");
-        // TODO: connect and carry out in database
+    public void withdraw(User userLoggedIn, double withdrawalAmount) throws OverdraftException, NegativeWithdrawalException, UpdateException{
         double currentBalance = userLoggedIn.getBalance();
+
+        if(withdrawalAmount > currentBalance) throw new OverdraftException("Withdrawal amount cannot be greater than current balance.");
+        if(withdrawalAmount < 0) throw new NegativeWithdrawalException("Withdrawal amount cannot be negative.");
+        if(!userRepository.withdraw(userLoggedIn.getEmail(), withdrawalAmount)){
+            throw new UpdateException("Withdrawal failed.");
+        }
         userLoggedIn.setBalance(currentBalance - withdrawalAmount);
     }
 
@@ -94,7 +97,6 @@ public class UserService {
         if(!user.getEmail().matches(emailRegexPattern))
             throw new InvalidInputException("Please enter a valid email address");
 
-        // TODO: check for spaces in password input
         if(!(user.getPassword().length() >= 8 && user.getPassword().length()<=64))
             throw new InvalidInputException("Password must be between 8 and 64 characters");
 

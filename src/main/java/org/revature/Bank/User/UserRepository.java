@@ -36,19 +36,18 @@ public class UserRepository implements Crudable<User>{
     public User findByEmailAndPassword(String email, String password){
         User user = new User();
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
-            String sql = "select * from users where email = ? and password = ?";
+            String sql = "select id, email, balance from users where email = ? and password = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if(resultSet.next()) {
-                if (resultSet.getString("email").equals(email) && resultSet.getString("password").equals(password)) {
-                    user.setId(resultSet.getInt("id"));
-                    user.setEmail(resultSet.getString("email"));
-                    user.setPassword(resultSet.getString("password"));
-                    user.setBalance(resultSet.getDouble("balance"));
-                }
+
+                user.setId(resultSet.getInt("id"));
+                user.setEmail(resultSet.getString("email"));
+                user.setBalance(resultSet.getDouble("balance"));
+
             }
             else{
                 return null;
@@ -61,7 +60,7 @@ public class UserRepository implements Crudable<User>{
         return user;
     }
     @Override
-    public boolean deposit(User user, double amount) {
+    public boolean deposit(String email, double amount) {
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()) {
             String sql = "update users set balance = (" +
                     "select balance from users " +
@@ -69,9 +68,9 @@ public class UserRepository implements Crudable<User>{
                     ") + ? where email = ? ";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
-            preparedStatement.setString(1, user.getEmail());
+            preparedStatement.setString(1, email);
             preparedStatement.setDouble(2, amount);
-            preparedStatement.setString(3, user.getEmail());
+            preparedStatement.setString(3, email);
 
 
             if (preparedStatement.executeUpdate() == 0) {
@@ -86,7 +85,25 @@ public class UserRepository implements Crudable<User>{
     }
 
     @Override
-    public boolean withdraw(User user, double amount){
+    public boolean withdraw(String email, double amount){
+        try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
+            String sql = "update users set balance = ("+
+                    "select balance from users " +
+                    "where email = ?" +
+                    ") - ? where email = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+
+            preparedStatement.setString(1, email);
+            preparedStatement.setDouble(2, amount);
+            preparedStatement.setString(3, email);
+            if (preparedStatement.executeUpdate() == 0) {
+                throw new RuntimeException("Deposit failed.");
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return false;
+        }
 
         return true;
     }

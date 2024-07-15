@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 public class BankFrontController {
     public static final Logger logger = LoggerFactory.getLogger(BankFrontController.class);
 
-
     public static void main(String[] args){
         logger.info("Beryl Bank is up and running");
         Javalin app = Javalin.create();

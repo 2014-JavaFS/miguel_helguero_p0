@@ -13,6 +13,15 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    public Double findBalance(String email, String password) throws UserNotFoundException{
+        User foundUser = userRepository.findByEmailAndPassword(email, password);
+
+        if (foundUser == null) {
+            throw new UserNotFoundException("No user with that id was found.");
+        }
+        return foundUser.getBalance();
+    }
+
     /**
      * Generates a List of User objects after invoking userRepository.findAll(), and throws a UserNotFoundException if
      * no users were found in the Users table, otherwise it returns the List of Users.

@@ -6,6 +6,8 @@ import io.javalin.http.HttpStatus;
 import org.revature.Bank.util.exceptions.*;
 import org.revature.Bank.util.interfaces.Controller;
 import java.util.List;
+import java.text.NumberFormat;
+
 
 
 import static org.revature.Bank.BankFrontController.logger;
@@ -21,8 +23,24 @@ public class UserController implements Controller {
     public void registerPaths(Javalin app) {
         app.get("/users", this::getAllUsers);
         app.post("/users", this::postNewUser);
+        app.get("/users/{email}/{password}", this::getBalanceByEmailAndPassword);
     }
 
+    public void getBalanceByEmailAndPassword(Context ctx){
+        NumberFormat numberFormatter = NumberFormat.getCurrencyInstance();
+        logger.info("Accessing getBalanceById...");
+        String email = ctx.pathParam("email");
+        String password = ctx.pathParam("password");
+        logger.info("Email {}, Password {}, {}", email, password, "was sent in through path parameter.");
+        try {
+            double balance = userService.findBalance(email, password);
+            logger.info("The balance is : {}", numberFormatter.format(balance));
+            ctx.json(balance);
+        } catch(UserNotFoundException e){
+            logger.warn("The user was not found");
+            ctx.status(HttpStatus.CREATED);
+        }
+    }
     /**
      * Retrieves a List of User objects from the Users table and sends it back as the json response.
      * @param ctx - Current context.
@@ -44,32 +62,10 @@ public class UserController implements Controller {
     public void postNewUser(Context ctx){
         // checks body for info to map into a User obj
         User user = ctx.bodyAsClass(User.class);
-
+        logger.info("Creating user...");
         ctx.json(userService.registerUser(user)); // response is the created object
         ctx.status(HttpStatus.CREATED);
-    }
-
-    public void getUserInfo(){
-        List<User> users = userService.findAll();
-        if(users != null){
-            for(int i=0;i<users.size();i++){
-                logger.info(users.get(i).toString());
-            }
-        }
-    }
-
-    /**
-     * register method retrieves user input for email and password, then passes User object
-     * into userService.registerUser()
-     *
-     *
-     * @throws InvalidInputException
-     */
-    public void register() throws InvalidInputException {
-
-
-        //userService.registerUser(userToAdd);
-        logger.info("Registration Complete!");
+        logger.info("User created: {}", user);
     }
 
     /**

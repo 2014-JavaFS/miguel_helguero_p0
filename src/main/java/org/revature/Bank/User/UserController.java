@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.text.NumberFormat;
 
+import static org.revature.Bank.BankFrontController.logger;
+
 public class UserController implements Controller {
     private final UserService userService;
     public UserController( UserService userService) {
@@ -21,7 +23,7 @@ public class UserController implements Controller {
         List<User> users = userService.findAll();
         if(users != null){
             for(int i=0;i<users.size();i++){
-                System.out.println(users.get(i).toString());
+                logger.info(users.get(i).toString());
             }
         }
     }
@@ -36,7 +38,7 @@ public class UserController implements Controller {
 
 
         //userService.registerUser(userToAdd);
-        System.out.println("Registration complete!");
+        logger.info("Registration Complete!");
     }
 
     /**
@@ -64,11 +66,16 @@ public class UserController implements Controller {
     public void registerPaths(Javalin app) {
         app.get("/users", this::getAllUsers);
         app.post("/users", this::postNewUser);
+        // TODO: 1:49:09
     }
 
     public void getAllUsers(Context ctx){
+        logger.info("Accessing getAllUsers");
         List<User> users = userService.findAll();
+        logger.info("All users found, converting to json...");
         ctx.json(users);
+        logger.info("Users {}", users);
+        logger.info("Sending back to user...");
     }
 
     public void postNewUser(Context ctx){

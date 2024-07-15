@@ -5,11 +5,18 @@ import org.revature.Bank.User.User;
 import org.revature.Bank.User.UserController;
 import org.revature.Bank.User.UserRepository;
 import org.revature.Bank.User.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class BankFrontController {
+    public static final Logger logger = LoggerFactory.getLogger(BankFrontController.class);
+
+
     public static void main(String[] args){
+        logger.info("Beryl Bank is up and running");
         Javalin app = Javalin.create();
+
 
         User userLoggedIn = null;
         UserRepository userRepository = new UserRepository();

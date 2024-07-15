@@ -1,10 +1,13 @@
 package org.revature.Bank.User;
 import org.revature.Bank.util.ConnectionFactory;
+import org.revature.Bank.util.exceptions.UserNotFoundException;
 import org.revature.Bank.util.interfaces.Crudable;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.revature.Bank.BankFrontController.logger;
 
 public class UserRepository implements Crudable<User>{
     @Override
@@ -27,7 +30,6 @@ public class UserRepository implements Crudable<User>{
             return user;
         } catch(SQLException e){
             e.printStackTrace();
-            System.out.println(e.getMessage());
             return null;
         }
     }
@@ -54,7 +56,6 @@ public class UserRepository implements Crudable<User>{
             }
         } catch(SQLException e){
             e.printStackTrace();
-            System.out.println(e.getMessage());
             return null;
         }
         return user;
@@ -72,6 +73,7 @@ public class UserRepository implements Crudable<User>{
             preparedStatement.setDouble(2, amount);
             preparedStatement.setString(3, email);
 
+            logger.info(preparedStatement.toString());
 
             if (preparedStatement.executeUpdate() == 0) {
                 throw new RuntimeException("Deposit failed.");
@@ -79,7 +81,6 @@ public class UserRepository implements Crudable<User>{
             return true;
         }catch (SQLException e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
             return false;
         }
     }
@@ -96,6 +97,8 @@ public class UserRepository implements Crudable<User>{
             preparedStatement.setString(1, email);
             preparedStatement.setDouble(2, amount);
             preparedStatement.setString(3, email);
+
+            logger.info(preparedStatement.toString());
             if (preparedStatement.executeUpdate() == 0) {
                 throw new RuntimeException("Deposit failed.");
             }
@@ -120,22 +123,31 @@ public class UserRepository implements Crudable<User>{
             String sql = "select * from users";
             ResultSet rs = conn.createStatement().executeQuery(sql);
 
+
             while(rs.next()){
-                User user = new User();
-                user.setId(rs.getInt("id"));
-                user.setEmail(rs.getString("email"));
-                user.setPassword(rs.getString("password"));
-                user.setBalance(rs.getDouble("balance"));
-
-
-                users.add(user);
+                users.add(generateUserFromResultSet(rs));
             }
-
+            if(users.isEmpty()){
+                logger.warn("No users found");
+                throw new UserNotFoundException("No users found");
+            }
             return users;
         } catch(SQLException e){
             e.printStackTrace();
-            System.out.println(e.getMessage());
+            return null;
+        } catch(UserNotFoundException e){
+            logger.warn("No users were found.");
+            e.printStackTrace();
             return null;
         }
+    }
+
+    public User generateUserFromResultSet(ResultSet rs) throws SQLException {
+        User user = new User();
+        user.setId(rs.getInt("id"));
+        user.setEmail(rs.getString("email"));
+        user.setPassword(rs.getString("password"));
+        user.setBalance(rs.getDouble("balance"));
+        return user;
     }
 }

@@ -5,6 +5,8 @@ import org.revature.Bank.util.exceptions.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.revature.Bank.BankFrontController.logger;
+
 public class UserService {
 
     private UserRepository userRepository;
@@ -55,16 +57,21 @@ public class UserService {
      * @param depositAmount - Double amount to be deposited.
      * @throws NegativeDepositException - Thrown if deposit amount is negative.
      */
-    public User deposit(User userLoggedIn, double depositAmount) throws UpdateException, NegativeDepositException {
+    public User deposit(User userLoggedIn, double depositAmount){
         double currentBalance = userLoggedIn.getBalance();
+        try {
+            if (depositAmount < 0) throw new NegativeDepositException("Deposit cannot be negative.");
+            if (!userRepository.deposit(userLoggedIn.getEmail(), depositAmount)) {
+                throw new UpdateException("Deposit failed.");
+            }
 
-        if(depositAmount<0) throw new NegativeDepositException("Deposit cannot be negative.");
-        if(!userRepository.deposit(userLoggedIn.getEmail(), depositAmount)){
-            throw new UpdateException("Deposit failed.");
+            userLoggedIn.setBalance(currentBalance + depositAmount);
+            return userLoggedIn;
+        } catch(UpdateException | NegativeDepositException e){
+            logger.warn("Deposit failed.");
+            logger.warn(e.getMessage());
         }
-
-        userLoggedIn.setBalance(currentBalance + depositAmount);
-        return userLoggedIn;
+        return null;
     }
 
 

@@ -1,7 +1,6 @@
 package org.revature.Bank.User;
 
 import org.revature.Bank.util.exceptions.*;
-import org.revature.Bank.util.interfaces.ScannerValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,9 +36,15 @@ public class UserService {
      * @param user - Initialized User object with id, email, and password.
      * @throws InvalidInputException - Thrown if email or password do not meet requirements.
      */
-    public void registerUser(User user) throws InvalidInputException {
-        validateUser(user);
-        userRepository.create(user);
+    public User registerUser(User user){
+        try {
+            validateUser(user);
+            userRepository.create(user);
+        } catch (InvalidInputException e){
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        return user;
 
     }
 

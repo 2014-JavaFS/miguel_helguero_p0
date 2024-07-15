@@ -121,8 +121,8 @@ public class UserRepository implements Crudable<User>{
             ResultSet rs = conn.createStatement().executeQuery(sql);
 
             while(rs.next()){
-                //TODO: put this code into a generateUserFromResultSet method for viewing logged in user's info in findById, that returns a User
                 User user = new User();
+                user.setId(rs.getInt("id"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
                 user.setBalance(rs.getDouble("balance"));

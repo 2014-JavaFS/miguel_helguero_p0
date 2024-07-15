@@ -1,7 +1,6 @@
 package org.revature.Bank;
 
 import io.javalin.Javalin;
-import org.revature.Bank.User.User;
 import org.revature.Bank.User.UserController;
 import org.revature.Bank.User.UserRepository;
 import org.revature.Bank.User.UserService;

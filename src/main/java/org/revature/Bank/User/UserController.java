@@ -57,6 +57,7 @@ public class UserController implements Controller {
             }
         }
     }
+
     /**
      * register method retrieves user input for email and password, then passes User object
      * into userService.registerUser()

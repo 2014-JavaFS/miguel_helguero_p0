@@ -29,28 +29,6 @@ public class UserController implements Controller {
     }
 
     /**
-     * Sends an email and password as parameters to userService.findBalance() and eventually the email and password are
-     * used in a SELECT query that retrieves the corresponding user's balance.
-     *
-     * @param ctx - Current Context.
-     */
-    public void getBalanceByEmailAndPassword(Context ctx) {
-        NumberFormat numberFormatter = NumberFormat.getCurrencyInstance();
-        logger.info("Accessing getBalanceById...");
-        String email = ctx.pathParam("email");
-        String password = ctx.pathParam("password");
-        logger.info("Email {}, Password {}, {}", email, password, "was sent in through path parameter.");
-        try {
-            double balance = userService.findBalance(email, password);
-            logger.info("The balance is : {}", numberFormatter.format(balance));
-            ctx.json(balance);
-        } catch (UserNotFoundException e) {
-            logger.warn("The user was not found");
-            ctx.status(HttpStatus.CREATED);
-        }
-    }
-
-    /**
      * Retrieves a List of User objects from the Users table and sends it back as the json response.
      *
      * @param ctx - Current context.
@@ -81,6 +59,29 @@ public class UserController implements Controller {
     }
 
     /**
+     * Sends an email and password as parameters to userService.findBalance() and eventually the email and password are
+     * used in a SELECT query that retrieves the corresponding user's balance.
+     *
+     * @param ctx - Current Context.
+     */
+    public void getBalanceByEmailAndPassword(Context ctx) {
+        NumberFormat numberFormatter = NumberFormat.getCurrencyInstance();
+        logger.info("Accessing getBalanceById...");
+        String email = ctx.pathParam("email");
+        String password = ctx.pathParam("password");
+        logger.info("Email {}, Password {}, {}", email, password, "was sent in through path parameter.");
+        try {
+            double balance = userService.findBalance(email, password);
+            logger.info("The balance is : {}", numberFormatter.format(balance));
+            ctx.json(balance);
+        } catch (UserNotFoundException e) {
+            logger.warn("The user was not found");
+            ctx.status(HttpStatus.CREATED);
+        }
+    }
+
+
+    /**
      * Sends arguments for email and password to UserService.login()
      * which returns the corresponding the User object made from the row found in the User table with the corresponding
      * email and balance, or throws LoginException if none found.
@@ -102,4 +103,8 @@ public class UserController implements Controller {
             ctx.status(404);
         }
     }
+
+    /**
+     * Sends arguments for
+     */
 }

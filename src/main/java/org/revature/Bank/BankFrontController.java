@@ -1,6 +1,10 @@
 package org.revature.Bank;
 
 import io.javalin.Javalin;
+import org.revature.Bank.Account.Account;
+//import org.revature.Bank.Account.AccountController;
+import org.revature.Bank.Account.AccountRepository;
+import org.revature.Bank.Account.AccountService;
 import org.revature.Bank.User.UserController;
 import org.revature.Bank.User.UserRepository;
 import org.revature.Bank.User.UserService;
@@ -19,6 +23,11 @@ public class BankFrontController {
         UserService userService = new UserService(userRepository);
         UserController userController = new UserController(userService);
         userController.registerPaths(app);
+
+//        AccountRepository accountRepository = new AccountRepository();
+//        AccountService accountService = new AccountService();
+//        AccountController accountController = new AccountController();
+//        accountController.registerPaths(app);
 
         app.start(8080);
 //        do{

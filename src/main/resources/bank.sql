@@ -1,6 +1,6 @@
 drop table if exists USERS;
 CREATE TABLE users(
-	id serial primary key,
+	user_id serial primary key,
 	email VARCHAR(254) not null unique,
 	password VARCHAR(64) not NULL,
 	balance NUMERIC(26, 2) default 0.00 check(balance >= 0.00)

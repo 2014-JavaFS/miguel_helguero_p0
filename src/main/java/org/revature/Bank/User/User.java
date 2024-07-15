@@ -1,16 +1,27 @@
 package org.revature.Bank.User;
 
+import org.revature.Bank.Account.Account;
+
+import java.util.List;
+
 public class User {
-    private int id;
+    private int userId;
     private String email;
     private String password;
     private double balance;
+    private List<Account> accounts;
 
+    public List<Account> getAccounts() {
+        return accounts;
+    }
 
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
 
-    public int getId(){return id;}
+    public int getUserId(){return userId;}
 
-    public void setId(int id){this.id=id;}
+    public void setUserId(int user_id){this.userId=user_id;}
 
     public String getEmail() {
         return email;

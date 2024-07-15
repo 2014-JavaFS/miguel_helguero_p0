@@ -45,7 +45,7 @@ public class UserRepository implements Crudable<User>{
 
     public User generateUserFromResultSet(ResultSet rs) throws SQLException {
         User user = new User();
-        user.setId(rs.getInt("id"));
+        user.setUserId(rs.getInt("user_id"));
         user.setEmail(rs.getString("email"));
         user.setPassword(rs.getString("password"));
         user.setBalance(rs.getDouble("balance"));
@@ -82,7 +82,7 @@ public class UserRepository implements Crudable<User>{
     public User findByEmailAndPassword(String email, String password){
         User user = new User();
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
-            String sql = "select id, email, balance from users where email = ? and password = ?";
+            String sql = "select user_id, email, balance from users where email = ? and password = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, password);
@@ -90,7 +90,7 @@ public class UserRepository implements Crudable<User>{
 
             if(resultSet.next()) {
 
-                user.setId(resultSet.getInt("id"));
+                user.setUserId(resultSet.getInt("user_id"));
                 user.setEmail(resultSet.getString("email"));
                 user.setBalance(resultSet.getDouble("balance"));
 

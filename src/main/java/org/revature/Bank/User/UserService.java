@@ -131,7 +131,7 @@ public class UserService {
      * @param password - Entered password String.
      * @return - User object found in List of Users, or null if none found.
      */
-    public User login(String email, String password){
+    public User login(String email, String password) throws LoginException{
         return userRepository.findByEmailAndPassword(email, password);
     }
 

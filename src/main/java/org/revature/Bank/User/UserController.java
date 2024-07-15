@@ -14,8 +14,9 @@ import static org.revature.Bank.BankFrontController.logger;
 
 public class UserController implements Controller {
     private final UserService userService;
-    public UserController( UserService userService) {
-        this.userService=userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
 
@@ -23,10 +24,17 @@ public class UserController implements Controller {
     public void registerPaths(Javalin app) {
         app.get("/users", this::getAllUsers);
         app.post("/users", this::postNewUser);
-        app.get("/users/{email}/{password}", this::getBalanceByEmailAndPassword);
+        app.get("/balance/{email}/{password}", this::getBalanceByEmailAndPassword);
+        app.get("/user/{email}/{password}", this::login);
     }
 
-    public void getBalanceByEmailAndPassword(Context ctx){
+    /**
+     * Sends an email and password as parameters to userService.findBalance() and eventually the email and password are
+     * used in a SELECT query that retrieves the corresponding user's balance.
+     *
+     * @param ctx - Current Context.
+     */
+    public void getBalanceByEmailAndPassword(Context ctx) {
         NumberFormat numberFormatter = NumberFormat.getCurrencyInstance();
         logger.info("Accessing getBalanceById...");
         String email = ctx.pathParam("email");
@@ -36,30 +44,34 @@ public class UserController implements Controller {
             double balance = userService.findBalance(email, password);
             logger.info("The balance is : {}", numberFormatter.format(balance));
             ctx.json(balance);
-        } catch(UserNotFoundException e){
+        } catch (UserNotFoundException e) {
             logger.warn("The user was not found");
             ctx.status(HttpStatus.CREATED);
         }
     }
+
     /**
      * Retrieves a List of User objects from the Users table and sends it back as the json response.
+     *
      * @param ctx - Current context.
      */
-    public void getAllUsers(Context ctx){
+    public void getAllUsers(Context ctx) {
         logger.info("Accessing getAllUsers");
         List<User> users = userService.findAll();
         logger.info("All users found, converting to json...");
         ctx.json(users);
         logger.info("Users {}", users);
         logger.info("Sending back to user...");
+        ctx.status(200);
     }
 
     /**
      * Receives the json body with the email and password fields and executes an INSERT query to insert a new User row
      * into the Users table.
+     *
      * @param ctx - Current Context.
      */
-    public void postNewUser(Context ctx){
+    public void postNewUser(Context ctx) {
         // checks body for info to map into a User obj
         User user = ctx.bodyAsClass(User.class);
         logger.info("Creating user...");
@@ -69,25 +81,25 @@ public class UserController implements Controller {
     }
 
     /**
-     * Takes in a User object and asks user for email and password, which are passed to UserService.login()
-     * and returns the corresponding User object, or throws LoginException if none found.
+     * Sends arguments for email and password to UserService.login()
+     * which returns the corresponding the User object made from the row found in the User table with the corresponding
+     * email and balance, or throws LoginException if none found.
      *
-     * @param userLoggedIn - Initialized User object with email and password
-     * @return - returns the User object in userService.userList with the corresponding email and password
+     * @param ctx - Current context.
      */
-    public User login(User userLoggedIn) throws LoginException {
-        if(userLoggedIn != null) {
-            throw new LoginException("A user is already logged in.");
+    public void login(Context ctx) {
+        NumberFormat numberFormatter = NumberFormat.getCurrencyInstance();
+        logger.info("Accessing login...");
+        String email = ctx.pathParam("email");
+        String password = ctx.pathParam("password");
+        logger.info("Email {}, Password {}, {}", email, password, "was sent in through path parameter.");
+        try {
+            User loggedInUser = userService.login(email, password);
+            logger.info("User logged in: {}", loggedInUser);
+            ctx.json(loggedInUser);
+        } catch (LoginException e) {
+            logger.warn("No user with those credentials was found.");
+            ctx.status(404);
         }
-
-
-        userLoggedIn =userService.login(userLoggedIn.getEmail(),userLoggedIn.getPassword());
-        if( userLoggedIn!= null) {
-            return userLoggedIn;
-        }
-        throw new LoginException("No user with those credentials found.") ;
     }
-
-
-
 }

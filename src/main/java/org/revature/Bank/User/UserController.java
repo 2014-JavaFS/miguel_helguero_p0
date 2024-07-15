@@ -1,48 +1,59 @@
 package org.revature.Bank.User;
 
+import io.javalin.Javalin;
+import io.javalin.http.Context;
+import io.javalin.http.HttpStatus;
 import org.revature.Bank.util.exceptions.*;
-import org.revature.Bank.util.interfaces.ScannerValidator;
-
+import org.revature.Bank.util.interfaces.Controller;
 import java.util.List;
-import java.util.Scanner;
-import java.text.NumberFormat;
 
-public class UserController {
-    public Scanner scanner;
+
+import static org.revature.Bank.BankFrontController.logger;
+
+public class UserController implements Controller {
     private final UserService userService;
-    public UserController(Scanner scanner, UserService userService) {
-        this.scanner=scanner;
+    public UserController( UserService userService) {
         this.userService=userService;
     }
-    /**
-     * returns whether the user input was an int.
-     */
-    ScannerValidator anyInt = (scanner, errorMessage) ->{
-        if(!scanner.hasNextInt()){
-            System.out.println(errorMessage);
-            scanner.nextLine();
-            return false;
-        }
-        return true;
-    };
+
+
+    @Override
+    public void registerPaths(Javalin app) {
+        app.get("/users", this::getAllUsers);
+        app.post("/users", this::postNewUser);
+    }
 
     /**
-     * returns whether the user input was a double.
+     * Retrieves a List of User objects from the Users table and sends it back as the json response.
+     * @param ctx - Current context.
      */
-    ScannerValidator anyDouble = (scanner, errorMessage) ->{
-        if(!scanner.hasNextDouble()){
-            System.out.println(errorMessage);
-            scanner.nextLine();
-            return false;
-        }
-        return true;
-    };
+    public void getAllUsers(Context ctx){
+        logger.info("Accessing getAllUsers");
+        List<User> users = userService.findAll();
+        logger.info("All users found, converting to json...");
+        ctx.json(users);
+        logger.info("Users {}", users);
+        logger.info("Sending back to user...");
+    }
+
+    /**
+     * Receives the json body with the email and password fields and executes an INSERT query to insert a new User row
+     * into the Users table.
+     * @param ctx - Current Context.
+     */
+    public void postNewUser(Context ctx){
+        // checks body for info to map into a User obj
+        User user = ctx.bodyAsClass(User.class);
+
+        ctx.json(userService.registerUser(user)); // response is the created object
+        ctx.status(HttpStatus.CREATED);
+    }
 
     public void getUserInfo(){
         List<User> users = userService.findAll();
         if(users != null){
             for(int i=0;i<users.size();i++){
-                System.out.println(users.get(i).toString());
+                logger.info(users.get(i).toString());
             }
         }
     }
@@ -54,18 +65,10 @@ public class UserController {
      * @throws InvalidInputException
      */
     public void register() throws InvalidInputException {
-        System.out.println("Please enter your email: ");
-        String email = scanner.next();
-        System.out.println();
 
-        System.out.println("Please enter your password(8 - 64 characters): ");
-        String password = scanner.next();
-        System.out.println();
 
-        User userToAdd = new User(email, password);
-
-        userService.registerUser(userToAdd);
-        System.out.println("Registration complete!");
+        //userService.registerUser(userToAdd);
+        logger.info("Registration Complete!");
     }
 
     /**
@@ -79,15 +82,9 @@ public class UserController {
         if(userLoggedIn != null) {
             throw new LoginException("A user is already logged in.");
         }
-        System.out.println("Enter email: ");
-        String email = scanner.next();
-        System.out.println();
 
-        System.out.println("Enter password: ");
-        String password = scanner.next();
-        System.out.println();
 
-        userLoggedIn =userService.login(email,password);
+        userLoggedIn =userService.login(userLoggedIn.getEmail(),userLoggedIn.getPassword());
         if( userLoggedIn!= null) {
             return userLoggedIn;
         }
@@ -95,82 +92,5 @@ public class UserController {
     }
 
 
-    /**
-     * Contains options to view the user's balance, withdraw, deposit, or log out.
-     *
-     * @param userLoggedIn - User object that has logged in.
-     * @param scanner - Scanner object to retrieve user input.
-     * @param userService - handles user input validation and returns requested balance.
-     */
-    public User loggedIn(User userLoggedIn, Scanner scanner, UserController userController, UserService userService){
-        int choice = 0;
-        NumberFormat numbeFormatter = NumberFormat.getCurrencyInstance();
 
-        do {
-            System.out.println("Welcome "+userLoggedIn.getEmail()+"!");
-            System.out.println("1. View Balance");
-            System.out.println("2. Deposit");
-            System.out.println("3. Withdraw");
-            System.out.println("4. Logout");
-            System.out.println();
-            System.out.println("Enter your numeric choice from above: ");
-
-            if(!anyInt.isValid(scanner, "Invalid Input, please enter a number 1-4.")) continue;
-
-
-            choice = scanner.nextInt();
-
-            switch (choice) {
-                case 1:
-                    // view balance
-                    // TODO: get balance from db
-                    System.out.println("Your balance is: " + numbeFormatter.format(userLoggedIn.getBalance()));
-                    break;
-                case 2:
-                    // deposit
-                    System.out.println("Enter the amount you want to deposit: ");
-                    if(!anyDouble.isValid(scanner, "Invalid Input, please enter a number.")) continue;
-                    double depositAmount = scanner.nextDouble();
-                    scanner.nextLine();
-
-                    try {
-                        userLoggedIn = userService.deposit(userLoggedIn, depositAmount);
-                        System.out.println("Deposit successful!");
-                    } catch(NegativeDepositException | UpdateException e){
-                        e.printStackTrace();
-                        System.out.println(e.getMessage());
-                    }
-                    break;
-                case 3:
-                    // withdraw, make sure withdrawal amount is not more than balance
-                    System.out.println("Enter the amount you want to withdraw: ");
-                    if(!anyDouble.isValid(scanner, "Invalid Input, please enter a number.")) continue;
-                    double withdrawAmount = scanner.nextDouble();
-                    scanner.nextLine();
-
-                    try{
-                        userService.withdraw(userLoggedIn, withdrawAmount);
-                        System.out.println("Withdrawal successful!");
-                    } catch(OverdraftException | NegativeWithdrawalException |UpdateException e){
-                        e.printStackTrace();
-                        System.out.println(e.getMessage());
-                    }
-
-                    break;
-                case 4:
-                    try {
-                        userService.logout(userLoggedIn);
-                        System.out.println("Logged out.");
-                        return null;
-                    } catch (LogoutException e) {
-                        e.printStackTrace();
-                        System.out.println(e.getMessage());
-                    }
-                    break;
-                default:
-                    System.out.println("Invalid Input, please enter a number 1-4.");
-            }
-        } while(choice!= 4);
-        return null;
-    }
 }

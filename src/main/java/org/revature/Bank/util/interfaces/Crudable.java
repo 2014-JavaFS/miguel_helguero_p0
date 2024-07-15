@@ -7,9 +7,10 @@ public interface Crudable<O> extends Serviceable<O>{
 
     O findByEmailAndPassword(String email, String password);
 
-    boolean deposit(User user, double deposit);
+    //TODO: change param to String email and replace implementation's User object with email
+    boolean deposit(String email, double deposit);
 
-    boolean withdraw(User user, double amount);
+    boolean withdraw(String email, double amount);
 
     boolean delete();
 

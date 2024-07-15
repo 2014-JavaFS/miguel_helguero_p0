@@ -78,7 +78,6 @@ public class UserRepository implements Crudable<User>{
         }
     }
 
-    @Override
     public User findByEmailAndPassword(String email, String password){
         User user = new User();
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){

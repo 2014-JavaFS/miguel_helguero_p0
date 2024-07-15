@@ -4,9 +4,18 @@ package org.revature.Bank.Account;
 // one User can have multiple Accounts(savings, checkings, etc);
 // validation of deposit not negative, no overdrawn withdrawals etc handled in AccountService
 public class Account {
-    private int id;
+    private int accountId;
+    private int userId;
     private String type;
     private double balance;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public String getType() {
         return type;
@@ -16,9 +25,9 @@ public class Account {
         this.type = type;
     }
 
-    public int getId(){return id;}
+    public int getAccountId(){return accountId;}
 
-    public void setId(int id){this.id=id;}
+    public void setAccountId(int id){this.accountId=accountId;}
 
     public double getBalance() {
         return balance;

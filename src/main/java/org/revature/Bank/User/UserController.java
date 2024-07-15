@@ -74,9 +74,11 @@ public class UserController implements Controller {
             double balance = userService.findBalance(email, password);
             logger.info("The balance is : {}", numberFormatter.format(balance));
             ctx.json(balance);
+            ctx.status(HttpStatus.CREATED);
+
         } catch (UserNotFoundException e) {
             logger.warn("The user was not found");
-            ctx.status(HttpStatus.CREATED);
+            ctx.status(404);
         }
     }
 

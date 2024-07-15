@@ -13,6 +13,11 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    /**
+     * Generates a List of User objects after invoking userRepository.findAll(), and throws a UserNotFoundException if
+     * no users were found in the Users table, otherwise it returns the List of Users.
+     * @return users - generated List of Users from the rows in the Users table.
+     */
     public List<User> findAll(){
         try {
             List<User> users = userRepository.findAll();
@@ -26,7 +31,6 @@ public class UserService {
             return null;
         }
     }
-
 
     /**
      * Takes in a User object and passes it to validateUser(), if no exceptions caught then

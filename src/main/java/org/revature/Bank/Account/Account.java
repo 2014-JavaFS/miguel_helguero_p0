@@ -6,7 +6,7 @@ package org.revature.Bank.Account;
 public class Account {
     private int accountId;
     private int userId;
-    private String type;
+    private String accountType;
     private double balance;
 
     public int getUserId() {
@@ -17,12 +17,12 @@ public class Account {
         this.userId = userId;
     }
 
-    public String getType() {
-        return type;
+    public String getAccountType() {
+        return accountType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setAccountType(String type) {
+        this.accountType = type;
     }
 
     public int getAccountId(){return accountId;}
@@ -41,14 +41,15 @@ public class Account {
 
     public Account(){}
 
-    public Account(String type){
-        this.type=type;
+    public Account(int userId, String accountType){
+        this.userId = userId;
+        this.accountType=accountType;
         this.balance = 0.00;
     }
 
     @Override
     public String toString(){
-        return "Account: "+ getType()+" " + getBalance()+"\n";
+        return "User: " + getUserId()+ "Account: " + getAccountType()+" " + getBalance()+"\n";
     }
 }
 

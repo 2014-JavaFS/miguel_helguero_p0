@@ -48,7 +48,7 @@ public class AccountController implements Controller{
                     return;
                 }
                 for(Account account: accounts){
-                    logger.info("{} balance: {}", account.getType(), account.getBalance());
+                    logger.info("{} balance: {}", account.getAccountType(), account.getBalance());
                 }
                 ctx.json(accounts);
                 ctx.status(200);

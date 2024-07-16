@@ -45,7 +45,7 @@ public class AccountRepository implements Crudable<Account>{
         Account account = new Account();
         account.setAccountId(rs.getInt("account_id"));
         account.setUserId(rs.getInt("user_id"));
-        account.setType(rs.getString("type"));
+        account.setAccountType(rs.getString("account_type"));
         account.setBalance(rs.getDouble("balance"));
         return account;
     }

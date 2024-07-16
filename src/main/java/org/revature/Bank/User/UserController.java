@@ -24,8 +24,7 @@ public class UserController implements Controller {
     public void registerPaths(Javalin app) {
         app.get("/users", this::getAllUsers);
         app.post("/users", this::postNewUser);
-        app.get("/balance/{email}/{password}", this::getBalanceByEmailAndPassword);
-        app.get("/user/{email}/{password}", this::login);
+        app.post("/login", this::postLogin);
     }
 
     /**
@@ -58,30 +57,6 @@ public class UserController implements Controller {
         logger.info("User created: {}", user);
     }
 
-    /**
-     * Sends an email and password as parameters to userService.findBalance() and eventually the email and password are
-     * used in a SELECT query that retrieves the corresponding user's balance.
-     *
-     * @param ctx - Current Context.
-     */
-    public void getBalanceByEmailAndPassword(Context ctx) {
-        NumberFormat numberFormatter = NumberFormat.getCurrencyInstance();
-        logger.info("Accessing getBalanceById...");
-        String email = ctx.pathParam("email");
-        String password = ctx.pathParam("password");
-        logger.info("Email {}, Password {}, {}", email, password, "was sent in through path parameter.");
-        try {
-            double balance = userService.findBalance(email, password);
-            logger.info("The balance is : {}", numberFormatter.format(balance));
-            ctx.json(balance);
-            ctx.status(HttpStatus.CREATED);
-
-        } catch (UserNotFoundException e) {
-            logger.warn("The user was not found");
-            ctx.status(404);
-        }
-    }
-
 
     /**
      * Sends arguments for email and password to UserService.login()
@@ -90,16 +65,21 @@ public class UserController implements Controller {
      *
      * @param ctx - Current context.
      */
-    public void login(Context ctx) {
-        NumberFormat numberFormatter = NumberFormat.getCurrencyInstance();
+    public void postLogin(Context ctx) {
+        // TODO: user context headers to login
         logger.info("Accessing login...");
-        String email = ctx.pathParam("email");
-        String password = ctx.pathParam("password");
+//        String email = ctx.pathParam("email");
+//        String password = ctx.pathParam("password");
+
+        String email = ctx.queryParam("email");
+        String password = ctx.queryParam("password");
         logger.info("Email {}, Password {}, {}", email, password, "was sent in through path parameter.");
         try {
             User loggedInUser = userService.login(email, password);
             logger.info("User logged in: {}", loggedInUser);
+            ctx.header("userId", String.valueOf(loggedInUser.getUserId()));
             ctx.json(loggedInUser);
+            ctx.status(200);
         } catch (LoginException e) {
             logger.warn("No user with those credentials was found.");
             ctx.status(404);

@@ -8,7 +8,6 @@ public class User {
     private int userId;
     private String email;
     private String password;
-    private double balance;
     private List<Account> accounts;
 
     public List<Account> getAccounts() {
@@ -39,13 +38,7 @@ public class User {
         this.password = password;
     }
 
-    public double getBalance() {
-        return balance;
-    }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
 
 
 
@@ -54,12 +47,11 @@ public class User {
     public User(String email, String password){
         this.email=email;
         this.password=password;
-        this.balance = 0.00;
     }
 
     @Override
     public String toString(){
-        return "User: "+ getEmail()+" " + getBalance()+"\n";
+        return "User: "+ getUserId()+" " + getEmail()+"\n";
     }
 }
 

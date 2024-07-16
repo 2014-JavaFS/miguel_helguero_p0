@@ -13,14 +13,6 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public Double findBalance(String email, String password) throws UserNotFoundException{
-        User foundUser = userRepository.findByEmailAndPassword(email, password);
-
-        if (foundUser == null) {
-            throw new UserNotFoundException("No user with that id was found.");
-        }
-        return foundUser.getBalance();
-    }
 
     /**
      * Generates a List of User objects after invoking userRepository.findAll(), and throws a UserNotFoundException if
@@ -87,41 +79,41 @@ public class UserService {
      * @param depositAmount - Double amount to be deposited.
      * @throws NegativeDepositException - Thrown if deposit amount is negative.
      */
-    public User deposit(User userLoggedIn, double depositAmount){
-        double currentBalance = userLoggedIn.getBalance();
-        try {
-            if (depositAmount < 0) throw new NegativeDepositException("Deposit cannot be negative.");
-            if (!userRepository.deposit(userLoggedIn.getEmail(), depositAmount)) {
-                throw new UpdateException("Deposit failed.");
-            }
-
-            userLoggedIn.setBalance(currentBalance + depositAmount);
-            return userLoggedIn;
-        } catch(UpdateException | NegativeDepositException e){
-            logger.warn("Deposit failed.");
-            logger.warn(e.getMessage());
-        }
-        return null;
-    }
-
-
-    /**
-     * Takes in a User object and a double withdrawalAmount and subtracts the withdrawal amount from the user's balance.
-     * Throws an OverdraftException is the withdrawal amount is greater than the current balance.
-     * @param userLoggedIn - User object that references the user that is currently logged in.
-     * @param withdrawalAmount - Double amount to be withdrawn.
-     * @throws OverdraftException - Thrown if withdrawal amount is greater than current balance.
-     */
-    public void withdraw(User userLoggedIn, double withdrawalAmount) throws OverdraftException, NegativeWithdrawalException, UpdateException{
-        double currentBalance = userLoggedIn.getBalance();
-
-        if(withdrawalAmount > currentBalance) throw new OverdraftException("Withdrawal amount cannot be greater than current balance.");
-        if(withdrawalAmount < 0) throw new NegativeWithdrawalException("Withdrawal amount cannot be negative.");
-        if(!userRepository.withdraw(userLoggedIn.getEmail(), withdrawalAmount)){
-            throw new UpdateException("Withdrawal failed.");
-        }
-        userLoggedIn.setBalance(currentBalance - withdrawalAmount);
-    }
+//    public User deposit(User userLoggedIn, double depositAmount){
+//        double currentBalance = userLoggedIn.getBalance();
+//        try {
+//            if (depositAmount < 0) throw new NegativeDepositException("Deposit cannot be negative.");
+//            if (!userRepository.deposit(userLoggedIn.getEmail(), depositAmount)) {
+//                throw new UpdateException("Deposit failed.");
+//            }
+//
+//            userLoggedIn.setBalance(currentBalance + depositAmount);
+//            return userLoggedIn;
+//        } catch(UpdateException | NegativeDepositException e){
+//            logger.warn("Deposit failed.");
+//            logger.warn(e.getMessage());
+//        }
+//        return null;
+//    }
+//
+//
+//    /**
+//     * Takes in a User object and a double withdrawalAmount and subtracts the withdrawal amount from the user's balance.
+//     * Throws an OverdraftException is the withdrawal amount is greater than the current balance.
+//     * @param userLoggedIn - User object that references the user that is currently logged in.
+//     * @param withdrawalAmount - Double amount to be withdrawn.
+//     * @throws OverdraftException - Thrown if withdrawal amount is greater than current balance.
+//     */
+//    public void withdraw(User userLoggedIn, double withdrawalAmount) throws OverdraftException, NegativeWithdrawalException, UpdateException{
+//        double currentBalance = userLoggedIn.getBalance();
+//
+//        if(withdrawalAmount > currentBalance) throw new OverdraftException("Withdrawal amount cannot be greater than current balance.");
+//        if(withdrawalAmount < 0) throw new NegativeWithdrawalException("Withdrawal amount cannot be negative.");
+//        if(!userRepository.withdraw(userLoggedIn.getEmail(), withdrawalAmount)){
+//            throw new UpdateException("Withdrawal failed.");
+//        }
+//        userLoggedIn.setBalance(currentBalance - withdrawalAmount);
+//    }
 
 
     /**
@@ -132,7 +124,9 @@ public class UserService {
      * @return - User object found in List of Users, or null if none found.
      */
     public User login(String email, String password) throws LoginException{
-        return userRepository.findByEmailAndPassword(email, password);
+        User foundUser = userRepository.findByEmailAndPassword(email, password);
+        if(foundUser == null) throw new LoginException("No user with those credentials was found.");
+        return foundUser;
     }
 
     public void logout(User userLoggedIn) throws LogoutException {

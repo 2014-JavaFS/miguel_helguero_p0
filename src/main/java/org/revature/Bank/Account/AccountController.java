@@ -27,7 +27,7 @@ public class AccountController implements Controller{
 
         @Override
         public void registerPaths(Javalin app) {
-            app.get("/accounts/{user_id}", this::getAccountsById);
+            app.get("/accounts", this::getAccountsById);
         }
 
         /**
@@ -36,8 +36,9 @@ public class AccountController implements Controller{
          * @param ctx - Current context.
          */
         public void getAccountsById(Context ctx) {
+            NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
             logger.info("Accessing getAccountsById...");
-            int userId = Integer.parseInt(ctx.pathParam("user_id"));
+            int userId = Integer.parseInt(ctx.header("userId"));
             logger.info("UserId {}, {}", userId, "was sent in through path parameter.");
 
             try{
@@ -47,8 +48,9 @@ public class AccountController implements Controller{
                     ctx.status(204);
                     return;
                 }
+                logger.info("Accounts for UserId = {}:", userId);
                 for(Account account: accounts){
-                    logger.info("{} balance: {}", account.getAccountType(), account.getBalance());
+                    logger.info("{} balance: {}", account.getAccountType(), numberFormat.format(account.getBalance()));
                 }
                 ctx.json(accounts);
                 ctx.status(200);
@@ -58,5 +60,6 @@ public class AccountController implements Controller{
             }
         }
 
+        //TODO: implement method to create desired type of account for User
 
 }

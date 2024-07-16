@@ -54,29 +54,31 @@ public class AccountRepository implements Crudable<Account>{
     //TODO: set up using both the desired account type and the user_id for the account's user
     /**
      * Inserts validated Account object called used into database, throws RuntimeException if INSERT query not executed.
-     * @param account - Validated Account object with type
+     * @param accountToCreate - Validated Account object with accountType and userId.
      * @return account - returns the Validated Account object after it has been inserted into the Accounts table.
      */
     @Override
-    public Account create(Account account){
-        return account;
-//            try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
-//                String sql = "insert into accounts(type, user_id) values(?, ?)";
-//
-//                // sanitize sql insert statements before executing
-//                PreparedStatement preparedStatement = conn.prepareStatement(sql);
-//                preparedStatement.setString(1, user.getEmail());
-//                preparedStatement.setString(2, user.getPassword());
-//
-//                if(preparedStatement.executeUpdate() == 0){
-//                    throw new RuntimeException("User was not inserted into database.");
-//                }
-//
-//                return user;
-//            } catch(SQLException e){
-//                e.printStackTrace();
-//                return null;
-//            }
+    public Account create(Account accountToCreate){
+
+            try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
+                String sql = "insert into accounts(account_type, user_id) values(?, ?)";
+
+                // sanitize sql insert statements before executing
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setString(1, accountToCreate.getAccountType());
+                preparedStatement.setInt(2, accountToCreate.getUserId());
+
+                logger.info(preparedStatement.toString());
+                // TODO: add accountId to account before returning
+                if(preparedStatement.executeUpdate() == 0){
+                    throw new RuntimeException("Account was not inserted into database.");
+                }
+
+                return accountToCreate;
+            } catch(SQLException e){
+                e.printStackTrace();
+                return null;
+            }
     }
 
     public List<Account> findByUserId(int user_id){

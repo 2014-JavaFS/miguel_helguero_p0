@@ -3,19 +3,12 @@ package org.revature.Bank.Account;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 import io.javalin.http.HttpStatus;
-import org.revature.Bank.User.User;
-import org.revature.Bank.User.UserService;
-import org.revature.Bank.util.exceptions.LoginException;
+import org.revature.Bank.util.exceptions.InvalidAccountTypeException;
 import org.revature.Bank.util.exceptions.UserNotFoundException;
 import org.revature.Bank.util.interfaces.Controller;
-
-import javax.security.auth.login.AccountNotFoundException;
-
 import static org.revature.Bank.BankFrontController.logger;
 import java.text.NumberFormat;
 import java.util.List;
-
-import static org.revature.Bank.BankFrontController.logger;
 
 public class AccountController implements Controller{
         private final AccountService accountService;
@@ -28,6 +21,7 @@ public class AccountController implements Controller{
         @Override
         public void registerPaths(Javalin app) {
             app.get("/accounts", this::getAccountsById);
+            app.post("/accounts/create", this::postAccount);
         }
 
         /**
@@ -61,5 +55,22 @@ public class AccountController implements Controller{
         }
 
         //TODO: implement method to create desired type of account for User
+        public void postAccount(Context ctx){
+            // uses environment variable userId in postman to insert an account with the userId into accounts table
+            logger.info("Creating account...");
+            String accountType = ctx.queryParam("accountType");
+            int userId = Integer.parseInt(ctx.header("userId"));
+            logger.info("UserId {}, AccountType {}, {}", userId, accountType, "was sent in through path parameter.");
+            try {
+                Account createdAccount = accountService.createAccount(userId, accountType);
+                ctx.json(createdAccount);
+                logger.info("Account created: {}", createdAccount);
+                ctx.status(HttpStatus.CREATED);
+           } catch(InvalidAccountTypeException e){
+                logger.warn(e.getMessage());
+                ctx.status(400);
+            }
+
+        }
 
 }

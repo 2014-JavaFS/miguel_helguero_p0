@@ -66,6 +66,7 @@ public class UserRepository implements Crudable<User>{
             preparedStatement.setString(1, user.getEmail());
             preparedStatement.setString(2, user.getPassword());
 
+            //TODO: add userId to user before returning
             if(preparedStatement.executeUpdate() == 0){
                 throw new RuntimeException("User was not inserted into database.");
             }

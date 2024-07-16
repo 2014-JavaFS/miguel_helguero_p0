@@ -38,7 +38,6 @@ public class UserController implements Controller {
         logger.info("All users found, converting to json...");
         ctx.json(users);
         logger.info("Users {}", users);
-        logger.info("Sending back to user...");
         ctx.status(200);
     }
 
@@ -66,10 +65,7 @@ public class UserController implements Controller {
      * @param ctx - Current context.
      */
     public void postLogin(Context ctx) {
-        // TODO: user context headers to login
         logger.info("Accessing login...");
-//        String email = ctx.pathParam("email");
-//        String password = ctx.pathParam("password");
 
         String email = ctx.queryParam("email");
         String password = ctx.queryParam("password");

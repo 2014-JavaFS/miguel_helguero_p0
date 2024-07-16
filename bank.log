@@ -1189,3 +1189,786 @@ java.lang.NumberFormatException: Cannot parse null string
 2024-07-16 15:51:23,980 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountRepository: select * from accounts where user_id = ('1'::int4)
 2024-07-16 15:51:23,983 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: checkings balance: $350.42
 2024-07-16 15:51:23,983 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: savings balance: $1,050.42
+2024-07-16 15:52:29,946 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-16 15:52:30,114 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-16 15:52:30,116 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-16 15:52:30,164 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-16 15:52:30,174 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@9573584{/,null,AVAILABLE}
+2024-07-16 15:52:30,255 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@247310d0{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-16 15:52:30,270 INFO  [main] o.e.j.server.Server: Started Server@5b7a7f33{STARTING}[11.0.20,sto=0] @665ms
+2024-07-16 15:52:30,270 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-16 15:52:30,271 INFO  [main] i.j.u.JavalinLogger: Javalin started in 227ms \o/
+2024-07-16 15:52:30,275 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-16 15:52:30,284 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-16 15:52:30,615 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 15:52:30,616 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountController: UserId 1, was sent in through path parameter.
+2024-07-16 15:52:30,764 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountRepository: select * from accounts where user_id = ('1'::int4)
+2024-07-16 15:52:30,776 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountController: Accounts for UserId = 1:
+2024-07-16 15:52:30,777 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountController: checkings balance: $350.42
+2024-07-16 15:52:30,778 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountController: savings balance: $1,050.42
+2024-07-16 15:54:43,869 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-16 15:54:44,048 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-16 15:54:44,050 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-16 15:54:44,105 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-16 15:54:44,116 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@9573584{/,null,AVAILABLE}
+2024-07-16 15:54:44,179 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@247310d0{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-16 15:54:44,188 INFO  [main] o.e.j.server.Server: Started Server@5b7a7f33{STARTING}[11.0.20,sto=0] @678ms
+2024-07-16 15:54:44,188 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-16 15:54:44,189 INFO  [main] i.j.u.JavalinLogger: Javalin started in 211ms \o/
+2024-07-16 15:54:44,192 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-16 15:54:44,201 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-16 15:54:47,175 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Accessing getAllUsers
+2024-07-16 15:54:47,318 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: All users found, converting to json...
+2024-07-16 15:54:47,446 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Users [User: 1 miguel@email.com
+, User: 2 helguero@email.com
+, User: 3 josh@gmail.com
+, User: 4 charles@revature.com
+, User: 5 zoey@email.com
+, User: 6 bob@email.com
+, User: 7 jose@yahoo.com
+, User: 8 will@email.com
+]
+2024-07-16 15:54:47,448 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Sending back to user...
+2024-07-16 15:55:49,112 INFO  [JettyServerThreadPool-47] o.r.B.U.UserController: Accessing getAllUsers
+2024-07-16 15:55:49,143 INFO  [JettyServerThreadPool-47] o.r.B.U.UserController: All users found, converting to json...
+2024-07-16 15:55:49,144 INFO  [JettyServerThreadPool-47] o.r.B.U.UserController: Users [User: 1 miguel@email.com
+, User: 2 helguero@email.com
+, User: 3 josh@gmail.com
+, User: 4 charles@revature.com
+, User: 5 zoey@email.com
+, User: 6 bob@email.com
+, User: 7 jose@yahoo.com
+]
+2024-07-16 15:55:49,144 INFO  [JettyServerThreadPool-47] o.r.B.U.UserController: Sending back to user...
+2024-07-16 15:55:54,335 INFO  [JettyServerThreadPool-36] o.r.B.U.UserController: Creating user...
+2024-07-16 15:55:54,377 INFO  [JettyServerThreadPool-36] o.r.B.U.UserController: User created: User: 0 will@email.com
+
+2024-07-16 15:56:03,050 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Accessing getAllUsers
+2024-07-16 15:56:03,081 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: All users found, converting to json...
+2024-07-16 15:56:03,081 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Users [User: 1 miguel@email.com
+, User: 2 helguero@email.com
+, User: 3 josh@gmail.com
+, User: 4 charles@revature.com
+, User: 5 zoey@email.com
+, User: 6 bob@email.com
+, User: 7 jose@yahoo.com
+, User: 8 will@email.com
+]
+2024-07-16 15:56:03,081 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Sending back to user...
+2024-07-16 15:56:11,890 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 15:56:11,891 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: UserId 1, was sent in through path parameter.
+2024-07-16 15:56:11,926 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountRepository: select * from accounts where user_id = ('1'::int4)
+2024-07-16 15:56:11,928 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Accounts for UserId = 1:
+2024-07-16 15:56:11,930 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: checkings balance: $350.42
+2024-07-16 15:56:11,930 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: savings balance: $1,050.42
+2024-07-16 15:56:46,458 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 15:56:46,458 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: UserId 1, was sent in through path parameter.
+2024-07-16 15:56:46,487 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountRepository: select * from accounts where user_id = ('1'::int4)
+2024-07-16 15:56:46,488 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Accounts for UserId = 1:
+2024-07-16 15:56:46,489 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: checkings balance: $350.42
+2024-07-16 15:56:46,489 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: savings balance: $1,050.42
+2024-07-16 15:57:03,849 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Accessing login...
+2024-07-16 15:57:03,850 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Email josh@email.com, Password joshpassword, was sent in through path parameter.
+2024-07-16 15:57:03,879 WARN  [JettyServerThreadPool-46] o.r.B.U.UserController: No user with those credentials was found.
+2024-07-16 15:57:16,067 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: Accessing login...
+2024-07-16 15:57:16,068 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: Email josh@gmail.com, Password joshpassword, was sent in through path parameter.
+2024-07-16 15:57:16,098 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: User logged in: User: 3 josh@gmail.com
+
+2024-07-16 15:57:21,716 INFO  [JettyServerThreadPool-46] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 15:57:21,717 INFO  [JettyServerThreadPool-46] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 15:57:21,745 INFO  [JettyServerThreadPool-46] o.r.B.A.AccountRepository: select * from accounts where user_id = ('3'::int4)
+2024-07-16 15:57:21,747 INFO  [JettyServerThreadPool-46] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-16 15:57:21,747 INFO  [JettyServerThreadPool-46] o.r.B.A.AccountController: checkings balance: $13,439.18
+2024-07-16 16:53:58,900 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-16 16:53:59,079 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-16 16:53:59,081 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-16 16:53:59,131 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-16 16:53:59,141 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@3370f42{/,null,AVAILABLE}
+2024-07-16 16:53:59,206 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@1033576a{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-16 16:53:59,213 INFO  [main] o.e.j.server.Server: Started Server@790da477{STARTING}[11.0.20,sto=0] @663ms
+2024-07-16 16:53:59,214 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-16 16:53:59,214 INFO  [main] i.j.u.JavalinLogger: Javalin started in 210ms \o/
+2024-07-16 16:53:59,217 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-16 16:53:59,227 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-16 16:58:40,801 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-16 16:58:40,971 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-16 16:58:40,973 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-16 16:58:41,021 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-16 16:58:41,032 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@75d2da2d{/,null,AVAILABLE}
+2024-07-16 16:58:41,097 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@6be968ce{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-16 16:58:41,105 INFO  [main] o.e.j.server.Server: Started Server@431cd9b2{STARTING}[11.0.20,sto=0] @639ms
+2024-07-16 16:58:41,105 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-16 16:58:41,105 INFO  [main] i.j.u.JavalinLogger: Javalin started in 205ms \o/
+2024-07-16 16:58:41,109 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-16 16:58:41,117 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-16 16:58:42,256 WARN  [JettyServerThreadPool-46] i.j.u.JavalinLogger: Uncaught exception
+com.fasterxml.jackson.databind.exc.MismatchedInputException: No content to map due to end-of-input
+ at [Source: REDACTED (`StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION` disabled); line: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:59)
+	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4996)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4898)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3848)
+	at io.javalin.json.JavalinJackson.fromJsonString(JavalinJackson.kt:66)
+	at io.javalin.http.Context.bodyAsClass(Context.kt:152)
+	at io.javalin.http.Context.bodyAsClass(Context.kt:155)
+	at org.revature.Bank.Account.AccountController.postAccount(AccountController.java:59)
+	at io.javalin.router.Endpoint.handle(Endpoint.kt:52)
+	at io.javalin.router.ParsedEndpoint.handle(ParsedEndpoint.kt:15)
+	at io.javalin.http.servlet.DefaultTasks.HTTP$lambda$9$lambda$7$lambda$6(DefaultTasks.kt:52)
+	at io.javalin.http.servlet.JavalinServlet.handleTask(JavalinServlet.kt:99)
+	at io.javalin.http.servlet.JavalinServlet.handleSync(JavalinServlet.kt:64)
+	at io.javalin.http.servlet.JavalinServlet.handle(JavalinServlet.kt:50)
+	at io.javalin.http.servlet.JavalinServlet.service(JavalinServlet.kt:30)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:587)
+	at io.javalin.jetty.JavalinJettyServlet.service(JavalinJettyServlet.kt:52)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:587)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:764)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:529)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1580)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1381)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:176)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:484)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1553)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:174)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1303)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:129)
+	at org.eclipse.jetty.server.handler.StatisticsHandler.handle(StatisticsHandler.java:173)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122)
+	at org.eclipse.jetty.server.Server.handle(Server.java:563)
+	at org.eclipse.jetty.server.HttpChannel$RequestDispatchable.dispatch(HttpChannel.java:1598)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:753)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:501)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:287)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:314)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:100)
+	at org.eclipse.jetty.io.SelectableChannelEndPoint$1.run(SelectableChannelEndPoint.java:53)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:969)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.doRunJob(QueuedThreadPool.java:1194)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1149)
+	at java.base/java.lang.Thread.run(Thread.java:1623)
+2024-07-16 17:01:29,851 WARN  [JettyServerThreadPool-46] i.j.u.JavalinLogger: Uncaught exception
+com.fasterxml.jackson.databind.exc.MismatchedInputException: No content to map due to end-of-input
+ at [Source: REDACTED (`StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION` disabled); line: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:59)
+	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4996)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4898)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3848)
+	at io.javalin.json.JavalinJackson.fromJsonString(JavalinJackson.kt:66)
+	at io.javalin.http.Context.bodyAsClass(Context.kt:152)
+	at io.javalin.http.Context.bodyAsClass(Context.kt:155)
+	at org.revature.Bank.Account.AccountController.postAccount(AccountController.java:59)
+	at io.javalin.router.Endpoint.handle(Endpoint.kt:52)
+	at io.javalin.router.ParsedEndpoint.handle(ParsedEndpoint.kt:15)
+	at io.javalin.http.servlet.DefaultTasks.HTTP$lambda$9$lambda$7$lambda$6(DefaultTasks.kt:52)
+	at io.javalin.http.servlet.JavalinServlet.handleTask(JavalinServlet.kt:99)
+	at io.javalin.http.servlet.JavalinServlet.handleSync(JavalinServlet.kt:64)
+	at io.javalin.http.servlet.JavalinServlet.handle(JavalinServlet.kt:50)
+	at io.javalin.http.servlet.JavalinServlet.service(JavalinServlet.kt:30)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:587)
+	at io.javalin.jetty.JavalinJettyServlet.service(JavalinJettyServlet.kt:52)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:587)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:764)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:529)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1580)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1381)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:176)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:484)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1553)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:174)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1303)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:129)
+	at org.eclipse.jetty.server.handler.StatisticsHandler.handle(StatisticsHandler.java:173)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122)
+	at org.eclipse.jetty.server.Server.handle(Server.java:563)
+	at org.eclipse.jetty.server.HttpChannel$RequestDispatchable.dispatch(HttpChannel.java:1598)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:753)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:501)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:287)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:314)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:100)
+	at org.eclipse.jetty.io.SelectableChannelEndPoint$1.run(SelectableChannelEndPoint.java:53)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:969)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.doRunJob(QueuedThreadPool.java:1194)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1149)
+	at java.base/java.lang.Thread.run(Thread.java:1623)
+2024-07-16 17:02:17,493 WARN  [JettyServerThreadPool-36] i.j.u.JavalinLogger: Uncaught exception
+com.fasterxml.jackson.databind.exc.MismatchedInputException: No content to map due to end-of-input
+ at [Source: REDACTED (`StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION` disabled); line: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:59)
+	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4996)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4898)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3848)
+	at io.javalin.json.JavalinJackson.fromJsonString(JavalinJackson.kt:66)
+	at io.javalin.http.Context.bodyAsClass(Context.kt:152)
+	at io.javalin.http.Context.bodyAsClass(Context.kt:155)
+	at org.revature.Bank.Account.AccountController.postAccount(AccountController.java:59)
+	at io.javalin.router.Endpoint.handle(Endpoint.kt:52)
+	at io.javalin.router.ParsedEndpoint.handle(ParsedEndpoint.kt:15)
+	at io.javalin.http.servlet.DefaultTasks.HTTP$lambda$9$lambda$7$lambda$6(DefaultTasks.kt:52)
+	at io.javalin.http.servlet.JavalinServlet.handleTask(JavalinServlet.kt:99)
+	at io.javalin.http.servlet.JavalinServlet.handleSync(JavalinServlet.kt:64)
+	at io.javalin.http.servlet.JavalinServlet.handle(JavalinServlet.kt:50)
+	at io.javalin.http.servlet.JavalinServlet.service(JavalinServlet.kt:30)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:587)
+	at io.javalin.jetty.JavalinJettyServlet.service(JavalinJettyServlet.kt:52)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:587)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:764)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:529)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1580)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1381)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:176)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:484)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1553)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:174)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1303)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:129)
+	at org.eclipse.jetty.server.handler.StatisticsHandler.handle(StatisticsHandler.java:173)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122)
+	at org.eclipse.jetty.server.Server.handle(Server.java:563)
+	at org.eclipse.jetty.server.HttpChannel$RequestDispatchable.dispatch(HttpChannel.java:1598)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:753)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:501)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:287)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:314)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:100)
+	at org.eclipse.jetty.io.SelectableChannelEndPoint$1.run(SelectableChannelEndPoint.java:53)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:969)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.doRunJob(QueuedThreadPool.java:1194)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1149)
+	at java.base/java.lang.Thread.run(Thread.java:1623)
+2024-07-16 17:12:09,103 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-16 17:12:09,277 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-16 17:12:09,279 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-16 17:12:09,329 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-16 17:12:09,339 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@3370f42{/,null,AVAILABLE}
+2024-07-16 17:12:09,405 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@1033576a{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-16 17:12:09,413 INFO  [main] o.e.j.server.Server: Started Server@790da477{STARTING}[11.0.20,sto=0] @661ms
+2024-07-16 17:12:09,414 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-16 17:12:09,414 INFO  [main] i.j.u.JavalinLogger: Javalin started in 212ms \o/
+2024-07-16 17:12:09,417 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-16 17:12:09,427 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-16 17:12:17,604 WARN  [JettyServerThreadPool-45] i.j.u.JavalinLogger: Uncaught exception
+com.fasterxml.jackson.databind.exc.MismatchedInputException: No content to map due to end-of-input
+ at [Source: REDACTED (`StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION` disabled); line: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:59)
+	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4996)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4898)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3848)
+	at io.javalin.json.JavalinJackson.fromJsonString(JavalinJackson.kt:66)
+	at io.javalin.http.Context.bodyAsClass(Context.kt:152)
+	at io.javalin.http.Context.bodyAsClass(Context.kt:155)
+	at org.revature.Bank.Account.AccountController.postAccount(AccountController.java:59)
+	at io.javalin.router.Endpoint.handle(Endpoint.kt:52)
+	at io.javalin.router.ParsedEndpoint.handle(ParsedEndpoint.kt:15)
+	at io.javalin.http.servlet.DefaultTasks.HTTP$lambda$9$lambda$7$lambda$6(DefaultTasks.kt:52)
+	at io.javalin.http.servlet.JavalinServlet.handleTask(JavalinServlet.kt:99)
+	at io.javalin.http.servlet.JavalinServlet.handleSync(JavalinServlet.kt:64)
+	at io.javalin.http.servlet.JavalinServlet.handle(JavalinServlet.kt:50)
+	at io.javalin.http.servlet.JavalinServlet.service(JavalinServlet.kt:30)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:587)
+	at io.javalin.jetty.JavalinJettyServlet.service(JavalinJettyServlet.kt:52)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:587)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:764)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:529)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1580)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1381)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:176)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:484)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1553)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:174)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1303)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:129)
+	at org.eclipse.jetty.server.handler.StatisticsHandler.handle(StatisticsHandler.java:173)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122)
+	at org.eclipse.jetty.server.Server.handle(Server.java:563)
+	at org.eclipse.jetty.server.HttpChannel$RequestDispatchable.dispatch(HttpChannel.java:1598)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:753)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:501)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:287)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:314)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:100)
+	at org.eclipse.jetty.io.SelectableChannelEndPoint$1.run(SelectableChannelEndPoint.java:53)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:969)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.doRunJob(QueuedThreadPool.java:1194)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1149)
+	at java.base/java.lang.Thread.run(Thread.java:1623)
+2024-07-16 17:13:35,010 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-16 17:13:35,181 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-16 17:13:35,183 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-16 17:13:35,232 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-16 17:13:35,243 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@3370f42{/,null,AVAILABLE}
+2024-07-16 17:13:35,307 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@1033576a{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-16 17:13:35,315 INFO  [main] o.e.j.server.Server: Started Server@790da477{STARTING}[11.0.20,sto=0] @656ms
+2024-07-16 17:13:35,316 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-16 17:13:35,316 INFO  [main] i.j.u.JavalinLogger: Javalin started in 207ms \o/
+2024-07-16 17:13:35,320 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-16 17:13:35,330 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-16 17:13:39,702 INFO  [JettyServerThreadPool-46] o.r.B.A.AccountController: Creating account...
+2024-07-16 17:13:39,703 WARN  [JettyServerThreadPool-46] i.j.u.JavalinLogger: Uncaught exception
+java.lang.NumberFormatException: Cannot parse null string
+	at java.base/java.lang.Integer.parseInt(Integer.java:627)
+	at java.base/java.lang.Integer.parseInt(Integer.java:781)
+	at org.revature.Bank.Account.AccountController.postAccount(AccountController.java:60)
+	at io.javalin.router.Endpoint.handle(Endpoint.kt:52)
+	at io.javalin.router.ParsedEndpoint.handle(ParsedEndpoint.kt:15)
+	at io.javalin.http.servlet.DefaultTasks.HTTP$lambda$9$lambda$7$lambda$6(DefaultTasks.kt:52)
+	at io.javalin.http.servlet.JavalinServlet.handleTask(JavalinServlet.kt:99)
+	at io.javalin.http.servlet.JavalinServlet.handleSync(JavalinServlet.kt:64)
+	at io.javalin.http.servlet.JavalinServlet.handle(JavalinServlet.kt:50)
+	at io.javalin.http.servlet.JavalinServlet.service(JavalinServlet.kt:30)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:587)
+	at io.javalin.jetty.JavalinJettyServlet.service(JavalinJettyServlet.kt:52)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:587)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:764)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:529)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1580)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1381)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:176)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:484)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1553)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:174)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1303)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:129)
+	at org.eclipse.jetty.server.handler.StatisticsHandler.handle(StatisticsHandler.java:173)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122)
+	at org.eclipse.jetty.server.Server.handle(Server.java:563)
+	at org.eclipse.jetty.server.HttpChannel$RequestDispatchable.dispatch(HttpChannel.java:1598)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:753)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:501)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:287)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:314)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:100)
+	at org.eclipse.jetty.io.SelectableChannelEndPoint$1.run(SelectableChannelEndPoint.java:53)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:969)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.doRunJob(QueuedThreadPool.java:1194)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1149)
+	at java.base/java.lang.Thread.run(Thread.java:1623)
+2024-07-16 17:14:03,894 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-16 17:14:04,080 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-16 17:14:04,082 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-16 17:14:04,136 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-16 17:14:04,146 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@3370f42{/,null,AVAILABLE}
+2024-07-16 17:14:04,213 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@1033576a{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-16 17:14:04,225 INFO  [main] o.e.j.server.Server: Started Server@790da477{STARTING}[11.0.20,sto=0] @734ms
+2024-07-16 17:14:04,225 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-16 17:14:04,225 INFO  [main] i.j.u.JavalinLogger: Javalin started in 224ms \o/
+2024-07-16 17:14:04,228 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-16 17:14:04,238 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-16 17:14:07,803 INFO  [JettyServerThreadPool-46] o.r.B.A.AccountController: Creating account...
+2024-07-16 17:14:07,804 WARN  [JettyServerThreadPool-46] i.j.u.JavalinLogger: Uncaught exception
+java.lang.NumberFormatException: For input string: "null"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+	at java.base/java.lang.Integer.parseInt(Integer.java:665)
+	at java.base/java.lang.Integer.parseInt(Integer.java:781)
+	at org.revature.Bank.Account.AccountController.postAccount(AccountController.java:60)
+	at io.javalin.router.Endpoint.handle(Endpoint.kt:52)
+	at io.javalin.router.ParsedEndpoint.handle(ParsedEndpoint.kt:15)
+	at io.javalin.http.servlet.DefaultTasks.HTTP$lambda$9$lambda$7$lambda$6(DefaultTasks.kt:52)
+	at io.javalin.http.servlet.JavalinServlet.handleTask(JavalinServlet.kt:99)
+	at io.javalin.http.servlet.JavalinServlet.handleSync(JavalinServlet.kt:64)
+	at io.javalin.http.servlet.JavalinServlet.handle(JavalinServlet.kt:50)
+	at io.javalin.http.servlet.JavalinServlet.service(JavalinServlet.kt:30)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:587)
+	at io.javalin.jetty.JavalinJettyServlet.service(JavalinJettyServlet.kt:52)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:587)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:764)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:529)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1580)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1381)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:176)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:484)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1553)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:174)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1303)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:129)
+	at org.eclipse.jetty.server.handler.StatisticsHandler.handle(StatisticsHandler.java:173)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122)
+	at org.eclipse.jetty.server.Server.handle(Server.java:563)
+	at org.eclipse.jetty.server.HttpChannel$RequestDispatchable.dispatch(HttpChannel.java:1598)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:753)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:501)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:287)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:314)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:100)
+	at org.eclipse.jetty.io.SelectableChannelEndPoint$1.run(SelectableChannelEndPoint.java:53)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:969)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.doRunJob(QueuedThreadPool.java:1194)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1149)
+	at java.base/java.lang.Thread.run(Thread.java:1623)
+2024-07-16 17:14:46,931 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: Accessing login...
+2024-07-16 17:14:46,933 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: Email josh@gmail.com, Password joshpassword, was sent in through path parameter.
+2024-07-16 17:14:47,084 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: User logged in: User: 3 josh@gmail.com
+
+2024-07-16 17:15:10,852 INFO  [JettyServerThreadPool-36] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 17:15:10,853 INFO  [JettyServerThreadPool-36] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 17:15:10,884 INFO  [JettyServerThreadPool-36] o.r.B.A.AccountRepository: select * from accounts where user_id = ('3'::int4)
+2024-07-16 17:15:10,886 INFO  [JettyServerThreadPool-36] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-16 17:15:10,887 INFO  [JettyServerThreadPool-36] o.r.B.A.AccountController: checkings balance: $13,439.18
+2024-07-16 17:15:32,611 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-16 17:15:32,797 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-16 17:15:32,799 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-16 17:15:32,849 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-16 17:15:32,858 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@3370f42{/,null,AVAILABLE}
+2024-07-16 17:15:32,920 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@1033576a{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-16 17:15:32,929 INFO  [main] o.e.j.server.Server: Started Server@790da477{STARTING}[11.0.20,sto=0] @680ms
+2024-07-16 17:15:32,930 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-16 17:15:32,930 INFO  [main] i.j.u.JavalinLogger: Javalin started in 208ms \o/
+2024-07-16 17:15:32,934 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-16 17:15:32,943 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-16 17:15:34,311 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountController: Creating account...
+2024-07-16 17:15:34,312 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountController: UserId 3, AccountType savings, was sent in through path parameter.
+2024-07-16 17:15:34,449 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountRepository: insert into accounts(account_type, user_id) values(('savings'), ('3'::int4))
+2024-07-16 17:15:34,583 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountController: Account created: User: 3Account: savings 0.0
+
+2024-07-16 17:18:01,277 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-16 17:18:01,449 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-16 17:18:01,451 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-16 17:18:01,509 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-16 17:18:01,520 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@3370f42{/,null,AVAILABLE}
+2024-07-16 17:18:01,582 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@1033576a{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-16 17:18:01,590 INFO  [main] o.e.j.server.Server: Started Server@790da477{STARTING}[11.0.20,sto=0] @664ms
+2024-07-16 17:18:01,591 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-16 17:18:01,591 INFO  [main] i.j.u.JavalinLogger: Javalin started in 214ms \o/
+2024-07-16 17:18:01,594 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-16 17:18:01,603 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-16 17:18:16,101 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: Creating user...
+2024-07-16 17:18:16,263 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: User created: User: 0 will@email.com
+
+2024-07-16 17:18:35,377 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: Accessing getAllUsers
+2024-07-16 17:18:35,414 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: All users found, converting to json...
+2024-07-16 17:18:35,417 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: Users [User: 1 miguel@email.com
+, User: 2 helguero@email.com
+, User: 3 josh@gmail.com
+, User: 4 charles@revature.com
+, User: 5 zoey@email.com
+, User: 6 bob@email.com
+, User: 7 jose@yahoo.com
+, User: 8 will@email.com
+]
+2024-07-16 17:18:35,417 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: Sending back to user...
+2024-07-16 17:18:40,444 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: Accessing login...
+2024-07-16 17:18:40,445 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: Email josh@gmail.com, Password joshpassword, was sent in through path parameter.
+2024-07-16 17:18:40,478 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: User logged in: User: 3 josh@gmail.com
+
+2024-07-16 17:18:57,326 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 17:18:57,326 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 17:18:57,358 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountRepository: select * from accounts where user_id = ('3'::int4)
+2024-07-16 17:18:57,361 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-16 17:18:57,362 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: checkings balance: $13,439.18
+2024-07-16 17:19:17,958 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Creating account...
+2024-07-16 17:19:17,959 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: UserId 3, AccountType savings, was sent in through path parameter.
+2024-07-16 17:19:17,992 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountRepository: insert into accounts(account_type, user_id) values(('savings'), ('3'::int4))
+2024-07-16 17:19:17,996 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Account created: User ID: 3, Account Type: savings,  Balance: 0.0
+
+2024-07-16 17:19:23,443 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 17:19:23,445 WARN  [JettyServerThreadPool-43] i.j.u.JavalinLogger: Uncaught exception
+java.lang.NumberFormatException: For input string: "null"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+	at java.base/java.lang.Integer.parseInt(Integer.java:665)
+	at java.base/java.lang.Integer.parseInt(Integer.java:781)
+	at org.revature.Bank.Account.AccountController.getAccountsById(AccountController.java:34)
+	at io.javalin.router.Endpoint.handle(Endpoint.kt:52)
+	at io.javalin.router.ParsedEndpoint.handle(ParsedEndpoint.kt:15)
+	at io.javalin.http.servlet.DefaultTasks.HTTP$lambda$9$lambda$7$lambda$6(DefaultTasks.kt:52)
+	at io.javalin.http.servlet.JavalinServlet.handleTask(JavalinServlet.kt:99)
+	at io.javalin.http.servlet.JavalinServlet.handleSync(JavalinServlet.kt:64)
+	at io.javalin.http.servlet.JavalinServlet.handle(JavalinServlet.kt:50)
+	at io.javalin.http.servlet.JavalinServlet.service(JavalinServlet.kt:30)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:587)
+	at io.javalin.jetty.JavalinJettyServlet.service(JavalinJettyServlet.kt:52)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:587)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:764)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:529)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1580)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1381)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:176)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:484)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1553)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:174)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1303)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:129)
+	at org.eclipse.jetty.server.handler.StatisticsHandler.handle(StatisticsHandler.java:173)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122)
+	at org.eclipse.jetty.server.Server.handle(Server.java:563)
+	at org.eclipse.jetty.server.HttpChannel$RequestDispatchable.dispatch(HttpChannel.java:1598)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:753)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:501)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:287)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:314)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:100)
+	at org.eclipse.jetty.io.SelectableChannelEndPoint$1.run(SelectableChannelEndPoint.java:53)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.runTask(AdaptiveExecutionStrategy.java:421)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.consumeTask(AdaptiveExecutionStrategy.java:390)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.tryProduce(AdaptiveExecutionStrategy.java:277)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.run(AdaptiveExecutionStrategy.java:199)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:411)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:969)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.doRunJob(QueuedThreadPool.java:1194)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1149)
+	at java.base/java.lang.Thread.run(Thread.java:1623)
+2024-07-16 17:19:43,700 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Creating account...
+2024-07-16 17:19:43,701 WARN  [JettyServerThreadPool-39] i.j.u.JavalinLogger: Uncaught exception
+java.lang.NumberFormatException: For input string: "null"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+	at java.base/java.lang.Integer.parseInt(Integer.java:665)
+	at java.base/java.lang.Integer.parseInt(Integer.java:781)
+	at org.revature.Bank.Account.AccountController.postAccount(AccountController.java:61)
+	at io.javalin.router.Endpoint.handle(Endpoint.kt:52)
+	at io.javalin.router.ParsedEndpoint.handle(ParsedEndpoint.kt:15)
+	at io.javalin.http.servlet.DefaultTasks.HTTP$lambda$9$lambda$7$lambda$6(DefaultTasks.kt:52)
+	at io.javalin.http.servlet.JavalinServlet.handleTask(JavalinServlet.kt:99)
+	at io.javalin.http.servlet.JavalinServlet.handleSync(JavalinServlet.kt:64)
+	at io.javalin.http.servlet.JavalinServlet.handle(JavalinServlet.kt:50)
+	at io.javalin.http.servlet.JavalinServlet.service(JavalinServlet.kt:30)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:587)
+	at io.javalin.jetty.JavalinJettyServlet.service(JavalinJettyServlet.kt:52)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:587)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:764)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:529)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1580)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1381)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:176)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:484)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1553)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:174)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1303)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:129)
+	at org.eclipse.jetty.server.handler.StatisticsHandler.handle(StatisticsHandler.java:173)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122)
+	at org.eclipse.jetty.server.Server.handle(Server.java:563)
+	at org.eclipse.jetty.server.HttpChannel$RequestDispatchable.dispatch(HttpChannel.java:1598)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:753)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:501)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:287)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:314)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:100)
+	at org.eclipse.jetty.io.SelectableChannelEndPoint$1.run(SelectableChannelEndPoint.java:53)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.runTask(AdaptiveExecutionStrategy.java:421)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.consumeTask(AdaptiveExecutionStrategy.java:390)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.tryProduce(AdaptiveExecutionStrategy.java:277)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.run(AdaptiveExecutionStrategy.java:199)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:411)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:969)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.doRunJob(QueuedThreadPool.java:1194)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1149)
+	at java.base/java.lang.Thread.run(Thread.java:1623)
+2024-07-16 17:20:01,251 INFO  [JettyServerThreadPool-43] o.r.B.U.UserController: Accessing login...
+2024-07-16 17:20:01,251 INFO  [JettyServerThreadPool-43] o.r.B.U.UserController: Email josh@gmail.com, Password joshpassword, was sent in through path parameter.
+2024-07-16 17:20:01,282 INFO  [JettyServerThreadPool-43] o.r.B.U.UserController: User logged in: User: 3 josh@gmail.com
+
+2024-07-16 17:20:22,781 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 17:20:22,782 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 17:20:22,811 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountRepository: select * from accounts where user_id = ('3'::int4)
+2024-07-16 17:20:22,812 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-16 17:20:22,813 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: checkings balance: $13,439.18
+2024-07-16 17:20:22,813 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: savings balance: $0.00
+2024-07-16 17:20:28,003 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Creating account...
+2024-07-16 17:20:28,003 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: UserId 3, AccountType savings, was sent in through path parameter.
+2024-07-16 17:20:28,031 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountRepository: insert into accounts(account_type, user_id) values(('savings'), ('3'::int4))
+2024-07-16 17:20:28,035 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Account created: User ID: 3, Account Type: savings,  Balance: 0.0
+
+2024-07-16 17:20:34,640 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Creating account...
+2024-07-16 17:20:34,640 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: UserId 3, AccountType savings, was sent in through path parameter.
+2024-07-16 17:20:34,669 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountRepository: insert into accounts(account_type, user_id) values(('savings'), ('3'::int4))
+2024-07-16 17:20:34,672 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Account created: User ID: 3, Account Type: savings,  Balance: 0.0
+
+2024-07-16 17:20:37,534 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 17:20:37,535 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 17:20:37,664 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountRepository: select * from accounts where user_id = ('3'::int4)
+2024-07-16 17:20:37,665 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-16 17:20:37,665 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: checkings balance: $13,439.18
+2024-07-16 17:20:37,666 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: savings balance: $0.00
+2024-07-16 17:20:37,666 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: savings balance: $0.00
+2024-07-16 17:20:37,666 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: savings balance: $0.00
+2024-07-16 17:24:33,524 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-16 17:24:33,699 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-16 17:24:33,701 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-16 17:24:33,754 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-16 17:24:33,764 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@3370f42{/,null,AVAILABLE}
+2024-07-16 17:24:33,828 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@1033576a{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-16 17:24:33,838 INFO  [main] o.e.j.server.Server: Started Server@790da477{STARTING}[11.0.20,sto=0] @662ms
+2024-07-16 17:24:33,838 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-16 17:24:33,838 INFO  [main] i.j.u.JavalinLogger: Javalin started in 215ms \o/
+2024-07-16 17:24:33,842 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-16 17:24:33,851 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-16 17:24:48,201 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: Accessing getAllUsers
+2024-07-16 17:24:48,345 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: All users found, converting to json...
+2024-07-16 17:24:48,477 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: Users [User: 1 miguel@email.com
+, User: 2 helguero@email.com
+, User: 3 josh@gmail.com
+, User: 4 charles@revature.com
+, User: 5 zoey@email.com
+, User: 6 bob@email.com
+, User: 7 jose@yahoo.com
+]
+2024-07-16 17:24:48,479 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: Sending back to user...
+2024-07-16 17:25:24,290 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-16 17:25:24,493 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-16 17:25:24,495 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-16 17:25:24,544 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-16 17:25:24,554 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@3370f42{/,null,AVAILABLE}
+2024-07-16 17:25:24,617 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@1033576a{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-16 17:25:24,626 INFO  [main] o.e.j.server.Server: Started Server@790da477{STARTING}[11.0.20,sto=0] @730ms
+2024-07-16 17:25:24,626 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-16 17:25:24,626 INFO  [main] i.j.u.JavalinLogger: Javalin started in 216ms \o/
+2024-07-16 17:25:24,629 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-16 17:25:24,638 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-16 17:25:25,918 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Accessing getAllUsers
+2024-07-16 17:25:26,059 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: All users found, converting to json...
+2024-07-16 17:25:26,183 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Users [User ID: 1, Email: miguel@email.com
+, User ID: 2, Email: helguero@email.com
+, User ID: 3, Email: josh@gmail.com
+, User ID: 4, Email: charles@revature.com
+, User ID: 5, Email: zoey@email.com
+, User ID: 6, Email: bob@email.com
+, User ID: 7, Email: jose@yahoo.com
+]
+2024-07-16 17:25:26,184 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Sending back to user...
+2024-07-16 17:25:29,929 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: Creating user...
+2024-07-16 17:25:29,969 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: User created: User ID: 0, Email: will@email.com
+
+2024-07-16 17:25:33,825 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: Accessing getAllUsers
+2024-07-16 17:25:33,858 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: All users found, converting to json...
+2024-07-16 17:25:33,859 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: Users [User ID: 1, Email: miguel@email.com
+, User ID: 2, Email: helguero@email.com
+, User ID: 3, Email: josh@gmail.com
+, User ID: 4, Email: charles@revature.com
+, User ID: 5, Email: zoey@email.com
+, User ID: 6, Email: bob@email.com
+, User ID: 7, Email: jose@yahoo.com
+, User ID: 8, Email: will@email.com
+]
+2024-07-16 17:25:33,859 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: Sending back to user...
+2024-07-16 17:25:47,736 INFO  [JettyServerThreadPool-43] o.r.B.U.UserController: Accessing login...
+2024-07-16 17:25:47,737 INFO  [JettyServerThreadPool-43] o.r.B.U.UserController: Email josh@gmail.com, Password joshpassword, was sent in through path parameter.
+2024-07-16 17:25:47,768 INFO  [JettyServerThreadPool-43] o.r.B.U.UserController: User logged in: User ID: 3, Email: josh@gmail.com
+
+2024-07-16 17:25:59,268 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: Accessing login...
+2024-07-16 17:25:59,269 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: Email josh@gmail.com, Password joshpassword, was sent in through path parameter.
+2024-07-16 17:25:59,300 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: User logged in: User ID: 3, Email: josh@gmail.com
+
+2024-07-16 17:26:05,728 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 17:26:05,728 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 17:26:05,759 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountRepository: select * from accounts where user_id = ('3'::int4)
+2024-07-16 17:26:05,761 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-16 17:26:05,763 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: checkings balance: $13,439.18
+2024-07-16 17:26:23,894 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 17:26:23,894 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 17:26:24,036 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountRepository: select * from accounts where user_id = ('3'::int4)
+2024-07-16 17:26:24,039 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-16 17:26:24,039 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: checkings balance: $13,439.18
+2024-07-16 17:26:35,218 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Creating account...
+2024-07-16 17:26:35,219 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: UserId 3, AccountType savings, was sent in through path parameter.
+2024-07-16 17:26:35,248 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountRepository: insert into accounts(account_type, user_id) values(('savings'), ('3'::int4))
+2024-07-16 17:26:35,252 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Account created: User ID: 3, Account Type: savings,  Balance: 0.0
+
+2024-07-16 17:26:43,422 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 17:26:43,423 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 17:26:43,453 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountRepository: select * from accounts where user_id = ('3'::int4)
+2024-07-16 17:26:43,455 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-16 17:26:43,456 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: checkings balance: $13,439.18
+2024-07-16 17:26:43,456 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: savings balance: $0.00

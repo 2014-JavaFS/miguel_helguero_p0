@@ -124,9 +124,11 @@ public class UserService {
      * @return - User object found in List of Users, or null if none found.
      */
     public User login(String email, String password) throws LoginException{
+
         User foundUser = userRepository.findByEmailAndPassword(email, password);
         if(foundUser == null) throw new LoginException("No user with those credentials was found.");
         return foundUser;
+
     }
 
     public void logout(User userLoggedIn) throws LogoutException {

@@ -59,26 +59,28 @@ public class AccountRepository implements Crudable<Account>{
 
     /**
      * Inserts validated Account object called used into database, throws RuntimeException if INSERT query not executed.
-     * @param accountToCreate - Validated Account object with accountType and userId.
+     * @param accountToCreate - Validated Account object with accountType and userId, gets accountId after query executed.
      * @return account - returns the Validated Account object after it has been inserted into the Accounts table.
      */
     @Override
     public Account create(Account accountToCreate){
 
             try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
-                String sql = "insert into accounts(account_type, user_id) values(?, ?)";
+                String sql = "insert into accounts(account_type, user_id) values(?, ?) returning account_id";
 
                 // sanitize sql insert statements before executing
                 PreparedStatement preparedStatement = conn.prepareStatement(sql);
                 preparedStatement.setString(1, accountToCreate.getAccountType());
                 preparedStatement.setInt(2, accountToCreate.getUserId());
 
-                logger.info(preparedStatement.toString());
-                // TODO: add accountId to account before returning
-                if(preparedStatement.executeUpdate() == 0){
-                    throw new RuntimeException("Account was not inserted into database.");
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if(resultSet.next()){
+                    accountToCreate.setAccountId(resultSet.getInt("account_id"));
+                } else{
+                    throw new SQLException("account_id not generated.");
                 }
 
+                logger.info(preparedStatement.toString());
                 return accountToCreate;
             } catch(SQLException e){
                 e.printStackTrace();
@@ -98,7 +100,6 @@ public class AccountRepository implements Crudable<Account>{
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()){
-
                 accounts.add(generateAccountFromResultSet(resultSet));
             }
 

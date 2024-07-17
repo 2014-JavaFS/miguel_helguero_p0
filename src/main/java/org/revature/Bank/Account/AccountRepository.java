@@ -4,6 +4,8 @@ import org.revature.Bank.User.User;
 import org.revature.Bank.util.ConnectionFactory;
 import org.revature.Bank.util.exceptions.UserNotFoundException;
 import org.revature.Bank.util.interfaces.Crudable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +17,8 @@ import java.util.List;
 import static org.revature.Bank.BankFrontController.logger;
 
 public class AccountRepository implements Crudable<Account>{
+
+    private static final Logger log = LoggerFactory.getLogger(AccountRepository.class);
 
     /**
      * Executes a SELECT query to retrieve all rows in Users table convert it into a List of User objects which is then
@@ -41,17 +45,18 @@ public class AccountRepository implements Crudable<Account>{
         }
     }
 
-    public Account generateAccountFromResultSet(ResultSet rs) throws SQLException {
+    public Account generateAccountFromResultSet(ResultSet resultSet) throws SQLException {
         Account account = new Account();
-        account.setAccountId(rs.getInt("account_id"));
-        account.setUserId(rs.getInt("user_id"));
-        account.setAccountType(rs.getString("account_type"));
-        account.setBalance(rs.getDouble("balance"));
+        // FIXME: result set is getting correct account_id, make sure Account object is setting it as its accountId
+
+        account.setAccountId(resultSet.getInt("account_id"));
+        account.setUserId(resultSet.getInt("user_id"));
+        account.setAccountType(resultSet.getString("account_type"));
+        account.setBalance(resultSet.getDouble("balance"));
         return account;
     }
 
-    //TODO: create Accounts table according to ERD(need pk account_id and fk user_id)
-    //TODO: set up using both the desired account type and the user_id for the account's user
+
     /**
      * Inserts validated Account object called used into database, throws RuntimeException if INSERT query not executed.
      * @param accountToCreate - Validated Account object with accountType and userId.
@@ -89,12 +94,12 @@ public class AccountRepository implements Crudable<Account>{
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
             preparedStatement.setInt(1, user_id);
-            logger.info(preparedStatement.toString());
 
-            ResultSet rs = preparedStatement.executeQuery();
 
-            while(rs.next()){
-                accounts.add(generateAccountFromResultSet(rs));
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+
+                accounts.add(generateAccountFromResultSet(resultSet));
             }
 
             return accounts;

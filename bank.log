@@ -1972,3 +1972,814 @@ java.lang.NumberFormatException: For input string: "null"
 2024-07-16 17:26:43,455 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Accounts for UserId = 3:
 2024-07-16 17:26:43,456 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: checkings balance: $13,439.18
 2024-07-16 17:26:43,456 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: savings balance: $0.00
+2024-07-16 17:29:14,579 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-16 17:29:14,779 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-16 17:29:14,781 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-16 17:29:14,834 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-16 17:29:14,844 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@75d2da2d{/,null,AVAILABLE}
+2024-07-16 17:29:14,921 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@6be968ce{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-16 17:29:14,933 INFO  [main] o.e.j.server.Server: Started Server@431cd9b2{STARTING}[11.0.20,sto=0] @710ms
+2024-07-16 17:29:14,934 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-16 17:29:14,934 INFO  [main] i.j.u.JavalinLogger: Javalin started in 247ms \o/
+2024-07-16 17:29:14,937 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-16 17:29:14,949 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-16 17:29:28,240 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Accessing getAllUsers
+2024-07-16 17:29:28,381 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: All users found, converting to json...
+2024-07-16 17:29:28,511 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Users [
+User ID: 1
+ Email: miguel@email.com
+, 
+User ID: 2
+ Email: helguero@email.com
+, 
+User ID: 3
+ Email: josh@gmail.com
+, 
+User ID: 4
+ Email: charles@revature.com
+, 
+User ID: 5
+ Email: zoey@email.com
+, 
+User ID: 6
+ Email: bob@email.com
+, 
+User ID: 7
+ Email: jose@yahoo.com
+]
+2024-07-16 17:29:28,512 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Sending back to user...
+2024-07-16 17:30:17,644 INFO  [JettyServerThreadPool-35] o.r.B.U.UserController: Creating user...
+2024-07-16 17:30:17,686 INFO  [JettyServerThreadPool-35] o.r.B.U.UserController: User created: 
+User ID: 0
+ Email: will@email.com
+
+2024-07-16 17:30:34,288 INFO  [JettyServerThreadPool-36] o.r.B.U.UserController: Accessing getAllUsers
+2024-07-16 17:30:34,322 INFO  [JettyServerThreadPool-36] o.r.B.U.UserController: All users found, converting to json...
+2024-07-16 17:30:34,323 INFO  [JettyServerThreadPool-36] o.r.B.U.UserController: Users [
+User ID: 1
+ Email: miguel@email.com
+, 
+User ID: 2
+ Email: helguero@email.com
+, 
+User ID: 3
+ Email: josh@gmail.com
+, 
+User ID: 4
+ Email: charles@revature.com
+, 
+User ID: 5
+ Email: zoey@email.com
+, 
+User ID: 6
+ Email: bob@email.com
+, 
+User ID: 7
+ Email: jose@yahoo.com
+, 
+User ID: 8
+ Email: will@email.com
+]
+2024-07-16 17:30:34,323 INFO  [JettyServerThreadPool-36] o.r.B.U.UserController: Sending back to user...
+2024-07-16 17:30:41,456 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: Accessing login...
+2024-07-16 17:30:41,456 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: Email josh@gmail.com, Password joshpassword, was sent in through path parameter.
+2024-07-16 17:30:41,487 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: User logged in: 
+User ID: 3
+ Email: josh@gmail.com
+
+2024-07-16 17:30:46,036 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 17:30:46,036 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 17:30:46,066 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountRepository: select * from accounts where user_id = ('3'::int4)
+2024-07-16 17:30:46,068 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-16 17:30:46,069 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountController: checkings balance: $13,439.18
+2024-07-16 17:30:51,668 INFO  [JettyServerThreadPool-34] o.r.B.A.AccountController: Creating account...
+2024-07-16 17:30:51,668 INFO  [JettyServerThreadPool-34] o.r.B.A.AccountController: UserId 3, AccountType savings, was sent in through path parameter.
+2024-07-16 17:30:51,696 INFO  [JettyServerThreadPool-34] o.r.B.A.AccountRepository: insert into accounts(account_type, user_id) values(('savings'), ('3'::int4))
+2024-07-16 17:30:51,700 INFO  [JettyServerThreadPool-34] o.r.B.A.AccountController: Account created: 
+User ID: 3
+ Account Type: savings
+  Balance: 0.0
+
+2024-07-16 17:30:56,374 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 17:30:56,375 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 17:30:56,402 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountRepository: select * from accounts where user_id = ('3'::int4)
+2024-07-16 17:30:56,404 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-16 17:30:56,404 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountController: checkings balance: $13,439.18
+2024-07-16 17:30:56,405 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountController: savings balance: $0.00
+2024-07-16 20:27:11,142 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-16 20:27:11,330 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-16 20:27:11,333 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-16 20:27:11,388 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-16 20:27:11,398 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@3370f42{/,null,AVAILABLE}
+2024-07-16 20:27:11,463 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@1033576a{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-16 20:27:11,473 INFO  [main] o.e.j.server.Server: Started Server@790da477{STARTING}[11.0.20,sto=0] @753ms
+2024-07-16 20:27:11,474 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-16 20:27:11,474 INFO  [main] i.j.u.JavalinLogger: Javalin started in 220ms \o/
+2024-07-16 20:27:11,478 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-16 20:27:11,487 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-16 20:27:43,411 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-16 20:27:43,622 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-16 20:27:43,624 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-16 20:27:43,683 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-16 20:27:43,694 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@3370f42{/,null,AVAILABLE}
+2024-07-16 20:27:43,766 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@1033576a{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-16 20:27:43,779 INFO  [main] o.e.j.server.Server: Started Server@790da477{STARTING}[11.0.20,sto=0] @788ms
+2024-07-16 20:27:43,779 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-16 20:27:43,780 INFO  [main] i.j.u.JavalinLogger: Javalin started in 245ms \o/
+2024-07-16 20:27:43,803 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-16 20:27:43,819 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-16 20:28:11,180 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-16 20:28:11,367 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-16 20:28:11,369 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-16 20:28:11,426 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-16 20:28:11,436 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@3370f42{/,null,AVAILABLE}
+2024-07-16 20:28:11,507 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@1033576a{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-16 20:28:11,516 INFO  [main] o.e.j.server.Server: Started Server@790da477{STARTING}[11.0.20,sto=0] @782ms
+2024-07-16 20:28:11,516 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-16 20:28:11,517 INFO  [main] i.j.u.JavalinLogger: Javalin started in 232ms \o/
+2024-07-16 20:28:11,520 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-16 20:28:11,529 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-16 20:38:35,642 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: Accessing getAllUsers
+2024-07-16 20:38:35,781 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: All users found, converting to json...
+2024-07-16 20:38:35,907 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: Users [
+User ID: 1
+Email: miguel@email.com
+, 
+User ID: 2
+Email: helguero@email.com
+, 
+User ID: 3
+Email: josh@gmail.com
+, 
+User ID: 4
+Email: charles@revature.com
+, 
+User ID: 5
+Email: zoey@email.com
+, 
+User ID: 6
+Email: bob@email.com
+, 
+User ID: 7
+Email: jose@yahoo.com
+]
+2024-07-16 20:38:46,379 INFO  [JettyServerThreadPool-32] o.r.B.U.UserController: Creating user...
+2024-07-16 20:38:46,419 INFO  [JettyServerThreadPool-32] o.r.B.U.UserController: User created: 
+User ID: 0
+Email: will@email.com
+
+2024-07-16 20:38:51,767 INFO  [JettyServerThreadPool-43] o.r.B.U.UserController: Accessing getAllUsers
+2024-07-16 20:38:51,799 INFO  [JettyServerThreadPool-43] o.r.B.U.UserController: All users found, converting to json...
+2024-07-16 20:38:51,800 INFO  [JettyServerThreadPool-43] o.r.B.U.UserController: Users [
+User ID: 1
+Email: miguel@email.com
+, 
+User ID: 2
+Email: helguero@email.com
+, 
+User ID: 3
+Email: josh@gmail.com
+, 
+User ID: 4
+Email: charles@revature.com
+, 
+User ID: 5
+Email: zoey@email.com
+, 
+User ID: 6
+Email: bob@email.com
+, 
+User ID: 7
+Email: jose@yahoo.com
+, 
+User ID: 8
+Email: will@email.com
+]
+2024-07-16 20:38:59,829 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: Accessing login...
+2024-07-16 20:38:59,830 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: Email josh@gmail.com, Password joshpassword, was sent in through path parameter.
+2024-07-16 20:38:59,861 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: User logged in: 
+User ID: 3
+Email: josh@gmail.com
+
+2024-07-16 20:39:17,687 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 20:39:17,687 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 20:39:17,722 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountRepository: select * from accounts where user_id = ('3'::int4)
+2024-07-16 20:39:17,724 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-16 20:39:17,726 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: checkings balance: $13,439.18
+2024-07-16 20:39:29,496 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: Accessing getAllUsers
+2024-07-16 20:39:29,529 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: All users found, converting to json...
+2024-07-16 20:39:29,529 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: Users [
+User ID: 1
+Email: miguel@email.com
+, 
+User ID: 2
+Email: helguero@email.com
+, 
+User ID: 3
+Email: josh@gmail.com
+, 
+User ID: 4
+Email: charles@revature.com
+, 
+User ID: 5
+Email: zoey@email.com
+, 
+User ID: 6
+Email: bob@email.com
+, 
+User ID: 7
+Email: jose@yahoo.com
+, 
+User ID: 8
+Email: will@email.com
+]
+2024-07-16 20:39:53,529 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Creating account...
+2024-07-16 20:39:53,529 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: UserId 3, AccountType savings, was sent in through path parameter.
+2024-07-16 20:39:53,558 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountRepository: insert into accounts(account_type, user_id) values(('savings'), ('3'::int4))
+2024-07-16 20:39:53,562 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Account created: 
+User ID: 3
+Account Type: savings
+Balance: 0.0
+
+2024-07-16 20:40:01,453 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 20:40:01,453 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 20:40:01,482 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountRepository: select * from accounts where user_id = ('3'::int4)
+2024-07-16 20:40:01,484 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-16 20:40:01,485 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: checkings balance: $13,439.18
+2024-07-16 20:40:01,485 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: savings balance: $0.00
+2024-07-16 20:41:43,104 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-16 20:41:43,305 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-16 20:41:43,307 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-16 20:41:43,373 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-16 20:41:43,384 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@3370f42{/,null,AVAILABLE}
+2024-07-16 20:41:43,452 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@1033576a{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-16 20:41:43,464 INFO  [main] o.e.j.server.Server: Started Server@790da477{STARTING}[11.0.20,sto=0] @747ms
+2024-07-16 20:41:43,464 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-16 20:41:43,464 INFO  [main] i.j.u.JavalinLogger: Javalin started in 240ms \o/
+2024-07-16 20:41:43,468 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-16 20:41:43,478 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-16 20:41:57,471 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: Accessing getAllUsers
+2024-07-16 20:41:57,618 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: All users found, converting to json...
+2024-07-16 20:41:57,741 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: Users [
+User ID: 1
+Email: miguel@email.com
+, 
+User ID: 2
+Email: helguero@email.com
+, 
+User ID: 3
+Email: josh@gmail.com
+, 
+User ID: 4
+Email: charles@revature.com
+, 
+User ID: 5
+Email: zoey@email.com
+, 
+User ID: 6
+Email: bob@email.com
+, 
+User ID: 7
+Email: jose@yahoo.com
+]
+2024-07-16 20:42:03,150 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: Creating user...
+2024-07-16 20:42:03,188 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: User created: 
+User ID: 0
+Email: will@email.com
+
+2024-07-16 20:42:11,911 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: Accessing getAllUsers
+2024-07-16 20:42:11,945 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: All users found, converting to json...
+2024-07-16 20:42:11,946 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: Users [
+User ID: 1
+Email: miguel@email.com
+, 
+User ID: 2
+Email: helguero@email.com
+, 
+User ID: 3
+Email: josh@gmail.com
+, 
+User ID: 4
+Email: charles@revature.com
+, 
+User ID: 5
+Email: zoey@email.com
+, 
+User ID: 6
+Email: bob@email.com
+, 
+User ID: 7
+Email: jose@yahoo.com
+, 
+User ID: 8
+Email: will@email.com
+]
+2024-07-16 20:42:27,564 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 20:42:27,565 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 20:42:27,604 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountRepository: select * from accounts where user_id = ('3'::int4)
+2024-07-16 20:42:27,607 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-16 20:42:27,608 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: checkings balance: $13,439.18
+2024-07-16 20:42:31,453 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Creating account...
+2024-07-16 20:42:31,454 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: UserId 3, AccountType savings, was sent in through path parameter.
+2024-07-16 20:42:31,485 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountRepository: insert into accounts(account_type, user_id) values(('savings'), ('3'::int4))
+2024-07-16 20:42:31,489 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Account created: 
+User ID: 3
+Account Type: savings
+Balance: 0.0
+
+2024-07-16 20:42:33,377 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 20:42:33,378 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 20:42:33,406 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountRepository: select * from accounts where user_id = ('3'::int4)
+2024-07-16 20:42:33,408 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-16 20:42:33,408 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: checkings balance: $13,439.18
+2024-07-16 20:42:33,409 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: savings balance: $0.00
+2024-07-16 20:42:41,606 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Creating account...
+2024-07-16 20:42:41,606 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: UserId 3, AccountType investment, was sent in through path parameter.
+2024-07-16 20:42:41,635 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountRepository: insert into accounts(account_type, user_id) values(('investment'), ('3'::int4))
+2024-07-16 20:42:41,640 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Account created: 
+User ID: 3
+Account Type: investment
+Balance: 0.0
+
+2024-07-16 20:42:44,580 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 20:42:44,581 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 20:42:44,610 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountRepository: select * from accounts where user_id = ('3'::int4)
+2024-07-16 20:42:44,612 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-16 20:42:44,612 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: checkings balance: $13,439.18
+2024-07-16 20:42:44,612 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: savings balance: $0.00
+2024-07-16 20:42:44,613 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: investment balance: $0.00
+2024-07-16 20:45:16,400 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-16 20:45:16,578 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-16 20:45:16,603 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-16 20:45:16,655 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-16 20:45:16,664 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@75d2da2d{/,null,AVAILABLE}
+2024-07-16 20:45:16,726 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@6be968ce{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-16 20:45:16,734 INFO  [main] o.e.j.server.Server: Started Server@431cd9b2{STARTING}[11.0.20,sto=0] @680ms
+2024-07-16 20:45:16,735 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-16 20:45:16,735 INFO  [main] i.j.u.JavalinLogger: Javalin started in 236ms \o/
+2024-07-16 20:45:16,738 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-16 20:45:16,747 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-16 20:45:35,295 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: Accessing getAllUsers
+2024-07-16 20:45:35,465 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: All users found, converting to json...
+2024-07-16 20:45:35,596 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: Users [
+User ID: 1
+Email: miguel@email.com
+, 
+User ID: 2
+Email: helguero@email.com
+, 
+User ID: 3
+Email: josh@gmail.com
+, 
+User ID: 4
+Email: charles@revature.com
+, 
+User ID: 5
+Email: zoey@email.com
+, 
+User ID: 6
+Email: bob@email.com
+, 
+User ID: 7
+Email: jose@yahoo.com
+]
+2024-07-16 20:45:41,100 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: Creating user...
+2024-07-16 20:45:41,140 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: User created: 
+User ID: 0
+Email: will@email.com
+
+2024-07-16 20:48:34,736 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-16 20:48:34,910 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-16 20:48:34,912 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-16 20:48:34,960 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-16 20:48:34,970 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@3370f42{/,null,AVAILABLE}
+2024-07-16 20:48:35,032 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@1033576a{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-16 20:48:35,041 INFO  [main] o.e.j.server.Server: Started Server@790da477{STARTING}[11.0.20,sto=0] @647ms
+2024-07-16 20:48:35,041 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-16 20:48:35,041 INFO  [main] i.j.u.JavalinLogger: Javalin started in 202ms \o/
+2024-07-16 20:48:35,045 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-16 20:48:35,053 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-16 20:48:46,488 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Accessing getAllUsers
+2024-07-16 20:48:46,636 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: All users found, converting to json...
+2024-07-16 20:48:46,763 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Users [
+User ID: 1
+Email: miguel@email.com
+, 
+User ID: 2
+Email: helguero@email.com
+, 
+User ID: 3
+Email: josh@gmail.com
+, 
+User ID: 4
+Email: charles@revature.com
+, 
+User ID: 5
+Email: zoey@email.com
+, 
+User ID: 6
+Email: bob@email.com
+, 
+User ID: 7
+Email: jose@yahoo.com
+]
+2024-07-16 20:48:52,069 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: Creating user...
+2024-07-16 20:48:52,105 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: User created: 
+User ID: 8
+Email: will@email.com
+
+2024-07-16 20:48:58,239 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: Accessing login...
+2024-07-16 20:48:58,239 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: Email josh@gmail.com, Password joshpassword, was sent in through path parameter.
+2024-07-16 20:48:58,271 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: User logged in: 
+User ID: 3
+Email: josh@gmail.com
+
+2024-07-16 20:49:01,784 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 20:49:01,785 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 20:49:01,817 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountRepository: select * from accounts where user_id = ('3'::int4)
+2024-07-16 20:49:01,820 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-16 20:49:01,821 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: checkings balance: $13,439.18
+2024-07-16 20:49:35,741 INFO  [JettyServerThreadPool-36] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 20:49:35,742 INFO  [JettyServerThreadPool-36] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 20:49:35,776 INFO  [JettyServerThreadPool-36] o.r.B.A.AccountRepository: select * from accounts where user_id = ('3'::int4)
+2024-07-16 20:49:35,778 INFO  [JettyServerThreadPool-36] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-16 20:49:35,778 INFO  [JettyServerThreadPool-36] o.r.B.A.AccountController: checkings balance: $13,439.18
+2024-07-16 20:49:42,565 INFO  [JettyServerThreadPool-47] o.r.B.A.AccountController: Creating account...
+2024-07-16 20:49:42,566 INFO  [JettyServerThreadPool-47] o.r.B.A.AccountController: UserId 3, AccountType investment, was sent in through path parameter.
+2024-07-16 20:49:42,593 INFO  [JettyServerThreadPool-47] o.r.B.A.AccountRepository: insert into accounts(account_type, user_id) values(('investment'), ('3'::int4))
+2024-07-16 20:49:42,597 INFO  [JettyServerThreadPool-47] o.r.B.A.AccountController: Account created: 
+User ID: 3
+Account Type: investment
+Balance: 0.0
+
+2024-07-16 20:49:46,167 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 20:49:46,168 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 20:49:46,195 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountRepository: select * from accounts where user_id = ('3'::int4)
+2024-07-16 20:49:46,197 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-16 20:49:46,197 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountController: checkings balance: $13,439.18
+2024-07-16 20:49:46,197 INFO  [JettyServerThreadPool-45] o.r.B.A.AccountController: investment balance: $0.00
+2024-07-16 20:54:26,050 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-16 20:54:26,222 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-16 20:54:26,224 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-16 20:54:26,276 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-16 20:54:26,287 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@3370f42{/,null,AVAILABLE}
+2024-07-16 20:54:26,374 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@1033576a{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-16 20:54:26,388 INFO  [main] o.e.j.server.Server: Started Server@790da477{STARTING}[11.0.20,sto=0] @690ms
+2024-07-16 20:54:26,394 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-16 20:54:26,395 INFO  [main] i.j.u.JavalinLogger: Javalin started in 245ms \o/
+2024-07-16 20:54:26,399 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-16 20:54:26,410 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-16 20:54:37,397 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: Accessing getAllUsers
+2024-07-16 20:54:37,551 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: All users found, converting to json...
+2024-07-16 20:54:37,683 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: Users [
+User ID: 1
+Email: miguel@email.com
+, 
+User ID: 2
+Email: helguero@email.com
+, 
+User ID: 3
+Email: josh@gmail.com
+, 
+User ID: 4
+Email: charles@revature.com
+, 
+User ID: 5
+Email: zoey@email.com
+, 
+User ID: 6
+Email: bob@email.com
+, 
+User ID: 7
+Email: jose@yahoo.com
+]
+2024-07-16 20:54:41,548 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: Creating user...
+2024-07-16 20:54:41,591 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: User created: 
+User ID: 8
+Email: will@email.com
+
+2024-07-16 20:54:44,224 INFO  [JettyServerThreadPool-43] o.r.B.U.UserController: Accessing getAllUsers
+2024-07-16 20:54:44,259 INFO  [JettyServerThreadPool-43] o.r.B.U.UserController: All users found, converting to json...
+2024-07-16 20:54:44,259 INFO  [JettyServerThreadPool-43] o.r.B.U.UserController: Users [
+User ID: 1
+Email: miguel@email.com
+, 
+User ID: 2
+Email: helguero@email.com
+, 
+User ID: 3
+Email: josh@gmail.com
+, 
+User ID: 4
+Email: charles@revature.com
+, 
+User ID: 5
+Email: zoey@email.com
+, 
+User ID: 6
+Email: bob@email.com
+, 
+User ID: 7
+Email: jose@yahoo.com
+, 
+User ID: 8
+Email: will@email.com
+]
+2024-07-16 20:54:50,872 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: Accessing login...
+2024-07-16 20:54:50,872 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: Email josh@gmail.com, Password joshpassword, was sent in through path parameter.
+2024-07-16 20:54:50,905 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: User logged in: 
+User ID: 3
+Email: josh@gmail.com
+
+2024-07-16 20:54:59,339 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 20:54:59,340 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 20:54:59,377 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountRepository: select * from accounts where user_id = ('3'::int4) returning user_id
+2024-07-16 20:54:59,384 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: That user has no accounts.
+2024-07-16 20:57:08,040 INFO  [JettyServerThreadPool-47] o.r.B.U.UserController: Accessing login...
+2024-07-16 20:57:08,040 INFO  [JettyServerThreadPool-47] o.r.B.U.UserController: Email josh@gmail.com, Password joshpassword, was sent in through path parameter.
+2024-07-16 20:57:08,070 INFO  [JettyServerThreadPool-47] o.r.B.U.UserController: User logged in: 
+User ID: 3
+Email: josh@gmail.com
+
+2024-07-16 20:57:33,838 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-16 20:57:34,020 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-16 20:57:34,022 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-16 20:57:34,071 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-16 20:57:34,080 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@75d2da2d{/,null,AVAILABLE}
+2024-07-16 20:57:34,144 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@6be968ce{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-16 20:57:34,153 INFO  [main] o.e.j.server.Server: Started Server@431cd9b2{STARTING}[11.0.20,sto=0] @673ms
+2024-07-16 20:57:34,153 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-16 20:57:34,154 INFO  [main] i.j.u.JavalinLogger: Javalin started in 210ms \o/
+2024-07-16 20:57:34,157 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-16 20:57:34,165 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-16 20:57:37,189 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Accessing login...
+2024-07-16 20:57:37,190 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Email josh@gmail.com, Password joshpassword, was sent in through path parameter.
+2024-07-16 20:57:37,339 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: User logged in: 
+User ID: 3
+Email: josh@gmail.com
+
+2024-07-16 20:57:41,415 INFO  [JettyServerThreadPool-33] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 20:57:41,416 INFO  [JettyServerThreadPool-33] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 20:57:41,447 INFO  [JettyServerThreadPool-33] o.r.B.A.AccountRepository: select * from accounts where user_id = ('3'::int4)
+2024-07-16 20:57:41,450 INFO  [JettyServerThreadPool-33] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-16 20:57:41,451 INFO  [JettyServerThreadPool-33] o.r.B.A.AccountController: checkings balance: $13,439.18
+2024-07-16 20:59:28,623 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-16 20:59:28,829 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-16 20:59:28,832 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-16 20:59:28,886 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-16 20:59:28,898 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@3370f42{/,null,AVAILABLE}
+2024-07-16 20:59:28,971 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@1033576a{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-16 20:59:28,980 INFO  [main] o.e.j.server.Server: Started Server@790da477{STARTING}[11.0.20,sto=0] @810ms
+2024-07-16 20:59:28,980 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-16 20:59:28,981 INFO  [main] i.j.u.JavalinLogger: Javalin started in 236ms \o/
+2024-07-16 20:59:28,984 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-16 20:59:28,994 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-16 20:59:34,530 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: Accessing login...
+2024-07-16 20:59:34,531 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: Email josh@gmail.com, Password joshpassword, was sent in through path parameter.
+2024-07-16 20:59:34,688 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: User logged in: 
+User ID: 3
+Email: josh@gmail.com
+
+2024-07-16 20:59:38,904 INFO  [JettyServerThreadPool-34] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 20:59:38,905 INFO  [JettyServerThreadPool-34] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 20:59:38,943 INFO  [JettyServerThreadPool-34] o.r.B.A.AccountRepository: select * from accounts where user_id = ('3'::int4)
+2024-07-16 20:59:38,945 INFO  [JettyServerThreadPool-34] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-16 20:59:38,946 INFO  [JettyServerThreadPool-34] o.r.B.A.AccountController: 	Account Id: 0
+Account Type: checkings
+Account Balance: $13,439.18
+2024-07-16 21:00:52,648 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-16 21:00:52,829 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-16 21:00:52,831 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-16 21:00:52,881 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-16 21:00:52,891 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@3370f42{/,null,AVAILABLE}
+2024-07-16 21:00:52,972 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@1033576a{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-16 21:00:52,983 INFO  [main] o.e.j.server.Server: Started Server@790da477{STARTING}[11.0.20,sto=0] @699ms
+2024-07-16 21:00:52,984 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-16 21:00:52,984 INFO  [main] i.j.u.JavalinLogger: Javalin started in 233ms \o/
+2024-07-16 21:00:52,988 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-16 21:00:52,998 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-16 21:00:54,509 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Accessing login...
+2024-07-16 21:00:54,511 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Email josh@gmail.com, Password joshpassword, was sent in through path parameter.
+2024-07-16 21:00:54,663 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: User logged in: 
+User ID: 3
+Email: josh@gmail.com
+
+2024-07-16 21:00:57,144 INFO  [JettyServerThreadPool-32] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 21:00:57,144 INFO  [JettyServerThreadPool-32] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 21:00:57,175 INFO  [JettyServerThreadPool-32] o.r.B.A.AccountRepository: select * from accounts where user_id = ('3'::int4)
+2024-07-16 21:00:57,178 INFO  [JettyServerThreadPool-32] o.r.B.A.AccountController: 
+2024-07-16 21:00:57,179 INFO  [JettyServerThreadPool-32] o.r.B.A.AccountController: Accounts for UserId = 3:
+Account Id: 0
+Account Type: checkings
+Account Balance: $13,439.18
+2024-07-16 21:01:07,046 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Creating account...
+2024-07-16 21:01:07,046 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: UserId 3, AccountType investment, was sent in through path parameter.
+2024-07-16 21:01:07,078 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountRepository: insert into accounts(account_type, user_id) values(('investment'), ('3'::int4))
+2024-07-16 21:01:07,082 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Account created: 
+User ID: 3
+Account Type: investment
+Balance: 0.0
+
+2024-07-16 21:01:09,178 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 21:01:09,179 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 21:01:09,207 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountRepository: select * from accounts where user_id = ('3'::int4)
+2024-07-16 21:01:09,209 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: 
+2024-07-16 21:01:09,209 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accounts for UserId = 3:
+Account Id: 0
+Account Type: checkings
+Account Balance: $13,439.18
+2024-07-16 21:01:09,218 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accounts for UserId = 3:
+Account Id: 0
+Account Type: investment
+Account Balance: $0.00
+2024-07-16 21:01:51,622 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-16 21:01:51,807 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-16 21:01:51,809 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-16 21:01:51,860 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-16 21:01:51,870 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@3370f42{/,null,AVAILABLE}
+2024-07-16 21:01:51,934 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@1033576a{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-16 21:01:51,943 INFO  [main] o.e.j.server.Server: Started Server@790da477{STARTING}[11.0.20,sto=0] @677ms
+2024-07-16 21:01:51,943 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-16 21:01:51,944 INFO  [main] i.j.u.JavalinLogger: Javalin started in 212ms \o/
+2024-07-16 21:01:51,947 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-16 21:01:51,956 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-16 21:01:55,664 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Accessing login...
+2024-07-16 21:01:55,665 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Email josh@gmail.com, Password joshpassword, was sent in through path parameter.
+2024-07-16 21:01:55,811 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: User logged in: 
+User ID: 3
+Email: josh@gmail.com
+
+2024-07-16 21:01:58,484 INFO  [JettyServerThreadPool-34] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 21:01:58,485 INFO  [JettyServerThreadPool-34] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 21:01:58,518 INFO  [JettyServerThreadPool-34] o.r.B.A.AccountRepository: select * from accounts where user_id = ('3'::int4)
+2024-07-16 21:01:58,521 INFO  [JettyServerThreadPool-34] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-16 21:01:58,522 INFO  [JettyServerThreadPool-34] o.r.B.A.AccountController: 
+Account Id: 0
+Account Type: checkings
+Account Balance: $13,439.18
+2024-07-16 21:01:58,522 INFO  [JettyServerThreadPool-34] o.r.B.A.AccountController: 
+Account Id: 0
+Account Type: investment
+Account Balance: $0.00
+2024-07-16 21:04:52,274 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-16 21:04:52,453 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-16 21:04:52,454 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-16 21:04:52,511 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-16 21:04:52,522 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@3370f42{/,null,AVAILABLE}
+2024-07-16 21:04:52,591 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@1033576a{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-16 21:04:52,600 INFO  [main] o.e.j.server.Server: Started Server@790da477{STARTING}[11.0.20,sto=0] @682ms
+2024-07-16 21:04:52,600 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-16 21:04:52,623 INFO  [main] i.j.u.JavalinLogger: Javalin started in 247ms \o/
+2024-07-16 21:04:52,627 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-16 21:04:52,637 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-16 21:04:54,713 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: Accessing login...
+2024-07-16 21:04:54,714 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: Email josh@gmail.com, Password joshpassword, was sent in through path parameter.
+2024-07-16 21:04:54,863 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: User logged in: 
+User ID: 3
+Email: josh@gmail.com
+
+2024-07-16 21:04:58,098 INFO  [JettyServerThreadPool-32] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 21:04:58,098 INFO  [JettyServerThreadPool-32] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 21:04:58,136 INFO  [JettyServerThreadPool-32] o.r.B.A.AccountController: That user has no accounts.
+2024-07-16 21:05:30,980 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-16 21:05:31,159 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-16 21:05:31,161 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-16 21:05:31,211 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-16 21:05:31,221 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@75d2da2d{/,null,AVAILABLE}
+2024-07-16 21:05:31,286 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@6be968ce{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-16 21:05:31,294 INFO  [main] o.e.j.server.Server: Started Server@431cd9b2{STARTING}[11.0.20,sto=0] @673ms
+2024-07-16 21:05:31,295 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-16 21:05:31,295 INFO  [main] i.j.u.JavalinLogger: Javalin started in 210ms \o/
+2024-07-16 21:05:31,298 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-16 21:05:31,307 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-16 21:05:33,544 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Accessing login...
+2024-07-16 21:05:33,545 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Email josh@gmail.com, Password joshpassword, was sent in through path parameter.
+2024-07-16 21:05:33,695 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: User logged in: 
+User ID: 3
+Email: josh@gmail.com
+
+2024-07-16 21:05:35,709 INFO  [JettyServerThreadPool-33] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-16 21:05:35,710 INFO  [JettyServerThreadPool-33] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-16 21:05:35,743 INFO  [JettyServerThreadPool-33] o.r.B.A.AccountRepository: 111222005
+2024-07-16 21:05:35,743 INFO  [JettyServerThreadPool-33] o.r.B.A.AccountRepository: 111222010
+2024-07-16 21:05:35,744 INFO  [JettyServerThreadPool-33] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-16 21:05:35,745 INFO  [JettyServerThreadPool-33] o.r.B.A.AccountController: 
+Account Id: 0
+Account Type: checkings
+Account Balance: $13,439.18
+2024-07-16 21:05:35,745 INFO  [JettyServerThreadPool-33] o.r.B.A.AccountController: 
+Account Id: 0
+Account Type: investment
+Account Balance: $0.00

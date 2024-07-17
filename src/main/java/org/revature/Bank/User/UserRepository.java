@@ -59,16 +59,19 @@ public class UserRepository implements Crudable<User>{
     @Override
     public User create(User user){
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
-            String sql = "insert into users(email, password) values(?, ?)";
-
+            String sql = "insert into users(email, password) values(?, ?) returning user_id";
+            int userId;
             // sanitize sql insert statements before executing
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, user.getEmail());
             preparedStatement.setString(2, user.getPassword());
 
-            //TODO: add userId to user before returning
-            if(preparedStatement.executeUpdate() == 0){
-                throw new RuntimeException("User was not inserted into database.");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                userId = resultSet.getInt("user_id");
+                user.setUserId(userId);
+            }else{
+                throw new SQLException("User Id was not retrieved.");
             }
 
             return user;

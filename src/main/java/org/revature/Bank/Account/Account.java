@@ -27,7 +27,7 @@ public class Account {
 
     public int getAccountId(){return accountId;}
 
-    public void setAccountId(int id){this.accountId=accountId;}
+    public void setAccountId(int accountId){this.accountId=accountId;}
 
     public double getBalance() {
         return balance;

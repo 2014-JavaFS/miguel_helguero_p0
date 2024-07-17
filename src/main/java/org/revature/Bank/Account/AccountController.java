@@ -44,7 +44,7 @@ public class AccountController implements Controller{
                 }
                 logger.info("Accounts for UserId = {}:", userId);
                 for(Account account: accounts){
-                    logger.info("{} balance: {}", account.getAccountType(), numberFormat.format(account.getBalance()));
+                    logger.info("\nAccount Id: {}\nAccount Type: {}\nAccount Balance: {}", account.getAccountId(), account.getAccountType(), numberFormat.format(account.getBalance()));
                 }
                 ctx.json(accounts);
                 ctx.status(200);

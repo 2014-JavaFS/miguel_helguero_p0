@@ -4,6 +4,7 @@ import io.javalin.Javalin;
 import io.javalin.http.Context;
 import io.javalin.http.HttpStatus;
 import org.revature.Bank.util.exceptions.InvalidAccountTypeException;
+import org.revature.Bank.util.exceptions.NegativeDepositException;
 import org.revature.Bank.util.exceptions.UserNotFoundException;
 import org.revature.Bank.util.interfaces.Controller;
 import static org.revature.Bank.BankFrontController.logger;
@@ -22,6 +23,7 @@ public class AccountController implements Controller{
         public void registerPaths(Javalin app) {
             app.get("/accounts", this::getAccountsById);
             app.post("/accounts/create", this::postAccount);
+            app.post("/accounts/deposit", this::postDeposit);
         }
 
         /**
@@ -54,7 +56,6 @@ public class AccountController implements Controller{
             }
         }
 
-        //TODO: implement method to create desired type of account for User
         public void postAccount(Context ctx){
             // uses environment variable userId in postman to insert an account with the userId into accounts table
             logger.info("Creating account...");
@@ -73,4 +74,27 @@ public class AccountController implements Controller{
 
         }
 
+        public void postDeposit(Context ctx){
+            // uses environment variable userId and queryParams account type and deposit to update balance in accounts table
+            logger.info("Making deposit...");
+            String accountType = ctx.queryParam("accountType");
+            double depositAmount = Double.parseDouble(ctx.queryParam("depositAmount"));
+            int userId = Integer.parseInt(ctx.header("userId"));
+            logger.info("UserId {}, AccountType {}, deposit amount {} {}", userId, accountType, depositAmount, "was sent in through path parameter.");
+
+            try{
+                Account depositAccount = accountService.deposit(userId, accountType, depositAmount);
+                if(depositAccount == null) {
+                    logger.warn("The user does not have that type of account.");
+                    ctx.status(400);
+                    return;
+                }
+                logger.info("Deposit successful!\nAccount Id: {}\nAccount Type: {}\nAccount Balance: {}", depositAccount.getAccountId(), depositAccount.getAccountType(), depositAccount.getBalance());
+                ctx.json(depositAccount);
+                ctx.status(200);
+            } catch(NegativeDepositException | InvalidAccountTypeException e){
+                logger.warn(e.getMessage());
+                ctx.status(400);
+            }
+        }
 }

@@ -49,7 +49,7 @@ public class Account {
 
     @Override
     public String toString(){
-        return "\nUser ID: " + getUserId()+ "\nAccount Type: " + getAccountType()+"\nBalance: " + getBalance()+"\n";
+        return "\nAccount Id: " + getAccountId() + "\nUser ID: " + getUserId()+ "\nAccount Type: " + getAccountType()+"\nBalance: " + getBalance()+"\n";
     }
 }
 

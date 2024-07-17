@@ -1,22 +1,20 @@
 package org.revature.Bank.User;
 import org.revature.Bank.util.ConnectionFactory;
 import org.revature.Bank.util.exceptions.UserNotFoundException;
-import org.revature.Bank.util.interfaces.Crudable;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.revature.Bank.BankFrontController.logger;
 
-public class UserRepository implements Crudable<User>{
+public class UserRepository{
 
     /**
      * Executes a SELECT query to retrieve all rows in Users table convert it into a List of User objects which is then
      * returned.
      * @return users - Returns the List of User objects retrieved from the Users table.
      */
-    @Override
+
     public List<User> findAll() {
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
             List<User> users = new ArrayList<>();
@@ -56,7 +54,6 @@ public class UserRepository implements Crudable<User>{
      * @param user - Validated User object with email and password
      * @return user - returns the Validated User object after it has been inserted into the Users table.
      */
-    @Override
     public User create(User user){
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
             String sql = "insert into users(email, password) values(?, ?) returning user_id";
@@ -104,32 +101,7 @@ public class UserRepository implements Crudable<User>{
         }
         return user;
     }
-    @Override
-    public boolean deposit(String email, double amount) {
-        try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()) {
-            String sql = "update users set balance = (" +
-                    "select balance from users " +
-                    "where email = ?" +
-                    ") + ? where email = ? ";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
-            preparedStatement.setString(1, email);
-            preparedStatement.setDouble(2, amount);
-            preparedStatement.setString(3, email);
-
-            logger.info(preparedStatement.toString());
-
-            if (preparedStatement.executeUpdate() == 0) {
-                throw new RuntimeException("Deposit failed.");
-            }
-            return true;
-        }catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    @Override
     public boolean withdraw(String email, double amount){
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
             String sql = "update users set balance = ("+
@@ -154,7 +126,6 @@ public class UserRepository implements Crudable<User>{
 
         return true;
     }
-    @Override
     public boolean delete() {
         return false;
     }

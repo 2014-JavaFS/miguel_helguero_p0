@@ -81,8 +81,4 @@ public class UserController implements Controller {
             ctx.status(404);
         }
     }
-
-    /**
-     * Sends arguments for
-     */
 }

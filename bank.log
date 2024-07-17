@@ -338,3 +338,397 @@ User ID: 3
 Account Type: savings
 Balance: 0.0
 
+2024-07-17 12:21:49,873 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-17 12:21:50,053 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-17 12:21:50,055 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-17 12:21:50,106 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-17 12:21:50,115 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@3370f42{/,null,AVAILABLE}
+2024-07-17 12:21:50,178 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@1033576a{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-17 12:21:50,186 INFO  [main] o.e.j.server.Server: Started Server@790da477{STARTING}[11.0.20,sto=0] @670ms
+2024-07-17 12:21:50,187 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-17 12:21:50,187 INFO  [main] i.j.u.JavalinLogger: Javalin started in 210ms \o/
+2024-07-17 12:21:50,190 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-17 12:21:50,199 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 136 days old. Consider checking for a newer version.).
+2024-07-17 12:22:04,708 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: Accessing login...
+2024-07-17 12:22:04,709 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: Email josh@gmail.com, Password joshpassword, was sent in through path parameter.
+2024-07-17 12:22:04,868 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: User logged in: 
+User ID: 3
+Email: josh@gmail.com
+
+2024-07-17 12:22:09,557 INFO  [JettyServerThreadPool-34] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-17 12:22:09,557 INFO  [JettyServerThreadPool-34] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-17 12:22:09,591 INFO  [JettyServerThreadPool-34] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-17 12:22:09,592 INFO  [JettyServerThreadPool-34] o.r.B.A.AccountController: 
+Account Id: 111222005
+Account Type: checkings
+Account Balance: $13,439.18
+2024-07-17 12:22:12,766 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Creating account...
+2024-07-17 12:22:12,766 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: UserId 3, AccountType savings, was sent in through path parameter.
+2024-07-17 12:22:12,865 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountRepository: insert into accounts(account_type, user_id) values(('savings'), ('3'::int4)) returning account_id
+2024-07-17 12:22:12,866 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Account created: 
+User ID: 3
+Account Type: savings
+Balance: 0.0
+
+2024-07-17 12:22:15,571 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-17 12:22:15,572 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-17 12:22:15,602 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-17 12:22:15,602 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: 
+Account Id: 111222005
+Account Type: checkings
+Account Balance: $13,439.18
+2024-07-17 12:22:15,603 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: 
+Account Id: 111222010
+Account Type: savings
+Account Balance: $0.00
+2024-07-17 12:22:19,078 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Creating account...
+2024-07-17 12:22:19,078 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: UserId 3, AccountType savings, was sent in through path parameter.
+2024-07-17 12:22:19,108 WARN  [JettyServerThreadPool-43] o.r.B.A.AccountController: The user already has that account type.
+2024-07-17 12:22:24,804 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-17 12:22:24,805 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-17 12:22:24,835 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-17 12:22:24,835 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: 
+Account Id: 111222005
+Account Type: checkings
+Account Balance: $13,439.18
+2024-07-17 12:22:24,835 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: 
+Account Id: 111222010
+Account Type: savings
+Account Balance: $0.00
+2024-07-17 12:22:27,309 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Creating account...
+2024-07-17 12:22:27,309 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: UserId 3, AccountType savings, was sent in through path parameter.
+2024-07-17 12:22:27,338 WARN  [JettyServerThreadPool-43] o.r.B.A.AccountController: The user already has that account type.
+2024-07-17 13:30:23,095 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-17 13:30:23,275 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-17 13:30:23,277 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-17 13:30:23,329 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-17 13:30:23,342 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@6057aebb{/,null,AVAILABLE}
+2024-07-17 13:30:23,408 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@303cf2ba{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-17 13:30:23,417 INFO  [main] o.e.j.server.Server: Started Server@5c7933ad{STARTING}[11.0.20,sto=0] @693ms
+2024-07-17 13:30:23,417 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-17 13:30:23,418 INFO  [main] i.j.u.JavalinLogger: Javalin started in 219ms \o/
+2024-07-17 13:30:23,421 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-17 13:30:23,431 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 137 days old. Consider checking for a newer version.).
+2024-07-17 13:30:34,965 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: Accessing getAllUsers
+2024-07-17 13:30:35,233 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: All users found, converting to json...
+2024-07-17 13:30:35,366 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: Users [
+User ID: 1
+Email: miguel@email.com
+, 
+User ID: 2
+Email: helguero@email.com
+, 
+User ID: 3
+Email: josh@gmail.com
+, 
+User ID: 4
+Email: charles@revature.com
+, 
+User ID: 5
+Email: zoey@email.com
+, 
+User ID: 6
+Email: bob@email.com
+, 
+User ID: 7
+Email: jose@yahoo.com
+]
+2024-07-17 13:30:38,532 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: Creating user...
+2024-07-17 13:30:38,678 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: User created: 
+User ID: 8
+Email: will@email.com
+
+2024-07-17 13:30:41,151 INFO  [JettyServerThreadPool-43] o.r.B.U.UserController: Accessing getAllUsers
+2024-07-17 13:30:41,183 INFO  [JettyServerThreadPool-43] o.r.B.U.UserController: All users found, converting to json...
+2024-07-17 13:30:41,184 INFO  [JettyServerThreadPool-43] o.r.B.U.UserController: Users [
+User ID: 1
+Email: miguel@email.com
+, 
+User ID: 2
+Email: helguero@email.com
+, 
+User ID: 3
+Email: josh@gmail.com
+, 
+User ID: 4
+Email: charles@revature.com
+, 
+User ID: 5
+Email: zoey@email.com
+, 
+User ID: 6
+Email: bob@email.com
+, 
+User ID: 7
+Email: jose@yahoo.com
+, 
+User ID: 8
+Email: will@email.com
+]
+2024-07-17 13:30:50,865 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-17 13:30:50,866 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-17 13:30:50,901 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-17 13:30:50,902 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: 
+Account Id: 111222005
+Account Type: checkings
+Account Balance: $13,439.18
+2024-07-17 13:31:10,451 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-17 13:31:10,451 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-17 13:31:10,587 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-17 13:31:10,588 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: 
+Account Id: 111222005
+Account Type: checkings
+Account Balance: $13,439.18
+2024-07-17 13:31:14,558 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Creating account...
+2024-07-17 13:31:14,559 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: UserId 3, AccountType savings, was sent in through path parameter.
+2024-07-17 13:31:14,617 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountRepository: insert into accounts(account_type, user_id) values(('savings'), ('3'::int4)) returning account_id
+2024-07-17 13:31:14,620 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Account created: 
+User ID: 3
+Account Type: savings
+Balance: 0.0
+
+2024-07-17 13:31:23,929 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-17 13:31:23,929 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-17 13:31:23,961 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-17 13:31:23,962 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: 
+Account Id: 111222005
+Account Type: checkings
+Account Balance: $13,439.18
+2024-07-17 13:31:23,962 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: 
+Account Id: 111222010
+Account Type: savings
+Account Balance: $0.00
+2024-07-17 13:32:49,532 INFO  [JettyServerThreadPool-36] o.r.B.A.AccountController: Making deposit...
+2024-07-17 13:32:49,533 INFO  [JettyServerThreadPool-36] o.r.B.A.AccountController: UserId 3, AccountType savings, deposit amount 123.45 was sent in through path parameter.
+2024-07-17 13:32:49,709 INFO  [JettyServerThreadPool-36] o.r.B.A.AccountRepository: update accounts set balance = balance + ('123.45'::double precision) where user_id = ('3'::int4) and account_type = ('savings') returning account_id
+2024-07-17 13:32:49,713 INFO  [JettyServerThreadPool-36] o.r.B.A.AccountController: Deposit successful!
+Account Id: 111222010
+Account Type: savings
+Account Balance: 0.0
+2024-07-17 13:32:58,217 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-17 13:32:58,218 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-17 13:32:58,249 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-17 13:32:58,250 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: 
+Account Id: 111222005
+Account Type: checkings
+Account Balance: $13,439.18
+2024-07-17 13:32:58,250 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: 
+Account Id: 111222010
+Account Type: savings
+Account Balance: $123.45
+2024-07-17 13:33:00,883 INFO  [JettyServerThreadPool-47] o.r.B.A.AccountController: Creating account...
+2024-07-17 13:33:00,883 INFO  [JettyServerThreadPool-47] o.r.B.A.AccountController: UserId 3, AccountType savings, was sent in through path parameter.
+2024-07-17 13:33:00,915 WARN  [JettyServerThreadPool-47] o.r.B.A.AccountController: The user already has that account type.
+2024-07-17 13:34:07,852 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-17 13:34:08,048 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-17 13:34:08,050 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-17 13:34:08,104 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-17 13:34:08,117 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@6057aebb{/,null,AVAILABLE}
+2024-07-17 13:34:08,193 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@303cf2ba{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-17 13:34:08,203 INFO  [main] o.e.j.server.Server: Started Server@5c7933ad{STARTING}[11.0.20,sto=0] @743ms
+2024-07-17 13:34:08,203 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-17 13:34:08,203 INFO  [main] i.j.u.JavalinLogger: Javalin started in 238ms \o/
+2024-07-17 13:34:08,207 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-17 13:34:08,218 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 137 days old. Consider checking for a newer version.).
+2024-07-17 13:34:18,663 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: Accessing getAllUsers
+2024-07-17 13:34:18,808 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: All users found, converting to json...
+2024-07-17 13:34:18,945 INFO  [JettyServerThreadPool-45] o.r.B.U.UserController: Users [
+User ID: 1
+Email: miguel@email.com
+, 
+User ID: 2
+Email: helguero@email.com
+, 
+User ID: 3
+Email: josh@gmail.com
+, 
+User ID: 4
+Email: charles@revature.com
+, 
+User ID: 5
+Email: zoey@email.com
+, 
+User ID: 6
+Email: bob@email.com
+, 
+User ID: 7
+Email: jose@yahoo.com
+]
+2024-07-17 13:34:22,347 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: Creating user...
+2024-07-17 13:34:22,385 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: User created: 
+User ID: 8
+Email: will@email.com
+
+2024-07-17 13:34:24,071 INFO  [JettyServerThreadPool-43] o.r.B.U.UserController: Accessing getAllUsers
+2024-07-17 13:34:24,104 INFO  [JettyServerThreadPool-43] o.r.B.U.UserController: All users found, converting to json...
+2024-07-17 13:34:24,105 INFO  [JettyServerThreadPool-43] o.r.B.U.UserController: Users [
+User ID: 1
+Email: miguel@email.com
+, 
+User ID: 2
+Email: helguero@email.com
+, 
+User ID: 3
+Email: josh@gmail.com
+, 
+User ID: 4
+Email: charles@revature.com
+, 
+User ID: 5
+Email: zoey@email.com
+, 
+User ID: 6
+Email: bob@email.com
+, 
+User ID: 7
+Email: jose@yahoo.com
+, 
+User ID: 8
+Email: will@email.com
+]
+2024-07-17 13:34:26,812 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: Accessing login...
+2024-07-17 13:34:26,813 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: Email josh@gmail.com, Password joshpassword, was sent in through path parameter.
+2024-07-17 13:34:26,845 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: User logged in: 
+User ID: 3
+Email: josh@gmail.com
+
+2024-07-17 13:34:30,557 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-17 13:34:30,558 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-17 13:34:30,592 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-17 13:34:30,593 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: 
+Account Id: 111222005
+Account Type: checkings
+Account Balance: $13,439.18
+2024-07-17 13:34:36,992 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Making deposit...
+2024-07-17 13:34:36,992 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: UserId 3, AccountType savings, deposit amount 123.45 was sent in through path parameter.
+2024-07-17 13:34:37,024 WARN  [JettyServerThreadPool-39] o.r.B.A.AccountController: The user does not have that account type.
+2024-07-17 13:34:42,844 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Creating account...
+2024-07-17 13:34:42,845 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: UserId 3, AccountType savings, was sent in through path parameter.
+2024-07-17 13:34:42,903 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountRepository: insert into accounts(account_type, user_id) values(('savings'), ('3'::int4)) returning account_id
+2024-07-17 13:34:42,907 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Account created: 
+User ID: 3
+Account Type: savings
+Balance: 0.0
+
+2024-07-17 13:34:50,242 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Making deposit...
+2024-07-17 13:34:50,243 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: UserId 3, AccountType savings, deposit amount 123.45 was sent in through path parameter.
+2024-07-17 13:34:50,301 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountRepository: update accounts set balance = balance + ('123.45'::double precision) where user_id = ('3'::int4) and account_type = ('savings') returning account_id, balance
+2024-07-17 13:34:50,304 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Deposit successful!
+Account Id: 111222010
+Account Type: savings
+Account Balance: 123.45
+2024-07-17 13:36:02,982 INFO  [main] o.r.B.BankFrontController: Beryl Bank is up and running
+2024-07-17 13:36:03,173 INFO  [main] i.j.u.JavalinLogger: Starting Javalin ...
+2024-07-17 13:36:03,176 INFO  [main] o.e.j.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 20+36-2344
+2024-07-17 13:36:03,234 INFO  [main] o.e.j.s.s.DefaultSessionIdManager: Session workerName=node0
+2024-07-17 13:36:03,244 INFO  [main] o.e.j.s.h.ContextHandler: Started o.e.j.s.ServletContextHandler@6057aebb{/,null,AVAILABLE}
+2024-07-17 13:36:03,308 INFO  [main] o.e.j.s.AbstractConnector: Started ServerConnector@303cf2ba{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2024-07-17 13:36:03,318 INFO  [main] o.e.j.server.Server: Started Server@5c7933ad{STARTING}[11.0.20,sto=0] @754ms
+2024-07-17 13:36:03,318 INFO  [main] i.j.u.JavalinLogger: 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+2024-07-17 13:36:03,318 INFO  [main] i.j.u.JavalinLogger: Javalin started in 225ms \o/
+2024-07-17 13:36:03,322 INFO  [main] i.j.u.JavalinLogger: Listening on http://localhost:8080/
+2024-07-17 13:36:03,331 INFO  [main] i.j.u.JavalinLogger: You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 137 days old. Consider checking for a newer version.).
+2024-07-17 13:36:19,525 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Accessing getAllUsers
+2024-07-17 13:36:19,674 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: All users found, converting to json...
+2024-07-17 13:36:19,800 INFO  [JettyServerThreadPool-46] o.r.B.U.UserController: Users [
+User ID: 1
+Email: miguel@email.com
+, 
+User ID: 2
+Email: helguero@email.com
+, 
+User ID: 3
+Email: josh@gmail.com
+, 
+User ID: 4
+Email: charles@revature.com
+, 
+User ID: 5
+Email: zoey@email.com
+, 
+User ID: 6
+Email: bob@email.com
+, 
+User ID: 7
+Email: jose@yahoo.com
+]
+2024-07-17 13:36:22,062 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: Creating user...
+2024-07-17 13:36:22,107 INFO  [JettyServerThreadPool-34] o.r.B.U.UserController: User created: 
+User ID: 8
+Email: will@email.com
+
+2024-07-17 13:36:24,366 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: Accessing login...
+2024-07-17 13:36:24,367 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: Email josh@gmail.com, Password joshpassword, was sent in through path parameter.
+2024-07-17 13:36:24,401 INFO  [JettyServerThreadPool-39] o.r.B.U.UserController: User logged in: 
+User ID: 3
+Email: josh@gmail.com
+
+2024-07-17 13:36:27,590 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-17 13:36:27,590 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-17 13:36:27,631 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-17 13:36:27,633 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: 
+Account Id: 111222005
+Account Type: checkings
+Account Balance: $13,439.18
+2024-07-17 13:36:30,513 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Making deposit...
+2024-07-17 13:36:30,513 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: UserId 3, AccountType savings, deposit amount 123.45 was sent in through path parameter.
+2024-07-17 13:36:30,545 WARN  [JettyServerThreadPool-39] o.r.B.A.AccountController: The user does not have that account type.
+2024-07-17 13:36:36,347 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Creating account...
+2024-07-17 13:36:36,348 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: UserId 3, AccountType savings, was sent in through path parameter.
+2024-07-17 13:36:36,404 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountRepository: insert into accounts(account_type, user_id) values(('savings'), ('3'::int4)) returning account_id
+2024-07-17 13:36:36,408 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Account created: 
+Account Id: 111222010
+User ID: 3
+Account Type: savings
+Balance: 0.0
+
+2024-07-17 13:36:42,867 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Making deposit...
+2024-07-17 13:36:42,867 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: UserId 3, AccountType savings, deposit amount 123.45 was sent in through path parameter.
+2024-07-17 13:36:42,924 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountRepository: update accounts set balance = balance + ('123.45'::double precision) where user_id = ('3'::int4) and account_type = ('savings') returning account_id, balance
+2024-07-17 13:36:42,928 INFO  [JettyServerThreadPool-39] o.r.B.A.AccountController: Deposit successful!
+Account Id: 111222010
+Account Type: savings
+Account Balance: 123.45
+2024-07-17 13:36:46,149 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accessing getAccountsById...
+2024-07-17 13:36:46,150 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: UserId 3, was sent in through path parameter.
+2024-07-17 13:36:46,279 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: Accounts for UserId = 3:
+2024-07-17 13:36:46,280 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: 
+Account Id: 111222005
+Account Type: checkings
+Account Balance: $13,439.18
+2024-07-17 13:36:46,280 INFO  [JettyServerThreadPool-43] o.r.B.A.AccountController: 
+Account Id: 111222010
+Account Type: savings
+Account Balance: $123.45

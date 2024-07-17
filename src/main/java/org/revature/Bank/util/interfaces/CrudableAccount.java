@@ -1,11 +1,9 @@
 package org.revature.Bank.util.interfaces;
 
-import org.revature.Bank.User.User;
-
-public interface Crudable<O> extends Serviceable<O>{
+public interface CrudableAccount<O>{
     O create(O o);
 
-    boolean deposit(String email, double deposit);
+    O deposit(O o, double depositAmount);
 
     boolean withdraw(String email, double amount);
 

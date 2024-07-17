@@ -1,12 +1,9 @@
 package org.revature.Bank.Account;
 
-import org.revature.Bank.User.User;
 import org.revature.Bank.util.ConnectionFactory;
-import org.revature.Bank.util.exceptions.UserNotFoundException;
-import org.revature.Bank.util.interfaces.Crudable;
+import org.revature.Bank.util.interfaces.CrudableAccount;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,34 +13,10 @@ import java.util.List;
 
 import static org.revature.Bank.BankFrontController.logger;
 
-public class AccountRepository implements Crudable<Account>{
+public class AccountRepository implements CrudableAccount<Account> {
 
     private static final Logger log = LoggerFactory.getLogger(AccountRepository.class);
 
-    /**
-     * Executes a SELECT query to retrieve all rows in Users table convert it into a List of User objects which is then
-     * returned.
-     * @return users - Returns the List of User objects retrieved from the Users table.
-     */
-    @Override
-    public List<Account> findAll() {
-        try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
-            List<Account> accounts = new ArrayList<>();
-
-            String sql = "select * from accounts";
-            ResultSet rs = conn.createStatement().executeQuery(sql);
-
-
-            while(rs.next()){
-                accounts.add(generateAccountFromResultSet(rs));
-            }
-
-            return accounts;
-        } catch(SQLException e){
-            e.printStackTrace();
-            return null;
-        }
-    }
 
     public Account generateAccountFromResultSet(ResultSet resultSet) throws SQLException {
         Account account = new Account();
@@ -62,8 +35,6 @@ public class AccountRepository implements Crudable<Account>{
      */
     @Override
     public Account create(Account accountToCreate){
-        // check if the user already has the account type
-
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
 
             String sql = "insert into accounts(account_type, user_id) values(?, ?) returning account_id";
@@ -72,6 +43,7 @@ public class AccountRepository implements Crudable<Account>{
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, accountToCreate.getAccountType());
             preparedStatement.setInt(2, accountToCreate.getUserId());
+            logger.info(preparedStatement.toString());
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
@@ -80,7 +52,6 @@ public class AccountRepository implements Crudable<Account>{
                 throw new SQLException("account_id not generated.");
             }
 
-            logger.info(preparedStatement.toString());
             return accountToCreate;
         } catch(SQLException e){
             e.printStackTrace();
@@ -109,27 +80,29 @@ public class AccountRepository implements Crudable<Account>{
     }
 
     @Override
-    public boolean deposit(String email, double amount) {
+    public Account deposit(Account depositAccount, double depositAmount) {
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()) {
-            String sql = "update users set balance = (" +
-                    "select balance from users " +
-                    "where email = ?" +
-                    ") + ? where email = ? ";
+            String sql = "update accounts set balance = balance + ? where user_id = ? and account_type = ? returning account_id, balance";
+
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-
-            preparedStatement.setString(1, email);
-            preparedStatement.setDouble(2, amount);
-            preparedStatement.setString(3, email);
-
+            preparedStatement.setDouble(1, depositAmount);
+            preparedStatement.setInt(2, depositAccount.getUserId());
+            preparedStatement.setString(3, depositAccount.getAccountType());
             logger.info(preparedStatement.toString());
 
-            if (preparedStatement.executeUpdate() == 0) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                depositAccount.setAccountId(resultSet.getInt("account_id"));
+                depositAccount.setBalance(resultSet.getDouble("balance"));
+            }
+            else{
                 throw new RuntimeException("Deposit failed.");
             }
-            return true;
+
+            return depositAccount;
         }catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
     }
 

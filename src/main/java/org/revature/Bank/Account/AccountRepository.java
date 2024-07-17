@@ -47,7 +47,6 @@ public class AccountRepository implements Crudable<Account>{
 
     public Account generateAccountFromResultSet(ResultSet resultSet) throws SQLException {
         Account account = new Account();
-        // FIXME: result set is getting correct account_id, make sure Account object is setting it as its accountId
 
         account.setAccountId(resultSet.getInt("account_id"));
         account.setUserId(resultSet.getInt("user_id"));
@@ -56,7 +55,6 @@ public class AccountRepository implements Crudable<Account>{
         return account;
     }
 
-
     /**
      * Inserts validated Account object called used into database, throws RuntimeException if INSERT query not executed.
      * @param accountToCreate - Validated Account object with accountType and userId, gets accountId after query executed.
@@ -64,28 +62,30 @@ public class AccountRepository implements Crudable<Account>{
      */
     @Override
     public Account create(Account accountToCreate){
+        // check if the user already has the account type
 
-            try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
-                String sql = "insert into accounts(account_type, user_id) values(?, ?) returning account_id";
+        try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
 
-                // sanitize sql insert statements before executing
-                PreparedStatement preparedStatement = conn.prepareStatement(sql);
-                preparedStatement.setString(1, accountToCreate.getAccountType());
-                preparedStatement.setInt(2, accountToCreate.getUserId());
+            String sql = "insert into accounts(account_type, user_id) values(?, ?) returning account_id";
 
-                ResultSet resultSet = preparedStatement.executeQuery();
-                if(resultSet.next()){
-                    accountToCreate.setAccountId(resultSet.getInt("account_id"));
-                } else{
-                    throw new SQLException("account_id not generated.");
-                }
+            // sanitize sql insert statements before executing
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, accountToCreate.getAccountType());
+            preparedStatement.setInt(2, accountToCreate.getUserId());
 
-                logger.info(preparedStatement.toString());
-                return accountToCreate;
-            } catch(SQLException e){
-                e.printStackTrace();
-                return null;
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                accountToCreate.setAccountId(resultSet.getInt("account_id"));
+            } else{
+                throw new SQLException("account_id not generated.");
             }
+
+            logger.info(preparedStatement.toString());
+            return accountToCreate;
+        } catch(SQLException e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public List<Account> findByUserId(int user_id){
@@ -94,9 +94,7 @@ public class AccountRepository implements Crudable<Account>{
 
             String sql = "select * from accounts where user_id = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-
             preparedStatement.setInt(1, user_id);
-
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()){

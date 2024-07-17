@@ -24,7 +24,7 @@ public class UserController implements Controller {
     public void registerPaths(Javalin app) {
         app.get("/users", this::getAllUsers);
         app.post("/users", this::postNewUser);
-        app.post("/login", this::postLogin);
+        app.get("/login", this::postLogin);
     }
 
     /**

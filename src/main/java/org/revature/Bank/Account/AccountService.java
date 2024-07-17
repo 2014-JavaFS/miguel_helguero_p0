@@ -3,10 +3,8 @@ package org.revature.Bank.Account;
 import org.revature.Bank.User.User;
 import org.revature.Bank.User.UserRepository;
 import org.revature.Bank.util.ConnectionFactory;
-import org.revature.Bank.util.exceptions.AccountNotFoundException;
-import org.revature.Bank.util.exceptions.InvalidAccountTypeException;
-import org.revature.Bank.util.exceptions.NegativeDepositException;
-import org.revature.Bank.util.exceptions.UserNotFoundException;
+import org.revature.Bank.util.exceptions.*;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -64,6 +62,16 @@ public class AccountService {
         return accountRepository.deposit(depositAccount, depositAmount);
     }
 
+    // TODO: make accountRepository.findBalanceByUserIdAndAccountType() to first get balance so can determine if overdraft
+    public Account withdraw(int userId, String accountType, double withdrawalAmount) throws NegativeWithdrawalException, InvalidAccountTypeException, OverdraftException {
+        if(withdrawalAmount < 0) throw new NegativeWithdrawalException("Withdrawal amount cannot be negative.");
+        if(!userHasAccountType(userId, accountType)) throw new InvalidAccountTypeException("The user does not have that account type.");
+        if(accountRepository.findByUserIdAndAccountType(userId, accountType) < withdrawalAmount) throw new OverdraftException("Withdrawal amount cannot be greater than balance.");
+
+        Account withdrawAccount = new Account(userId, accountType);
+        return accountRepository.withdraw(withdrawAccount, withdrawalAmount);
+
+    }
 
 //    public User deposit(User userLoggedIn, double depositAmount){
 //        double currentBalance = userLoggedIn.getBalance();

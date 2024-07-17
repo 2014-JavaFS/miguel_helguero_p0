@@ -5,7 +5,7 @@ public interface CrudableAccount<O>{
 
     O deposit(O o, double depositAmount);
 
-    boolean withdraw(String email, double amount);
+    O withdraw(O o, double withdrawalAmount);
 
     boolean delete();
 

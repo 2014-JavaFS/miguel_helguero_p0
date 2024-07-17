@@ -1,6 +1,7 @@
 package org.revature.Bank.Account;
 
 import org.revature.Bank.util.ConnectionFactory;
+import org.revature.Bank.util.exceptions.InvalidInputException;
 import org.revature.Bank.util.interfaces.CrudableAccount;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,13 +60,13 @@ public class AccountRepository implements CrudableAccount<Account> {
         }
     }
 
-    public List<Account> findByUserId(int user_id){
+    public List<Account> findByUserId(int userId){
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
             List<Account> accounts = new ArrayList<>();
 
             String sql = "select * from accounts where user_id = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, user_id);
+            preparedStatement.setInt(1, userId);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()){
@@ -79,6 +80,25 @@ public class AccountRepository implements CrudableAccount<Account> {
         }
     }
 
+    public double findByUserIdAndAccountType(int userId, String accountType){
+        try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
+            String sql = "select balance from accounts where user_id = ? and account_type = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setString(2, accountType);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return resultSet.getDouble("balance");
+            } else{
+                throw new RuntimeException("Balance not found.");
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
     @Override
     public Account deposit(Account depositAccount, double depositAmount) {
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()) {
@@ -107,29 +127,30 @@ public class AccountRepository implements CrudableAccount<Account> {
     }
 
     @Override
-    public boolean withdraw(String email, double amount){
+    public Account withdraw(Account withdrawAccount, double withdrawalAmount){
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
-            String sql = "update users set balance = ("+
-                    "select balance from users " +
-                    "where email = ?" +
-                    ") - ? where email = ?";
+            String sql = "update accounts set balance = balance - ? where user_id = ? and account_type = ? returning account_id, balance";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
-            preparedStatement.setString(1, email);
-            preparedStatement.setDouble(2, amount);
-            preparedStatement.setString(3, email);
-
+            preparedStatement.setDouble(1, withdrawalAmount);
+            preparedStatement.setInt(2, withdrawAccount.getUserId());
+            preparedStatement.setString(3, withdrawAccount.getAccountType());
             logger.info(preparedStatement.toString());
-            if (preparedStatement.executeUpdate() == 0) {
-                throw new RuntimeException("Deposit failed.");
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                withdrawAccount.setAccountId(resultSet.getInt("account_id"));
+                withdrawAccount.setBalance(resultSet.getDouble("balance"));
+            } else{
+                throw new RuntimeException("Withdrawal failed.");
             }
         } catch(SQLException e){
             e.printStackTrace();
             System.out.println(e.getMessage());
-            return false;
+            return null;
         }
 
-        return true;
+        return withdrawAccount;
     }
     @Override
     public boolean delete() {

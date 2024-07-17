@@ -18,7 +18,8 @@ import java.util.Properties;
  */
 public class ConnectionFactory {
     private static final ConnectionFactory connectionFactory = new ConnectionFactory();
-    private Properties properties = new Properties();
+    private final Properties properties = new Properties();
+
     // Singleton Design
     private ConnectionFactory(){
         try{

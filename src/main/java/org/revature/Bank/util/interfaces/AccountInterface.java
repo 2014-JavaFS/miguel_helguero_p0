@@ -1,6 +1,6 @@
 package org.revature.Bank.util.interfaces;
 
-public interface CrudableAccount<O>{
+public interface AccountInterface<O>{
     O create(O o);
 
     O deposit(O o, double depositAmount);

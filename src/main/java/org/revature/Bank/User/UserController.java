@@ -6,7 +6,6 @@ import io.javalin.http.HttpStatus;
 import org.revature.Bank.util.exceptions.*;
 import org.revature.Bank.util.interfaces.Controller;
 import java.util.List;
-import java.text.NumberFormat;
 
 
 
@@ -19,7 +18,10 @@ public class UserController implements Controller {
         this.userService = userService;
     }
 
-
+    /**
+     * Creates connections to the specified paths so that Postman can execute queries to the database through them.
+     * @param app - Javalin instance
+     */
     @Override
     public void registerPaths(Javalin app) {
         app.get("/users", this::getAllUsers);
@@ -86,6 +88,11 @@ public class UserController implements Controller {
         }
     }
 
+
+    /**
+     * Sets Postman environment variable userId to null.
+     * @param ctx - Current context.
+     */
     public void getLogout(Context ctx) {
         logger.info("Accessing logout...");
         ctx.result("User was logged out.");

@@ -2,17 +2,13 @@ package org.revature.Bank.User;
 
 import org.revature.Bank.util.exceptions.*;
 import java.util.List;
-import static org.revature.Bank.BankFrontController.logger;
 
 public class UserService {
-
-    private UserRepository userRepository;
-
+    private final UserRepository userRepository;
 
     public UserService(UserRepository userRepository){
         this.userRepository = userRepository;
     }
-
 
     /**
      * Generates a List of User objects after invoking userRepository.findAll(), and throws a UserNotFoundException if
@@ -38,7 +34,6 @@ public class UserService {
      * inserts it into Users table.
      *
      * @param user - Initialized User object with email, and password retrieved from Postman POST body.
-     * @throws InvalidInputException - Thrown if email or password do not meet requirements.
      */
     public User registerUser(User user){
         try {
@@ -74,7 +69,7 @@ public class UserService {
 
     /**
      * Takes in an email and password and searches List of User objects for a matching User,
-     * which is returned if found and if not, null is returns.
+     * which is returned if found and if not, null is returned.
      * @param email - Entered email String.
      * @param password - Entered password String.
      * @return - User object found in List of Users, or null if none found.

@@ -1,8 +1,8 @@
 package org.revature.Bank.Account;
 
 import org.revature.Bank.util.ConnectionFactory;
-import org.revature.Bank.util.exceptions.InvalidInputException;
-import org.revature.Bank.util.interfaces.CrudableAccount;
+import org.revature.Bank.util.exceptions.AccountNotFoundException;
+import org.revature.Bank.util.interfaces.AccountInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.sql.Connection;
@@ -14,11 +14,7 @@ import java.util.List;
 
 import static org.revature.Bank.BankFrontController.logger;
 
-public class AccountRepository implements CrudableAccount<Account> {
-
-    private static final Logger log = LoggerFactory.getLogger(AccountRepository.class);
-
-
+public class AccountRepository implements AccountInterface<Account> {
     public Account generateAccountFromResultSet(ResultSet resultSet) throws SQLException {
         Account account = new Account();
 

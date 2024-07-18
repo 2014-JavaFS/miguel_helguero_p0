@@ -106,24 +106,25 @@ public class AccountController implements Controller{
     public void patchDeposit(Context ctx){
         // uses environment variable userId and queryParams account type and deposit to update balance in accounts table
         logger.info("Making deposit...");
-        String accountType = ctx.queryParam("accountType");
 
 
         try{
             double depositAmount = Double.parseDouble(ctx.queryParam("depositAmount"));
+            String accountType = ctx.queryParam("accountType");
+            System.out.println(accountType);
             int userId = Integer.parseInt(ctx.header("userId"));
             logger.info("UserId {}, AccountType {}, deposit amount {} {}", userId, accountType, depositAmount, "was sent in through path parameter.");
+
             Account depositAccount = accountService.deposit(userId, accountType, depositAmount);
 
             if(depositAccount == null) {
-                logger.warn("The user does not have that type of account.");
-                ctx.status(400);
-                return;
+                logger.warn("The user does not have that account type.");
+                throw new AccountNotFoundException("The user does not have that account type.");
             }
 
             ctx.result("Deposit successful!\n" + depositAccount);
             ctx.status(200);
-        } catch(NegativeDepositException | InvalidAccountTypeException e){
+        } catch(NegativeDepositException | InvalidAccountTypeException | AccountNotFoundException e){
             logger.warn(e.getMessage());
             ctx.result(e.getMessage());
             ctx.status(400);
@@ -153,7 +154,7 @@ public class AccountController implements Controller{
 
             ctx.result("Withdrawal successful!\n" + withdrawAccount);
             ctx.status(200);
-        } catch(OverdraftException | InvalidAccountTypeException | NegativeWithdrawalException e){
+        } catch(OverdraftException | InvalidAccountTypeException | NegativeWithdrawalException | AccountNotFoundException e){
             logger.warn(e.getMessage());
             ctx.result(e.getMessage());
             ctx.status(400);

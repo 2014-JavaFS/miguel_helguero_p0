@@ -1,9 +1,5 @@
 package org.revature.Bank.User;
 
-import org.revature.Bank.Account.Account;
-
-import java.util.List;
-
 public class User {
     private int userId;
     private String email;

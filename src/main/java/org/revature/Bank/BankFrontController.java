@@ -1,8 +1,6 @@
 package org.revature.Bank;
 
 import io.javalin.Javalin;
-import org.revature.Bank.Account.Account;
-//import org.revature.Bank.Account.AccountController;
 import org.revature.Bank.Account.AccountController;
 import org.revature.Bank.Account.AccountRepository;
 import org.revature.Bank.Account.AccountService;

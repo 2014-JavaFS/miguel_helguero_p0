@@ -83,6 +83,13 @@ public class UserRepository{
         }
     }
 
+    /**
+     * Searches Users table for a row containing the email and password, and returns a new User object with the corresponding
+     * email, password, and user_id. Returns null if no corresponding row found.
+     * @param email - Validated String for email.
+     * @param password - Validated String for password.
+     * @return - User object if user found, null otherwise.
+     */
     public User findByEmailAndPassword(String email, String password){
         User user = new User();
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){

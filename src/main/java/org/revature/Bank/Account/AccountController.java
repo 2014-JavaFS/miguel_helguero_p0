@@ -104,7 +104,6 @@ public class AccountController implements Controller{
      * @param ctx - Current context.
      */
     public void patchDeposit(Context ctx){
-        // uses environment variable userId and queryParams account type and deposit to update balance in accounts table
         logger.info("Making deposit...");
 
 

@@ -29,7 +29,6 @@ public class AccountService {
 
             Account accountToCreate = new Account(userId, accountType);
             return accountRepository.create(accountToCreate);
-
     }
 
     private boolean userHasAccountType(int userId, String accountType){

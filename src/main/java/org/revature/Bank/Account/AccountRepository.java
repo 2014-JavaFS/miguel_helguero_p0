@@ -1,10 +1,7 @@
 package org.revature.Bank.Account;
 
 import org.revature.Bank.util.ConnectionFactory;
-import org.revature.Bank.util.exceptions.AccountNotFoundException;
 import org.revature.Bank.util.interfaces.AccountInterface;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -56,6 +53,13 @@ public class AccountRepository implements AccountInterface<Account> {
         }
     }
 
+    /**
+     * Searches accounts table for all accounts that belong to the corresponding user_id and returns a List of Account
+     * objects filled with data of each account row found. Returns null if none found.
+     * @param userId - int userId used in the query.
+     * @return - List<Account> with one account object for each row found in accounts table that have the corresponding
+     * userId.
+     */
     public List<Account> findByUserId(int userId){
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
             List<Account> accounts = new ArrayList<>();
@@ -80,6 +84,13 @@ public class AccountRepository implements AccountInterface<Account> {
         }
     }
 
+    /**
+     * Finds the balance of the accounts row with the corresponding user_id and account_type. Throws a RuntimeException
+     * if none found.
+     * @param userId - int userId used in the query.
+     * @param accountType - String accountType used in the query.
+     * @return - The balance of the account found.
+     */
     public double findByUserIdAndAccountType(int userId, String accountType){
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
             String sql = "select balance from accounts where user_id = ? and account_type = ?";
@@ -99,6 +110,13 @@ public class AccountRepository implements AccountInterface<Account> {
             return 0;
         }
     }
+
+    /**
+     * Increases the balance of the corresponding account. Throws a RuntimeException if query unsuccessful.
+     * @param depositAccount - Account; The account to be deposited in.
+     * @param depositAmount - Double; The amount to increase the balance.
+     * @return depositAccount - Updated Account object with current balance.
+     */
     @Override
     public Account deposit(Account depositAccount, double depositAmount) {
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()) {
@@ -126,6 +144,12 @@ public class AccountRepository implements AccountInterface<Account> {
         }
     }
 
+    /**
+     * Decreases the balance of the corresponding account. Throws a Runtime exception if query unsuccessful.
+     * @param withdrawAccount Account; The account to be withdrawn from.
+     * @param withdrawalAmount - Double; The amount to decrease the balance.
+     * @return withdrawAccount - Updated Account object with current balance.
+     */
     @Override
     public Account withdraw(Account withdrawAccount, double withdrawalAmount){
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){

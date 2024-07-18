@@ -39,8 +39,6 @@ public class AccountController implements Controller{
         StringBuilder stringBuilder = new StringBuilder();
         logger.info("Accessing getAccountsById...");
 
-
-
         try{
             int userId = Integer.parseInt(ctx.header("userId"));
             logger.info("UserId {}, {}", userId, "was sent in through path parameter.");
@@ -55,7 +53,13 @@ public class AccountController implements Controller{
 
             logger.info("Accounts for UserId = {}:", userId);
             for(Account account: accounts){
-                stringBuilder.append("Account Id: ").append(account.getAccountId()).append("\nAccount Type: ").append(account.getAccountType()).append("\nAccount Balance: ").append(numberFormat.format(account.getBalance())).append("\n\n");
+                stringBuilder.append("Account Id: ")
+                        .append(account.getAccountId())
+                        .append("\nAccount Type: ")
+                        .append(account.getAccountType())
+                        .append("\nAccount Balance: ")
+                        .append(numberFormat.format(account.getBalance()))
+                        .append("\n\n");
                 logger.info("\nAccount Id: {}\nAccount Type: {}\nAccount Balance: {}", account.getAccountId(), account.getAccountType(), numberFormat.format(account.getBalance()));
             }
 
@@ -66,6 +70,7 @@ public class AccountController implements Controller{
             ctx.result(e.getMessage());
             ctx.status(404);
         } catch (NumberFormatException e){
+            logger.warn("No user is logged in.");
             ctx.result("No user is logged in.");
             ctx.status(400);
         }
@@ -80,7 +85,6 @@ public class AccountController implements Controller{
         logger.info("Creating account...");
         String accountType = ctx.queryParam("accountType");
 
-
         try {
             int userId = Integer.parseInt(ctx.header("userId"));
             logger.info("UserId {}, AccountType {}, {}", userId, accountType, "was sent in through path parameter.");
@@ -89,10 +93,12 @@ public class AccountController implements Controller{
             ctx.result("Account created!\n" + createdAccount);
             ctx.status(HttpStatus.CREATED);
        } catch(InvalidAccountTypeException e){
+            ctx.result(e.getMessage());
             logger.warn(e.getMessage());
             ctx.status(400);
         } catch (NumberFormatException e){
             ctx.result("No user is logged in.");
+            logger.warn("No user is logged in.");
             ctx.status(400);
         }
 
@@ -108,8 +114,9 @@ public class AccountController implements Controller{
 
 
         try{
-            double depositAmount = Double.parseDouble(ctx.queryParam("depositAmount"));
             String accountType = ctx.queryParam("accountType");
+            double depositAmount = Double.parseDouble(ctx.queryParam("depositAmount"));
+
             System.out.println(accountType);
             int userId = Integer.parseInt(ctx.header("userId"));
             logger.info("UserId {}, AccountType {}, deposit amount {} {}", userId, accountType, depositAmount, "was sent in through path parameter.");
@@ -158,8 +165,14 @@ public class AccountController implements Controller{
             ctx.result(e.getMessage());
             ctx.status(400);
         } catch (NumberFormatException e){
-            if(e.getMessage().equals("empty String")) ctx.result("No withdrawal amount given.");
-            else if(e.getMessage().equals("For input string: \"null\"")) ctx.result("No user is logged in.");
+            if(e.getMessage().equals("empty String")){
+                ctx.result("No withdrawal amount given.");
+                logger.warn("No withdrawal amount given.");
+            }
+            else if(e.getMessage().equals("For input string: \"null\"")){
+                ctx.result("No user is logged in.");
+                logger.warn("No user is logged in.");
+            }
             ctx.status(400);
         }
     }

@@ -6,9 +6,6 @@ import io.javalin.http.HttpStatus;
 import org.revature.Bank.util.exceptions.*;
 import org.revature.Bank.util.interfaces.Controller;
 import java.util.List;
-
-
-
 import static org.revature.Bank.BankFrontController.logger;
 
 public class UserController implements Controller {
@@ -54,9 +51,15 @@ public class UserController implements Controller {
         // checks body for info to map into a User obj
         User user = ctx.bodyAsClass(User.class);
         logger.info("Creating user...");
-        ctx.json(userService.registerUser(user)); // response is the created object
-        ctx.status(HttpStatus.CREATED);
-        logger.info("User created: {}", user);
+        try {
+            ctx.json(userService.registerUser(user)); // response is the created object
+            ctx.status(HttpStatus.CREATED);
+            logger.info("User created: {}", user);
+        } catch(InvalidInputException e){
+            logger.warn(e.getMessage());
+            ctx.result(e.getMessage());
+            ctx.status(400);
+        }
     }
 
 
@@ -74,7 +77,9 @@ public class UserController implements Controller {
         String password = ctx.queryParam("password");
         logger.info("Email {}, Password {}, {}", email, password, "was sent in through path parameter.");
         try {
+            logger.info("{}", ctx.header("userId"));
             if(!ctx.header("userId").equals("null")) throw new LoginException("A user is already logged in.");
+
             User loggedInUser = userService.login(email, password);
             logger.info("User logged in: {}", loggedInUser);
 

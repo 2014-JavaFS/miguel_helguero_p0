@@ -35,14 +35,10 @@ public class UserService {
      *
      * @param user - Initialized User object with email, and password retrieved from Postman POST body.
      */
-    public User registerUser(User user){
-        try {
-            validateUser(user);
-            user = userRepository.create(user);
-        } catch (InvalidInputException e){
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-        }
+    public User registerUser(User user) throws InvalidInputException{
+        validateUser(user);
+        user = userRepository.create(user);
+
         return user;
 
     }

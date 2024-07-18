@@ -1,10 +1,10 @@
 package org.revature.Bank.User;
 import org.revature.Bank.util.ConnectionFactory;
+import org.revature.Bank.util.exceptions.InvalidInputException;
 import org.revature.Bank.util.exceptions.UserNotFoundException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.revature.Bank.BankFrontController.logger;
 
 public class UserRepository{
@@ -14,12 +14,11 @@ public class UserRepository{
      * returned.
      * @return users - Returns the List of User objects retrieved from the Users table.
      */
-
     public List<User> findAll() {
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
             List<User> users = new ArrayList<>();
 
-            String sql = "select * from users";
+            String sql = "select user_id, email from users";
             ResultSet rs = conn.createStatement().executeQuery(sql);
 
 
@@ -59,8 +58,11 @@ public class UserRepository{
      * @param user - Validated User object with email and password
      * @return user - returns the Validated User object after it has been inserted into the Users table.
      */
-    public User create(User user){
+    public User create(User user) throws InvalidInputException{
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
+            if(duplicateEmail(user.getEmail())) throw new InvalidInputException("Email already exists.");
+
+
             String sql = "insert into users(email, password) values(?, ?) returning user_id";
             int userId;
             // sanitize sql insert statements before executing
@@ -112,5 +114,19 @@ public class UserRepository{
             return null;
         }
         return user;
+    }
+
+    public boolean duplicateEmail(String email){
+        try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
+            String sql = "select * from users where email = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, email);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.next();
+        } catch(SQLException e){
+            e.printStackTrace();
+            return true;
+        }
     }
 }

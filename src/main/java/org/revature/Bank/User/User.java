@@ -18,6 +18,7 @@ public class User {
     }
 
     public String getPassword(){return password;}
+
     public User(){}
 
     public User(String email, String password){

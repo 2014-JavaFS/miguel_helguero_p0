@@ -63,14 +63,18 @@ public class AccountRepository implements CrudableAccount<Account> {
     public List<Account> findByUserId(int userId){
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
             List<Account> accounts = new ArrayList<>();
-
+            boolean noAccounts = true;
             String sql = "select * from accounts where user_id = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setInt(1, userId);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()){
+                noAccounts = false;
                 accounts.add(generateAccountFromResultSet(resultSet));
+            }
+            if(noAccounts){
+                return null;
             }
 
             return accounts;

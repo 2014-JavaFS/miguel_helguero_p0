@@ -19,6 +19,7 @@ public class AccountController implements Controller{
             this.accountService = accountService;
         }
 
+        private final NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
 
         @Override
         public void registerPaths(Javalin app) {
@@ -34,23 +35,26 @@ public class AccountController implements Controller{
          * @param ctx - Current context.
          */
         public void getAccountsById(Context ctx) {
-            NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
+            StringBuilder stringBuilder = new StringBuilder();
             logger.info("Accessing getAccountsById...");
+
             int userId = Integer.parseInt(ctx.header("userId"));
             logger.info("UserId {}, {}", userId, "was sent in through path parameter.");
 
             try{
                 List<Account> accounts = accountService.findAccounts(userId);
-                if(accounts == null){
+                if(accounts==null){
+                    ctx.result("That user has no accounts.");
                     logger.info("That user has no accounts.");
-                    ctx.status(204);
+                    ctx.status(200);
                     return;
                 }
                 logger.info("Accounts for UserId = {}:", userId);
                 for(Account account: accounts){
-                    ctx.result("\nAccount Id: " + account.getAccountId() + "\nAccount Type: " + account.getAccountType() + "\nAccount Balance: " + numberFormat.format(account.getBalance()));
+                    stringBuilder.append("Account Id: ").append(account.getAccountId()).append("\nAccount Type: ").append(account.getAccountType()).append("\nAccount Balance: ").append(numberFormat.format(account.getBalance())).append("\n\n");
                     logger.info("\nAccount Id: {}\nAccount Type: {}\nAccount Balance: {}", account.getAccountId(), account.getAccountType(), numberFormat.format(account.getBalance()));
                 }
+                ctx.result(stringBuilder.toString());
                 ctx.status(200);
             } catch(UserNotFoundException e){
                 logger.warn(e.getMessage());
@@ -67,7 +71,7 @@ public class AccountController implements Controller{
             try {
                 Account createdAccount = accountService.createAccount(userId, accountType);
                 ctx.json(createdAccount);
-                logger.info("Account created: {}", createdAccount);
+                ctx.result("Account created!\n" + createdAccount);
                 ctx.status(HttpStatus.CREATED);
            } catch(InvalidAccountTypeException e){
                 logger.warn(e.getMessage());
@@ -76,7 +80,6 @@ public class AccountController implements Controller{
 
         }
 
-        // TODO: replace ctx.json() with ctx.result() with formatter to display current balance in currency format
         public void patchDeposit(Context ctx){
             // uses environment variable userId and queryParams account type and deposit to update balance in accounts table
             logger.info("Making deposit...");
@@ -92,8 +95,7 @@ public class AccountController implements Controller{
                     ctx.status(400);
                     return;
                 }
-                logger.info("Deposit successful!\nAccount Id: {}\nAccount Type: {}\nAccount Balance: {}", depositAccount.getAccountId(), depositAccount.getAccountType(), depositAccount.getBalance());
-                ctx.json(depositAccount);
+                ctx.result("Deposit successful!\n" + depositAccount);
                 ctx.status(200);
             } catch(NegativeDepositException | InvalidAccountTypeException e){
                 logger.warn(e.getMessage());
@@ -101,23 +103,22 @@ public class AccountController implements Controller{
             }
         }
 
-        // TODO: replace ctx.json() with ctx.result() with formatter to display current balance in currency format
         public void patchWithdraw(Context ctx){
             // uses environment variable userId in postman and queryParams account type and withdrawAmount to withdraw from balance in accounts table
             logger.info("Making withdrawal...");
             String accountType = ctx.queryParam("accountType");
-            double withdrawAmount = Double.parseDouble(ctx.queryParam("withdrawalAmount"));
-            int userId = Integer.parseInt(ctx.header("userId"));
-            logger.info("UserID {}, AccountType {}, withdrawal amount {} {}", userId, accountType, withdrawAmount, "was sent in through path parameter");
+
 
             try{
-                Account withdrawAccount = accountService.withdraw(userId, accountType, withdrawAmount);
-                logger.info("Withdrawal successful!\nAccount Id: {}\nAccount Type: {}\nAccount Balance: {}", withdrawAccount.getAccountId(), withdrawAccount.getAccountType(), withdrawAccount.getBalance());
-                ctx.json(withdrawAccount);
-                ctx.result("Withdrawal done.");
+                double withdrawalAmount = Double.parseDouble(ctx.queryParam("withdrawalAmount"));
+                int userId = Integer.parseInt(ctx.header("userId"));
+                logger.info("UserID {}, AccountType {}, withdrawal amount {} {}", userId, accountType, withdrawalAmount, "was sent in through path parameter");
+                Account withdrawAccount = accountService.withdraw(userId, accountType, withdrawalAmount);
+                ctx.result("Withdrawal successful!\n" + withdrawAccount);
                 ctx.status(200);
-            } catch(OverdraftException | InvalidAccountTypeException | NegativeWithdrawalException e){
+            } catch(OverdraftException | InvalidAccountTypeException | NegativeWithdrawalException | NumberFormatException e){
                 logger.warn(e.getMessage());
+                ctx.result(e.getMessage());
                 ctx.status(400);
             }
         }

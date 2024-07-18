@@ -8,5 +8,4 @@ public interface CrudableAccount<O>{
     O withdraw(O o, double withdrawalAmount);
 
     boolean delete();
-
 }

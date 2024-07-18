@@ -22,9 +22,7 @@ public class AccountService {
     }
 
     public List<Account> findAccounts(int userId) throws UserNotFoundException{
-        List<Account> accounts = accountRepository.findByUserId(userId);
-
-        return accounts;
+        return accountRepository.findByUserId(userId);
     }
 
     public Account createAccount(int userId, String accountType) throws InvalidAccountTypeException{

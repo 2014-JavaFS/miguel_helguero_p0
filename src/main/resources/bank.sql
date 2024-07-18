@@ -42,10 +42,16 @@ values
 ('investment', 50000.00, 5);
 
 
---select * from users;
 
-select u.*, a.account_id, a.account_type, a.balance from users u
-join accounts a on u.user_id = a.user_id
-order by u.user_id;
+
+--update accounts
+--set balance = balance+50
+--where user_id = 3 and account_type = 'savings';
+select * from users;
+--select * from accounts;
+
+--select u.*, a.account_id, a.account_type, a.balance from users u
+--join accounts a on u.user_id = a.user_id
+--order by u.user_id;
 
 

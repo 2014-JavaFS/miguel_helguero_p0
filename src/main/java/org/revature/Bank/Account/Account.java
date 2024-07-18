@@ -1,5 +1,7 @@
 package org.revature.Bank.Account;
 
+import java.text.NumberFormat;
+
 // ctx header for staying logged in, sep branch for Account model integration with deposit/withdraw and validation/ Account model will have attrib type for checking, saving, retirement, investment, etc
 // one User can have multiple Accounts(savings, checkings, etc);
 // validation of deposit not negative, no overdrawn withdrawals etc handled in AccountService
@@ -8,6 +10,7 @@ public class Account {
     private int userId;
     private String accountType;
     private double balance;
+    private NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
 
     public int getUserId() {
         return userId;
@@ -49,7 +52,7 @@ public class Account {
 
     @Override
     public String toString(){
-        return "\nAccount Id: " + getAccountId() + "\nUser ID: " + getUserId()+ "\nAccount Type: " + getAccountType()+"\nBalance: " + getBalance()+"\n";
+        return "Account Id: " + getAccountId() + "\nUser ID: " + getUserId()+ "\nAccount Type: " + getAccountType()+"\nAccount Balance: " + numberFormat.format(getBalance())+"\n";
     }
 }
 

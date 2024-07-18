@@ -6,10 +6,6 @@ import io.javalin.http.HttpStatus;
 import org.revature.Bank.util.exceptions.*;
 import org.revature.Bank.util.interfaces.Controller;
 import java.util.List;
-import java.text.NumberFormat;
-
-
-
 import static org.revature.Bank.BankFrontController.logger;
 
 public class UserController implements Controller {
@@ -19,35 +15,16 @@ public class UserController implements Controller {
         this.userService = userService;
     }
 
-
+    /**
+     * Creates connections to the specified paths so that Postman can execute queries to the database through them.
+     * @param app - Javalin instance
+     */
     @Override
     public void registerPaths(Javalin app) {
         app.get("/users", this::getAllUsers);
         app.post("/users", this::postNewUser);
-        app.get("/balance/{email}/{password}", this::getBalanceByEmailAndPassword);
-        app.get("/user/{email}/{password}", this::login);
-    }
-
-    /**
-     * Sends an email and password as parameters to userService.findBalance() and eventually the email and password are
-     * used in a SELECT query that retrieves the corresponding user's balance.
-     *
-     * @param ctx - Current Context.
-     */
-    public void getBalanceByEmailAndPassword(Context ctx) {
-        NumberFormat numberFormatter = NumberFormat.getCurrencyInstance();
-        logger.info("Accessing getBalanceById...");
-        String email = ctx.pathParam("email");
-        String password = ctx.pathParam("password");
-        logger.info("Email {}, Password {}, {}", email, password, "was sent in through path parameter.");
-        try {
-            double balance = userService.findBalance(email, password);
-            logger.info("The balance is : {}", numberFormatter.format(balance));
-            ctx.json(balance);
-        } catch (UserNotFoundException e) {
-            logger.warn("The user was not found");
-            ctx.status(HttpStatus.CREATED);
-        }
+        app.get("/login", this::getLogin);
+        app.get("/logout", this::getLogout);
     }
 
     /**
@@ -61,7 +38,6 @@ public class UserController implements Controller {
         logger.info("All users found, converting to json...");
         ctx.json(users);
         logger.info("Users {}", users);
-        logger.info("Sending back to user...");
         ctx.status(200);
     }
 
@@ -75,10 +51,17 @@ public class UserController implements Controller {
         // checks body for info to map into a User obj
         User user = ctx.bodyAsClass(User.class);
         logger.info("Creating user...");
-        ctx.json(userService.registerUser(user)); // response is the created object
-        ctx.status(HttpStatus.CREATED);
-        logger.info("User created: {}", user);
+        try {
+            ctx.json(userService.registerUser(user)); // response is the created object
+            ctx.status(HttpStatus.CREATED);
+            logger.info("User created: {}", user);
+        } catch(InvalidInputException e){
+            logger.warn(e.getMessage());
+            ctx.result(e.getMessage());
+            ctx.status(400);
+        }
     }
+
 
     /**
      * Sends arguments for email and password to UserService.login()
@@ -87,19 +70,37 @@ public class UserController implements Controller {
      *
      * @param ctx - Current context.
      */
-    public void login(Context ctx) {
-        NumberFormat numberFormatter = NumberFormat.getCurrencyInstance();
+    public void getLogin(Context ctx) {
         logger.info("Accessing login...");
-        String email = ctx.pathParam("email");
-        String password = ctx.pathParam("password");
+
+        String email = ctx.queryParam("email");
+        String password = ctx.queryParam("password");
         logger.info("Email {}, Password {}, {}", email, password, "was sent in through path parameter.");
         try {
+            logger.info("{}", ctx.header("userId"));
+            if(!ctx.header("userId").equals("null")) throw new LoginException("A user is already logged in.");
+
             User loggedInUser = userService.login(email, password);
             logger.info("User logged in: {}", loggedInUser);
-            ctx.json(loggedInUser);
-        } catch (LoginException e) {
-            logger.warn("No user with those credentials was found.");
+
+            ctx.header("userId", String.valueOf(loggedInUser.getUserId()));
+            ctx.result("Login successful!\n" + loggedInUser);
+            ctx.status(200);
+        } catch (LoginException | NullPointerException e) {
+            logger.warn(e.getMessage());
+            ctx.result(e.getMessage());
             ctx.status(404);
         }
+    }
+
+
+    /**
+     * Sets Postman environment variable userId to null.
+     * @param ctx - Current context.
+     */
+    public void getLogout(Context ctx) {
+        logger.info("Accessing logout...");
+        ctx.result("User was logged out.");
+        ctx.status(200);
     }
 }

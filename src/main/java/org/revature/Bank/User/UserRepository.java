@@ -1,27 +1,24 @@
 package org.revature.Bank.User;
 import org.revature.Bank.util.ConnectionFactory;
+import org.revature.Bank.util.exceptions.InvalidInputException;
 import org.revature.Bank.util.exceptions.UserNotFoundException;
-import org.revature.Bank.util.interfaces.Crudable;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.revature.Bank.BankFrontController.logger;
 
-public class UserRepository implements Crudable<User>{
+public class UserRepository{
 
     /**
      * Executes a SELECT query to retrieve all rows in Users table convert it into a List of User objects which is then
      * returned.
      * @return users - Returns the List of User objects retrieved from the Users table.
      */
-    @Override
     public List<User> findAll() {
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
             List<User> users = new ArrayList<>();
 
-            String sql = "select * from users";
+            String sql = "select user_id, email from users";
             ResultSet rs = conn.createStatement().executeQuery(sql);
 
 
@@ -43,12 +40,16 @@ public class UserRepository implements Crudable<User>{
         }
     }
 
+    /**
+     * Creates and returns a User object with the user_id and email received in the Postman response.
+     * @param rs - ResultSet with the user_id and email
+     * @return user - newly created User object
+     * @throws SQLException - Thrown if exception encountered when executing query.
+     */
     public User generateUserFromResultSet(ResultSet rs) throws SQLException {
         User user = new User();
-        user.setId(rs.getInt("id"));
+        user.setUserId(rs.getInt("user_id"));
         user.setEmail(rs.getString("email"));
-        user.setPassword(rs.getString("password"));
-        user.setBalance(rs.getDouble("balance"));
         return user;
     }
 
@@ -57,18 +58,24 @@ public class UserRepository implements Crudable<User>{
      * @param user - Validated User object with email and password
      * @return user - returns the Validated User object after it has been inserted into the Users table.
      */
-    @Override
-    public User create(User user){
+    public User create(User user) throws InvalidInputException{
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
-            String sql = "insert into users(email, password) values(?, ?)";
+            if(duplicateEmail(user.getEmail())) throw new InvalidInputException("Email already exists.");
 
+
+            String sql = "insert into users(email, password) values(?, ?) returning user_id";
+            int userId;
             // sanitize sql insert statements before executing
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, user.getEmail());
             preparedStatement.setString(2, user.getPassword());
 
-            if(preparedStatement.executeUpdate() == 0){
-                throw new RuntimeException("User was not inserted into database.");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                userId = resultSet.getInt("user_id");
+                user.setUserId(userId);
+            }else{
+                throw new SQLException("User Id was not retrieved.");
             }
 
             return user;
@@ -78,22 +85,26 @@ public class UserRepository implements Crudable<User>{
         }
     }
 
-    @Override
+    /**
+     * Searches Users table for a row containing the email and password, and returns a new User object with the corresponding
+     * email, password, and user_id. Returns null if no corresponding row found.
+     * @param email - Validated String for email.
+     * @param password - Validated String for password.
+     * @return - User object if user found, null otherwise.
+     */
     public User findByEmailAndPassword(String email, String password){
         User user = new User();
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
-            String sql = "select id, email, balance from users where email = ? and password = ?";
+            String sql = "select user_id, email from users where email = ? and password = ?";
+
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if(resultSet.next()) {
-
-                user.setId(resultSet.getInt("id"));
+                user.setUserId(resultSet.getInt("user_id"));
                 user.setEmail(resultSet.getString("email"));
-                user.setBalance(resultSet.getDouble("balance"));
-
             }
             else{
                 return null;
@@ -104,60 +115,18 @@ public class UserRepository implements Crudable<User>{
         }
         return user;
     }
-    @Override
-    public boolean deposit(String email, double amount) {
-        try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()) {
-            String sql = "update users set balance = (" +
-                    "select balance from users " +
-                    "where email = ?" +
-                    ") + ? where email = ? ";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
-            preparedStatement.setString(1, email);
-            preparedStatement.setDouble(2, amount);
-            preparedStatement.setString(3, email);
-
-            logger.info(preparedStatement.toString());
-
-            if (preparedStatement.executeUpdate() == 0) {
-                throw new RuntimeException("Deposit failed.");
-            }
-            return true;
-        }catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    @Override
-    public boolean withdraw(String email, double amount){
+    public boolean duplicateEmail(String email){
         try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
-            String sql = "update users set balance = ("+
-                    "select balance from users " +
-                    "where email = ?" +
-                    ") - ? where email = ?";
+            String sql = "select * from users where email = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-
             preparedStatement.setString(1, email);
-            preparedStatement.setDouble(2, amount);
-            preparedStatement.setString(3, email);
 
-            logger.info(preparedStatement.toString());
-            if (preparedStatement.executeUpdate() == 0) {
-                throw new RuntimeException("Deposit failed.");
-            }
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.next();
         } catch(SQLException e){
             e.printStackTrace();
-            System.out.println(e.getMessage());
-            return false;
+            return true;
         }
-
-        return true;
     }
-    @Override
-    public boolean delete() {
-        return false;
-    }
-
-
 }

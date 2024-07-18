@@ -2,12 +2,14 @@ package org.revature.Bank.User;
 import org.revature.Bank.util.ConnectionFactory;
 import org.revature.Bank.util.exceptions.InvalidInputException;
 import org.revature.Bank.util.exceptions.UserNotFoundException;
+import org.revature.Bank.util.interfaces.UserInterface;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import static org.revature.Bank.BankFrontController.logger;
 
-public class UserRepository{
+public class UserRepository implements UserInterface<User> {
 
     /**
      * Executes a SELECT query to retrieve all rows in Users table convert it into a List of User objects which is then

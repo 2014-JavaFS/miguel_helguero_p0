@@ -41,11 +41,16 @@ public class UserRepository{
         }
     }
 
+    /**
+     * Creates and returns a User object with the user_id and email received in the Postman response.
+     * @param rs - ResultSet with the user_id and email
+     * @return user - newly created User object
+     * @throws SQLException - Thrown if exception encountered when executing query.
+     */
     public User generateUserFromResultSet(ResultSet rs) throws SQLException {
         User user = new User();
         user.setUserId(rs.getInt("user_id"));
         user.setEmail(rs.getString("email"));
-        user.setPassword(rs.getString("password"));
         return user;
     }
 
@@ -101,34 +106,4 @@ public class UserRepository{
         }
         return user;
     }
-
-    public boolean withdraw(String email, double amount){
-        try(Connection conn = ConnectionFactory.getConnectionFactory().getConnection()){
-            String sql = "update users set balance = ("+
-                    "select balance from users " +
-                    "where email = ?" +
-                    ") - ? where email = ?";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-
-            preparedStatement.setString(1, email);
-            preparedStatement.setDouble(2, amount);
-            preparedStatement.setString(3, email);
-
-            logger.info(preparedStatement.toString());
-            if (preparedStatement.executeUpdate() == 0) {
-                throw new RuntimeException("Deposit failed.");
-            }
-        } catch(SQLException e){
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-            return false;
-        }
-
-        return true;
-    }
-    public boolean delete() {
-        return false;
-    }
-
-
 }

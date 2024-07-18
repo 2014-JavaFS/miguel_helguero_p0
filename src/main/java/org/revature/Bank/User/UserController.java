@@ -24,7 +24,8 @@ public class UserController implements Controller {
     public void registerPaths(Javalin app) {
         app.get("/users", this::getAllUsers);
         app.post("/users", this::postNewUser);
-        app.get("/login", this::postLogin);
+        app.get("/login", this::getLogin);
+        app.get("/logout", this::getLogout);
     }
 
     /**
@@ -64,21 +65,30 @@ public class UserController implements Controller {
      *
      * @param ctx - Current context.
      */
-    public void postLogin(Context ctx) {
+    public void getLogin(Context ctx) {
         logger.info("Accessing login...");
 
         String email = ctx.queryParam("email");
         String password = ctx.queryParam("password");
         logger.info("Email {}, Password {}, {}", email, password, "was sent in through path parameter.");
         try {
+            if(!ctx.header("userId").equals("null")) throw new LoginException("A user is already logged in.");
             User loggedInUser = userService.login(email, password);
             logger.info("User logged in: {}", loggedInUser);
+
             ctx.header("userId", String.valueOf(loggedInUser.getUserId()));
-            ctx.json(loggedInUser);
+            ctx.result("Login successful!\n" + loggedInUser);
             ctx.status(200);
-        } catch (LoginException e) {
-            logger.warn("No user with those credentials was found.");
+        } catch (LoginException | NullPointerException e) {
+            logger.warn(e.getMessage());
+            ctx.result(e.getMessage());
             ctx.status(404);
         }
+    }
+
+    public void getLogout(Context ctx) {
+        logger.info("Accessing logout...");
+        ctx.result("User was logged out.");
+        ctx.status(200);
     }
 }

@@ -21,18 +21,7 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-
-
-
-
+    public String getPassword(){return password;}
     public User(){}
 
     public User(String email, String password){
@@ -42,7 +31,7 @@ public class User {
 
     @Override
     public String toString(){
-        return "\nUser ID: "+ getUserId()+"\nEmail: " + getEmail()+"\n";
+        return "User ID: "+ getUserId()+"\nEmail: " + getEmail()+"\n";
     }
 }
 

@@ -156,10 +156,6 @@ public class AccountRepository implements CrudableAccount<Account> {
 
         return withdrawAccount;
     }
-    @Override
-    public boolean delete() {
-        return false;
-    }
 
 
 }

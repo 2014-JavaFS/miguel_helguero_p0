@@ -60,7 +60,6 @@ public class AccountService {
         return accountRepository.deposit(depositAccount, depositAmount);
     }
 
-    // TODO: make accountRepository.findBalanceByUserIdAndAccountType() to first get balance so can determine if overdraft
     public Account withdraw(int userId, String accountType, double withdrawalAmount) throws NegativeWithdrawalException, InvalidAccountTypeException, OverdraftException {
         if(withdrawalAmount < 0) throw new NegativeWithdrawalException("Withdrawal amount cannot be negative.");
         if(!userHasAccountType(userId, accountType)) throw new InvalidAccountTypeException("The user does not have that account type.");
